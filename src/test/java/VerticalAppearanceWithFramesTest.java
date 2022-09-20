@@ -31,7 +31,7 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         productPage.clickGearWheelOfProduct();
         productPage.clickPreviewButton();   //Находимся на витрине на странице товара
         adminPanel.focusBrowserTab();
-        //Проверяем, что блок горизонтальный
+        //Проверяем, что блок вертикальный
         String actualResult = String.valueOf(productPage.getVerticalBlock());
         Assert.assertTrue(actualResult.contains("ab__vertical_tabs"),"Block is not vertical or missed on the product page.");
     }
