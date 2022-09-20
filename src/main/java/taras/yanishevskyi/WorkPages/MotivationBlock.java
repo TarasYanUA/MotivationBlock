@@ -12,6 +12,8 @@ public class MotivationBlock extends AbstractPage {
     }
     @FindBy(xpath = "//ul[@class=\"nav nav-tabs\"]//li[@id=\"settings\"]")
     private WebElement tabSettings;
+    @FindBy(id = "ab__motivation_block_appearance")
+    private WebElement tabAppearance;
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_description_type')]")
     private WebElement dropboxValueForElements_description_type;
     @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")
@@ -34,11 +36,27 @@ public class MotivationBlock extends AbstractPage {
     private WebElement categoryMenClothingExists;
     @FindBy(xpath = "//tr[@id[substring(.,string-length(.) - string-length('_259') + 1) = '_259']]")
     private WebElement categoryPlayStationExists;
+    @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_template_variant')]")
+    private WebElement settingTemplateVariant;
+    @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_appearance_type_styles')]")
+    private WebElement settingBlockStyle;
+    @FindBy(className = "sp-preview-inner")
+    private WebElement settingBlockColor;
+    @FindBy(xpath = "//span[@title='#ff0000']")
+    private WebElement redColorForBlock;
+    @FindBy(xpath = "//span[@title='#cfe2f3']")
+    private WebElement blueColorForBlock;
+    @FindBy(className = "sp-choose")
+    private WebElement submitColorForBlock;
 
 
     @Step
     public void clickTabSettings(){
         tabSettings.click();
+    }
+    @Step
+    public void clickTabAppearance(){
+        tabAppearance.click();
     }
 
     @Step
@@ -89,5 +107,39 @@ public class MotivationBlock extends AbstractPage {
     @Step
     public WebElement getCategoryPlayStation(){
         return categoryPlayStationExists;
+    }
+
+    public Select getSettingTemplateVariant(){
+        return new Select(settingTemplateVariant);
+    }
+    @Step
+    public String selectSettingTemplateVariant(String value){
+        getSettingTemplateVariant().selectByValue(value);
+        return value;
+    }
+
+    public Select getSettingBlockStyle(){
+        return new Select(settingBlockStyle);
+    }
+    @Step
+    public String selectSettingBlockStyle(String value){
+        getSettingBlockStyle().selectByValue(value);
+        return value;
+    }
+    @Step
+    public void clicksettingBlockColor(){
+        settingBlockColor.click();
+    }
+    @Step
+    public void chooseRedColorForBlock(){
+        redColorForBlock.click();
+    }
+    @Step
+    public void chooseBlueColorForBlock(){
+        blueColorForBlock.click();
+    }
+    @Step
+    public void clickSubmitColorForBlock(){
+        submitColorForBlock.click();
     }
 }

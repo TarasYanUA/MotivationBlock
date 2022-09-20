@@ -30,6 +30,11 @@ public class ProductPage extends AbstractPage {
     private WebElement apparelCategoryOnStorefront;
     @FindBy(xpath = "//div[@class='ty-grid-list__item-name']//a[contains(@title, 'GoPro')]")
     private WebElement productGoProOnStorefront;
+    @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
+    private WebElement verticalBlock;
+    @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
+    private WebElement horizontalBlock;
+
 
 
     @Step
@@ -69,5 +74,13 @@ public class ProductPage extends AbstractPage {
     @Step
     public void chooseProductGoProOnStorefront(){
         productGoProOnStorefront.click();
+    }
+    @Step
+    public WebElement getVerticalBlock(){
+        return verticalBlock;
+    }
+    @Step
+    public WebElement getHorizontalBlock(){
+        return horizontalBlock;
     }
 }

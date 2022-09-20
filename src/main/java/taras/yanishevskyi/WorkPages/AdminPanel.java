@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.Select;
 import taras.yanishevskyi.AbstractPage;
 import taras.yanishevskyi.DriverProvider;
 
+import java.util.ArrayList;
+
 public class AdminPanel extends AbstractPage {
     public AdminPanel(){
         super();
@@ -26,6 +28,12 @@ public class AdminPanel extends AbstractPage {
         hoverMenuProducts.moveToElement(elementOfMenuProducts);
         hoverMenuProducts.perform();
         navigateToProductPage();
+    }
+    public void focusBrowserTab() {
+        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
+        for(int ii = 0; ii <= 1; ii++) {
+            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
+        }
     }
 
     @FindBy(css = ".btn.btn-primary")

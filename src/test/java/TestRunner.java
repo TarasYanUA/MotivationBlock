@@ -25,8 +25,8 @@ public class TestRunner {
             saveScreenshot();
         }
 
-/*        DriverProvider.getDriver().quit();
-        DriverProvider.destroyDriver();*/
+        DriverProvider.getDriver().quit();
+        DriverProvider.destroyDriver();
     }
 
     @Attachment (value = "Page screen", type = "image/png")

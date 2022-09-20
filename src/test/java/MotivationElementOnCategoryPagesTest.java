@@ -64,7 +64,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         adminPanel.clickSaveButtonOnTopRight();
         productPage.clickGearWheelOfProduct();
         productPage.clickPreviewButton();   //Находимся на витрине на странице товара
-        focusBrowserTab();
+        adminPanel.focusBrowserTab();
         //Скроллим до блока мотивации
         scrollToMotivationBlock(productPage);
         //Проверяем, что блок мотивации отображается у главной категории
@@ -83,12 +83,5 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         hoverMotivationBlock.moveToElement(elementOfMotivationBlock);
         hoverMotivationBlock.perform();
         return elementOfMotivationBlock;
-    }
-
-    private static void focusBrowserTab() {
-        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
-        for(int ii = 0; ii <= 1; ii++) {
-            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
-        }
     }
 }
