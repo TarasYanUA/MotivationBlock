@@ -34,6 +34,8 @@ public class ProductPage extends AbstractPage {
     private WebElement verticalBlock;
     @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
     private WebElement horizontalBlock;
+    @FindBy(className = "ut2-gl__image")
+    private WebElement anyProductOnStorefront;
 
 
 
@@ -82,5 +84,9 @@ public class ProductPage extends AbstractPage {
     @Step
     public WebElement getHorizontalBlock(){
         return horizontalBlock;
+    }
+    @Step
+    public void chooseAnyProductOnStorefront(){
+        anyProductOnStorefront.click();
     }
 }

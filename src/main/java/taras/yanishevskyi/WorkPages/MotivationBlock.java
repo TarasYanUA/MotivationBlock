@@ -48,7 +48,12 @@ public class MotivationBlock extends AbstractPage {
     private WebElement blueColorForBlock;
     @FindBy(className = "sp-choose")
     private WebElement submitColorForBlock;
-
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
+    private WebElement elementDelivery;
+    @FindBy(id = "ab__mb_template_path")
+    private WebElement elementPage_Template;
+    @FindBy(xpath = "(//div[@class='ab__mb_item'])[3]")
+    private WebElement elementDeliveryOnStorefront;
 
     @Step
     public void clickTabSettings(){
@@ -141,5 +146,26 @@ public class MotivationBlock extends AbstractPage {
     @Step
     public void clickSubmitColorForBlock(){
         submitColorForBlock.click();
+    }
+    @Step
+    public void chooseElementDelivery(){
+        elementDelivery.click();
+    }
+    @Step
+    public Select getElementPage_Template(){
+        return new Select(elementPage_Template);
+    }
+    @Step
+    public String selectElementPage_Template(String value){
+        getElementPage_Template().selectByValue(value);
+        return value;
+    }
+    @Step
+    public WebElement getElementDeliveryOnStorefront(){
+        return elementDeliveryOnStorefront;
+    }
+    @Step
+    public void clickElementDeliveryOnStorefront(){
+        elementDeliveryOnStorefront.click();
     }
 }

@@ -23,7 +23,7 @@ public class TestRunner {
         if(! result.isSuccess()){
             //make screenshot
             saveScreenshot();
-        }
+        } saveScreenshot();
 
         DriverProvider.getDriver().quit();
         DriverProvider.destroyDriver();
