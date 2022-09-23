@@ -24,8 +24,14 @@ public class ProductPage extends AbstractPage {
     private WebElement previewButton;
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]")
     private WebElement motivationBlockOnProductPage;
-    @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]//span[contains(text(), 'Наши преимущества')]")
-    private WebElement motivationElementOnProductPage;
+    @FindBy(xpath = "//div[@class='ab__mb_item'][1]")
+    private WebElement elementOnProductPage_OurAdvantages;
+    @FindBy(xpath = "//div[@class='ab__mb_item'][2]")
+    private WebElement elementOnProductPage_PaymentMethods;
+    @FindBy(xpath = "//div[@class='ab__mb_item'][4]")
+    private WebElement elementOnProductPage_FindSimilar;
+    @FindBy(className = "ab-mb-prod-categories-list")
+    private WebElement categoryListAtElement;
     @FindBy(xpath = "//li[@class='ty-menu__item cm-menu-item-responsive  ty-menu-item__apparel']")
     private WebElement apparelCategoryOnStorefront;
     @FindBy(xpath = "//div[@class='ty-grid-list__item-name']//a[contains(@title, 'GoPro')]")
@@ -66,8 +72,20 @@ public class ProductPage extends AbstractPage {
         return motivationBlockOnProductPage;
     }
     @Step
-    public WebElement getMotivationElementOnProductPage(){
-        return motivationElementOnProductPage;
+    public WebElement getElementOnProductPage_OurAdvantages(){
+        return elementOnProductPage_OurAdvantages;
+    }
+    @Step
+    public void clickElementOnProductPage_PaymentMethods(){
+        elementOnProductPage_PaymentMethods.click();
+    }
+    @Step
+    public void clickElementOnProductPage_FindSimilar(){
+        elementOnProductPage_FindSimilar.click();
+    }
+    @Step
+    public WebElement getCategoryListAtElement(){
+        return categoryListAtElement;
     }
     @Step
     public void navigateToApparelCategoryOnStorefront(){

@@ -15,8 +15,8 @@ public class TestRunner {
         DriverProvider.getDriver().get(BASIC_URL);
 
         //Увеличиваю размер окна браузера
-        DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
+        DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
     }
     @AfterMethod
     public void afterMethod(ITestResult result){

@@ -26,6 +26,10 @@ public class MotivationBlock extends AbstractPage {
     private WebElement sectionDataManagement;
     @FindBy(xpath = "//a[@href[substring(.,string-length(.) - string-length('motivation_item_id=1') + 1) = 'motivation_item_id=1']]")
     private WebElement itemOurAdvantages;
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
+    private WebElement elementDelivery;
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=2')]")
+    private WebElement elementPaymentMethods;
     @FindBy(css = ".sidebar-row.ab-mb-sidebar-row")
     private WebElement sidebarAdditionalInfo;
     @FindBy(id = "categories")
@@ -48,12 +52,18 @@ public class MotivationBlock extends AbstractPage {
     private WebElement blueColorForBlock;
     @FindBy(className = "sp-choose")
     private WebElement submitColorForBlock;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
-    private WebElement elementDelivery;
     @FindBy(id = "ab__mb_template_path")
     private WebElement elementPage_Template;
     @FindBy(xpath = "(//div[@class='ab__mb_item'])[3]")
     private WebElement elementDeliveryOnStorefront;
+    @FindBy(css = ".cs-icon.dropdown-icon.ab__icon")
+    private WebElement abMenuDropdown;
+    @FindBy(xpath = "//a[contains(@href, 'ab__motivation_block.manage')][@id='2']")
+    private WebElement sectionDataManagementAtabMenu;
+    @FindBy(id = "sw_select_4_wrap")
+    private WebElement statusButton;
+    @FindBy(xpath = "//a[contains(@class, 'status-link-a cm-ajax')]")
+    private WebElement statusActive;
 
     @Step
     public void clickTabSettings(){
@@ -152,6 +162,14 @@ public class MotivationBlock extends AbstractPage {
         elementDelivery.click();
     }
     @Step
+    public void chooseElementPaymentMethods(){
+        elementPaymentMethods.click();
+    }
+    @Step
+    public void chooseElementFindSimilar(){
+        elementPaymentMethods.click();
+    }
+    @Step
     public Select getElementPage_Template(){
         return new Select(elementPage_Template);
     }
@@ -167,5 +185,21 @@ public class MotivationBlock extends AbstractPage {
     @Step
     public void clickElementDeliveryOnStorefront(){
         elementDeliveryOnStorefront.click();
+    }
+    @Step
+    public void clickABMenuDropdown(){
+        abMenuDropdown.click();
+    }
+    @Step
+    public void chooseSectionDataManagementAtABMenu(){
+        sectionDataManagementAtabMenu.click();
+    }
+    @Step
+    public void clickStatusButton(){
+        statusButton.click();
+    }
+    @Step
+    public void clickStatusActive(){
+        statusActive.click();
     }
 }

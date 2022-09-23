@@ -73,7 +73,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
-        Assert.assertTrue(productPage.getMotivationElementOnProductPage().isDisplayed());
+        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isDisplayed());
 
     }
 

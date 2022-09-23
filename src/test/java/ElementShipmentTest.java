@@ -46,7 +46,5 @@ public class ElementShipmentTest extends TestRunner{
         Assert.assertTrue(motivationBlock.getElementDeliveryOnStorefront().isEnabled(), "Element \"Delivery\" is not present on the product page");
         ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("scroll(0,750);");
         motivationBlock.clickElementDeliveryOnStorefront();
-
-
     }
 }
