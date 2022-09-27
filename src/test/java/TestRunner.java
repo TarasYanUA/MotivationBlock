@@ -25,6 +25,8 @@ public class TestRunner {
     public void afterMethod(ITestResult result) throws IOException{
         if (result.getStatus() == ITestResult.FAILURE) {
             takeScreenShotOnFailure(result);
+            DriverProvider.getDriver().quit();
+            DriverProvider.destroyDriver();
         }
         DriverProvider.getDriver().quit();
         DriverProvider.destroyDriver();
@@ -34,5 +36,5 @@ public class TestRunner {
         File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
                 + Arrays.toString(testResult.getParameters()) +  ".jpg"));
-}
+    }
 }

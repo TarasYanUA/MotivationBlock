@@ -32,7 +32,9 @@ public class ProductPage extends AbstractPage {
     private WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
     private WebElement categoryListAtElement;
-    @FindBy(xpath = "//li[@class='ty-menu__item cm-menu-item-responsive  ty-menu-item__apparel']")
+    @FindBy(xpath = "//div[@class='ty-dropdown-box__title ']")
+    private WebElement mainMenuOnStorefront;
+    @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.first-lvl.ty-menu-item__apparel")
     private WebElement apparelCategoryOnStorefront;
     @FindBy(xpath = "//div[@class='ty-grid-list__item-name']//a[contains(@title, 'GoPro')]")
     private WebElement productGoProOnStorefront;
@@ -106,5 +108,9 @@ public class ProductPage extends AbstractPage {
     @Step
     public void chooseAnyProductOnStorefront(){
         anyProductOnStorefront.click();
+    }
+    @Step
+    public void clickMainMenuOnStorefront(){
+        mainMenuOnStorefront.click();
     }
 }

@@ -9,9 +9,7 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
-
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class MotivationElementOnCategoryPagesTest extends TestRunner{
 
@@ -70,6 +68,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Проверяем, что блок мотивации отображается у главной категории
         Assert.assertTrue(productPage.hoverMotivationBlockOnProductPage().isDisplayed());
         //Проверяем, что секция "Наши преимущества" отображается в дочерней категории
+        productPage.clickMainMenuOnStorefront();
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);

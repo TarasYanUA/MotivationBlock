@@ -20,7 +20,7 @@ public class MotivationBlock extends AbstractPage {
     private WebElement checkboxUseAdditionalProductCategories;
     @FindBy(css = ".btn.cm-submit.cm-addons-save-settings")
     private WebElement saveButtonForSettings;
-    @FindBy(css = ".cs-icon.dropdown-icon.ab__icon")
+    @FindBy(css = ".btn-group.dropleft.ab__am-menu")
     private WebElement gearWheelOfAddon;
     @FindBy(xpath = "(//ul[@class=\"dropdown-menu\"]//a[contains(@href, \"ab__motivation_block.manage\")])[2]")
     private WebElement sectionDataManagement;
