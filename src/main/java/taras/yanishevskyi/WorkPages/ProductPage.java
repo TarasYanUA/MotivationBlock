@@ -36,7 +36,7 @@ public class ProductPage extends AbstractPage {
     private WebElement mainMenuOnStorefront;
     @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.first-lvl.ty-menu-item__apparel")
     private WebElement apparelCategoryOnStorefront;
-    @FindBy(xpath = "//div[@class='ty-grid-list__item-name']//a[contains(@title, 'GoPro')]")
+    @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
     private WebElement productGoProOnStorefront;
     @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
     private WebElement verticalBlock;
