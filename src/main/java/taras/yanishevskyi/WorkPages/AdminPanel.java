@@ -2,15 +2,17 @@ package taras.yanishevskyi.WorkPages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import taras.yanishevskyi.AbstractPage;
 import taras.yanishevskyi.DriverProvider;
 import java.util.ArrayList;
 
-public class AdminPanel extends AbstractPage {
+public class AdminPanel extends AbstractPage{
     public AdminPanel(){
         super();
     }
@@ -22,13 +24,31 @@ public class AdminPanel extends AbstractPage {
         hoverAddonsDropDown.perform();
         navigateToAddonsManagementPage();
     }
-    public void hoverToProductPage(AdminPanel adminPanelTwo){
+/*    public void navigateToProductPage(ProductPage productPage){
         WebElement elementOfMenuProducts = hoverMenuProducts();
         Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
         hoverMenuProducts.moveToElement(elementOfMenuProducts);
         hoverMenuProducts.perform();
-        //navigateToProductPage();
+        navigateToProductPage();
+    }*/
+    @Step
+    public void hoverToProductPage(){
+        WebElement elementOfMenuProducts = hoverMenuProducts();
+        Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
+        hoverMenuProducts.moveToElement(elementOfMenuProducts);
+        hoverMenuProducts.perform();
     }
+    /*@Step
+    public void navigateToProductPage(){
+        productPage.click();
+    }*/
+    @Step
+    public ProductPage navigateToProductPage(){
+        productPage.click();
+        return new ProductPage();
+    }
+
+
     public void focusBrowserTab() {
         ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
         for(int ii = 0; ii <= 1; ii++) {
@@ -62,8 +82,7 @@ public class AdminPanel extends AbstractPage {
     private WebElement saveButtonForAddonSettings;
     @FindBy(xpath = "//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']")
     private WebElement menuProducts;
-    @FindBy(xpath = "//li[contains(@class, 'products nav__header-main-menu-subitem')]//a[contains(@href, 'dispatch=products.manage')]")
-    //@FindBy(xpath = "//span[text()='Товары']")
+    @FindBy(xpath = "//span[text()='Товары']")
     private WebElement productPage;
     @FindBy(xpath = "//a[contains(@href, 'addon=geo_maps')][contains(@class, 'addons-addon-icon__wrapper')]")
     private WebElement geolocationAddon;
@@ -135,14 +154,11 @@ public class AdminPanel extends AbstractPage {
     public WebElement hoverMenuProducts(){
         return menuProducts;
     }
-    @Step
-/*    public ProductPage navigateToProductPage(){
+/*    @Step
+    public ProductPage navigateToProductPage(){
         productPage.click();
         return new ProductPage();
     }*/
-    public void navigateToProductPage(){
-        productPage.click();
-    }
     @Step
     public void chooseGeolocationAddon(){
         geolocationAddon.click();

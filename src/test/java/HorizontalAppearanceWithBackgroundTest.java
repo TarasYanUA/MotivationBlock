@@ -1,3 +1,4 @@
+/*
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import taras.yanishevskyi.WorkPages.AdminPanel;
@@ -24,9 +25,9 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.clickSubmitColorForBlock();
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара
-        adminPanel.hoverToProductPage(adminPanel);
-        adminPanel.navigateToProductPage();
         ProductPage productPage = new ProductPage();
+        adminPanel.navigateToProductPage();
+
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();
         productPage.clickGearWheelOfProduct();
@@ -37,3 +38,4 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         Assert.assertTrue(actualResult.contains("ab__horizontal_tabs"),"Block is not horizontal or missed on the product page.");
     }
 }
+*/

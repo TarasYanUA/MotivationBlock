@@ -12,7 +12,6 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 import java.time.Duration;
 
 public class MotivationElementOnCategoryPagesTest extends TestRunner{
-
     @Test
     public void motivationElementIsDisplayedOnCategoryPages(){
         AdminPanel adminPanel = new AdminPanel();
@@ -45,12 +44,12 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Проверяем, что обе категории добавились в таблицу
         (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
-        Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
-        Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
-        adminPanel.hoverToProductPage(adminPanel);
-        adminPanel.navigateToProductPage();
+        //Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
+        //Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
+        adminPanel.hoverToProductPage();
+        ProductPage productPage = adminPanel.navigateToProductPage();
 
-        ProductPage productPage = new ProductPage();
+        //ProductPage productPage = new ProductPage();
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();
         productPage.clickAtListOfCategories();
@@ -75,7 +74,6 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
         Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isDisplayed());
-
     }
 
     private static WebElement scrollToMotivationBlock(ProductPage productPage) {

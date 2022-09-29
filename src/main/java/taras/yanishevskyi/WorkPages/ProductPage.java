@@ -2,9 +2,13 @@ package taras.yanishevskyi.WorkPages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import taras.yanishevskyi.AbstractPage;
+import taras.yanishevskyi.DriverProvider;
 
 public class ProductPage extends AbstractPage {
     public ProductPage(){

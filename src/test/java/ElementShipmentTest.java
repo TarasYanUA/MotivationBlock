@@ -1,3 +1,4 @@
+/*
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,6 +9,7 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -48,3 +50,4 @@ public class ElementShipmentTest extends TestRunner{
         motivationBlock.clickElementDeliveryOnStorefront();
     }
 }
+*/

@@ -1,10 +1,13 @@
 package taras.yanishevskyi.WorkPages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import taras.yanishevskyi.AbstractPage;
+import taras.yanishevskyi.DriverProvider;
 
 public class MotivationBlock extends AbstractPage {
     public MotivationBlock(){
