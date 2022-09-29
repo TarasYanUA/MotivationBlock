@@ -47,7 +47,9 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
         Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
         Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
-        adminPanel.navigateToProductPage(adminPanel);
+        adminPanel.hoverToProductPage(adminPanel);
+        adminPanel.navigateToProductPage();
+
         ProductPage productPage = new ProductPage();
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();

@@ -24,7 +24,8 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.clickSubmitColorForBlock();
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара
-        adminPanel.navigateToProductPage(adminPanel);
+        adminPanel.hoverToProductPage(adminPanel);
+        adminPanel.navigateToProductPage();
         ProductPage productPage = new ProductPage();
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();

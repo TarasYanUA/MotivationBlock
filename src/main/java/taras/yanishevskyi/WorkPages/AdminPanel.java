@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import taras.yanishevskyi.AbstractPage;
 import taras.yanishevskyi.DriverProvider;
-
 import java.util.ArrayList;
 
 public class AdminPanel extends AbstractPage {
@@ -23,12 +22,12 @@ public class AdminPanel extends AbstractPage {
         hoverAddonsDropDown.perform();
         navigateToAddonsManagementPage();
     }
-    public void navigateToProductPage(AdminPanel adminPanelTwo){
+    public void hoverToProductPage(AdminPanel adminPanelTwo){
         WebElement elementOfMenuProducts = hoverMenuProducts();
         Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
         hoverMenuProducts.moveToElement(elementOfMenuProducts);
         hoverMenuProducts.perform();
-        navigateToProductPage();
+        //navigateToProductPage();
     }
     public void focusBrowserTab() {
         ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
@@ -61,9 +60,10 @@ public class AdminPanel extends AbstractPage {
     private WebElement saveButtonOnTopRight;
     @FindBy(xpath = "//a[@class='btn cm-submit cm-addons-save-settings']")
     private WebElement saveButtonForAddonSettings;
-    @FindBy(xpath = "(//li[@class=\"dropdown nav__header-main-menu-item \"])[2]")
+    @FindBy(xpath = "//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']")
     private WebElement menuProducts;
-    @FindBy(xpath = "//li[contains(@class, 'products nav__header-main-menu-subitem')]//a[contains(@href, '=products.manage')]")
+    @FindBy(xpath = "//li[contains(@class, 'products nav__header-main-menu-subitem')]//a[contains(@href, 'dispatch=products.manage')]")
+    //@FindBy(xpath = "//span[text()='Товары']")
     private WebElement productPage;
     @FindBy(xpath = "//a[contains(@href, 'addon=geo_maps')][contains(@class, 'addons-addon-icon__wrapper')]")
     private WebElement geolocationAddon;
@@ -136,9 +136,12 @@ public class AdminPanel extends AbstractPage {
         return menuProducts;
     }
     @Step
-    public ProductPage navigateToProductPage(){
+/*    public ProductPage navigateToProductPage(){
         productPage.click();
         return new ProductPage();
+    }*/
+    public void navigateToProductPage(){
+        productPage.click();
     }
     @Step
     public void chooseGeolocationAddon(){

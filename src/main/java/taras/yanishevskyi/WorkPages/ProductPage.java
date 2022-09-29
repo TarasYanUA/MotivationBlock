@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import taras.yanishevskyi.AbstractPage;
 
-import javax.swing.*;
-
 public class ProductPage extends AbstractPage {
     public ProductPage(){
         super();

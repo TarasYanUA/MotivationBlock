@@ -17,24 +17,18 @@ public class TestRunner {
     public void beforeMethod() {
         DriverProvider.getDriver().get(BASIC_URL);
 
-        //Увеличиваю размер окна браузера
+        //Увеличиваем размер окна браузера
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
     }
     @AfterMethod
-    public void afterMethod(ITestResult result) throws IOException{
-        if (result.getStatus() == ITestResult.FAILURE) {
-            takeScreenShotOnFailure(result);
-            DriverProvider.getDriver().quit();
-            DriverProvider.destroyDriver();
-        }
-        DriverProvider.getDriver().quit();
-        DriverProvider.destroyDriver();
-    }
-    @Attachment(value = "Page screen", type = "image/png")
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
-        File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
-                + Arrays.toString(testResult.getParameters()) +  ".jpg"));
+        if (testResult.getStatus() == ITestResult.FAILURE) {
+            File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
+                    + Arrays.toString(testResult.getParameters()) +  ".jpg"));
+        }
+        //DriverProvider.getDriver().quit();
+        //DriverProvider.destroyDriver();
     }
 }

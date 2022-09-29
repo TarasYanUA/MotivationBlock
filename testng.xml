@@ -1,0 +1,11 @@
+<suite name="Motivation block">
+    <test name="Test suite">
+        <classes>
+            <class name="MotivationElementOnCategoryPagesTest" />
+            <class name="VerticalAppearanceWithFramesTest" />
+            <class name="HorizontalAppearanceWithBackgroundTest" />
+            <class name="ElementShipmentTest" />
+            <class name ="PaymentMethods_CategoryListTest" />
+        </classes>
+    </test>
+</suite>
