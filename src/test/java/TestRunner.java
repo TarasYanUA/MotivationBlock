@@ -1,4 +1,3 @@
-import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,14 +19,13 @@ public class TestRunner {
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
     }
-    @AfterMethod
-    @Attachment(value = "Page screen", type = "image/png")
+/*    @AfterMethod
     public void afterMethod(){
         DriverProvider.getDriver().quit();
         DriverProvider.destroyDriver();
-    }
+    }*/
 
-/*    @AfterMethod
+    @AfterMethod
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
         if (testResult.getStatus() == ITestResult.FAILURE) {
             File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
@@ -36,5 +34,5 @@ public class TestRunner {
         }
         DriverProvider.getDriver().quit();
         DriverProvider.destroyDriver();
-    }*/
+    }
 }

@@ -1,6 +1,5 @@
 package taras.yanishevskyi.WorkPages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -68,61 +67,61 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//a[contains(@class, 'status-link-a cm-ajax')]")
     private WebElement statusActive;
 
-    @Step
+    
     public void clickTabSettings(){
         tabSettings.click();
     }
-    @Step
+    
     public void clickTabAppearance(){
         tabAppearance.click();
     }
 
-    @Step
+    
     public Select getDropboxValueForElements_description_type(){
         return new Select(dropboxValueForElements_description_type);
     }
-    @Step
+    
     public String selectDropboxValueForElements_description_type(String value) {
         getDropboxValueForElements_description_type().selectByValue(value);
         return value;
     }
-    @Step
+    
     public void clickCheckboxUseAdditionalProductCategories(){
         checkboxUseAdditionalProductCategories.click();
     }
-    @Step
+    
     public void clickSaveButtonForSettings(){
         saveButtonForSettings.click();
     }
-    @Step
+    
     public void clickGearWheelOfAddon(){
         gearWheelOfAddon.click();
     }
-    @Step
+    
     public void navigateToSectionDataManagement(){
         sectionDataManagement.click();
     }
-    @Step
+    
     public void clickItemOurAdvantages(){
         itemOurAdvantages.click();
     }
-    @Step
+    
     public WebElement getSidebarAdditionalInfo(){
         return sidebarAdditionalInfo;
     }
-    @Step
+    
     public void clickTabCategories(){
         tabCategories.click();
     }
-    @Step
+    
     public void clickAddCategoriesButton(){
         addCategoriesButton.click();
     }
-    @Step
+    
     public WebElement getCategoryMenClothingExists(){
         return categoryMenClothingExists;
     }
-    @Step
+    
     public WebElement getCategoryPlayStation(){
         return categoryPlayStationExists;
     }
@@ -130,7 +129,7 @@ public class MotivationBlock extends AbstractPage {
     public Select getSettingTemplateVariant(){
         return new Select(settingTemplateVariant);
     }
-    @Step
+    
     public String selectSettingTemplateVariant(String value){
         getSettingTemplateVariant().selectByValue(value);
         return value;
@@ -139,69 +138,69 @@ public class MotivationBlock extends AbstractPage {
     public Select getSettingBlockStyle(){
         return new Select(settingBlockStyle);
     }
-    @Step
+    
     public String selectSettingBlockStyle(String value){
         getSettingBlockStyle().selectByValue(value);
         return value;
     }
-    @Step
+    
     public void clicksettingBlockColor(){
         settingBlockColor.click();
     }
-    @Step
+    
     public void chooseRedColorForBlock(){
         redColorForBlock.click();
     }
-    @Step
+    
     public void chooseBlueColorForBlock(){
         blueColorForBlock.click();
     }
-    @Step
+    
     public void clickSubmitColorForBlock(){
         submitColorForBlock.click();
     }
-    @Step
+    
     public void chooseElementDelivery(){
         elementDelivery.click();
     }
-    @Step
+    
     public void chooseElementPaymentMethods(){
         elementPaymentMethods.click();
     }
-    @Step
+    
     public void chooseElementFindSimilar(){
         elementPaymentMethods.click();
     }
-    @Step
+    
     public Select getElementPage_Template(){
         return new Select(elementPage_Template);
     }
-    @Step
+    
     public String selectElementPage_Template(String value){
         getElementPage_Template().selectByValue(value);
         return value;
     }
-    @Step
+    
     public WebElement getElementDeliveryOnStorefront(){
         return elementDeliveryOnStorefront;
     }
-    @Step
+    
     public void clickElementDeliveryOnStorefront(){
         elementDeliveryOnStorefront.click();
     }
-    @Step
+    
     public void clickABMenuDropdown(){
         abMenuDropdown.click();
     }
-    @Step
+    
     public void chooseSectionDataManagementAtABMenu(){
         sectionDataManagementAtabMenu.click();
     }
-    @Step
+    
     public void clickStatusButton(){
         statusButton.click();
     }
-    @Step
+    
     public void clickStatusActive(){
         statusActive.click();
     }

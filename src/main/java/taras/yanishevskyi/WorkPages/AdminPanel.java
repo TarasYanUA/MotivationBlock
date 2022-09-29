@@ -1,6 +1,5 @@
 package taras.yanishevskyi.WorkPages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,18 +30,18 @@ public class AdminPanel extends AbstractPage{
         hoverMenuProducts.perform();
         navigateToProductPage();
     }*/
-    @Step
+    
     public void hoverToProductPage(){
         WebElement elementOfMenuProducts = hoverMenuProducts();
         Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
         hoverMenuProducts.moveToElement(elementOfMenuProducts);
         hoverMenuProducts.perform();
     }
-    /*@Step
+    /*
     public void navigateToProductPage(){
         productPage.click();
     }*/
-    @Step
+
     public ProductPage navigateToProductPage(){
         productPage.click();
         return new ProductPage();
@@ -100,98 +99,98 @@ public class AdminPanel extends AbstractPage{
     private WebElement storefrontMainButton;
 
 
-    @Step
+    
     public void clickButtonAuthorization(){
         buttonAuthorization.click();
     }
-    @Step
+    
     public WebElement hoverAddonsDropDown(){
         return addonsDropDown;
     }
-    @Step
+    
     public void navigateToAddonsManagementPage(){
         addonsManagementPage.click();
     }
-    @Step
+    
     public void clickCloseWarning(){
         closeWarning.click();
     }
-    @Step
+    
     public void clickButtonOfAddon(){
         buttonOfAddon.click();
     }
-    @Step
+    
     public MotivationBlock navigateToGeneralSettings(){
         generalSettings.click();
         return new MotivationBlock();
     }
-    @Step
+    
     public MotivationBlock navigateToDataManagementPage(){
         dataManagementPage.click();
         return new MotivationBlock();
     }
-    @Step
+    
     public void chooseCategoryMenClothing(){
         categoryMenClothing.click();
     }
-    @Step
+    
     public void chooseCategoryPlayStation(){
         categoryPlayStation.click();
     }
-    @Step
+    
     public void clickSavePopup(){
         savePopup.click();
     }
-    @Step
+    
     public void clickSaveButtonOnTopRight(){
         saveButtonOnTopRight.click();
     }
-    @Step
+    
     public void clickSaveButtonForAddonSettings(){
         saveButtonForAddonSettings.click();
     }
-    @Step
+    
     public WebElement hoverMenuProducts(){
         return menuProducts;
     }
-/*    @Step
+/*    
     public ProductPage navigateToProductPage(){
         productPage.click();
         return new ProductPage();
     }*/
-    @Step
+    
     public void chooseGeolocationAddon(){
         geolocationAddon.click();
     }
-    @Step
+    
     public Select getDropboxValueForGeolocation_Service(){
         return new Select(dropboxValueForGeolocation_Service);
     }
-    @Step
+    
     public String selectDropboxValueForGeolocation_Service(String value){
         getDropboxValueForGeolocation_Service().selectByValue(value);
         return value;
     }
-    @Step
+    
     public void clickGeolocationCheckbox_ShowShippingCost(){
         geolocationCheckbox_ShowShippingCost.click();
     }
-    @Step
+    
     public void clickGeolocationTabGoogle(){
         geolocationTabGoogle.click();
     }
-    @Step
+    
     public void clickAndTypeGeolocation_ApiKey(){
         geolocation_ApiKey.click();
         geolocation_ApiKey.sendKeys("AIzaSyBN51Tl05m8bPKtgHswOGtllu_TO3_bEN8");
     }
-    @Step
+    
     public void clickAndTypeSearchFieldOfAddons(){
         searchFieldOfAddons.click();
         searchFieldOfAddons.sendKeys("Геолокация");
         searchFieldOfAddons.sendKeys(Keys.ENTER);
     }
-    @Step
+    
     public void clickStorefrontMainButton(){
         storefrontMainButton.click();
     }

@@ -1,6 +1,5 @@
 package taras.yanishevskyi.WorkPages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,69 +48,69 @@ public class ProductPage extends AbstractPage {
 
 
 
-    @Step
+    
     public void clickAndTypeToSearchField(){
         searchFieldForProduct.click();
         searchFieldForProduct.sendKeys("GoPro");
         searchFieldForProduct.sendKeys(Keys.ENTER);
     }
-    @Step
+    
     public void chooseProductGoPro(){
         productGoPro.click();
     }
-    @Step
+    
     public void clickAtListOfCategories(){
         listOfCategories.click();
     }
-    @Step
+    
     public void clickGearWheelOfProduct(){
         gearwheelOfProduct.click();
     }
-    @Step
+    
     public void clickPreviewButton(){
         previewButton.click();
     }
-    @Step
+    
     public WebElement hoverMotivationBlockOnProductPage(){
         return motivationBlockOnProductPage;
     }
-    @Step
+    
     public WebElement getElementOnProductPage_OurAdvantages(){
         return elementOnProductPage_OurAdvantages;
     }
-    @Step
+    
     public void clickElementOnProductPage_PaymentMethods(){
         elementOnProductPage_PaymentMethods.click();
     }
-    @Step
+    
     public void clickElementOnProductPage_FindSimilar(){
         elementOnProductPage_FindSimilar.click();
     }
-    @Step
+    
     public WebElement getCategoryListAtElement(){
         return categoryListAtElement;
     }
-    @Step
+    
     public void navigateToApparelCategoryOnStorefront(){
         apparelCategoryOnStorefront.click();
     }
-    @Step
+    
     public void chooseProductGoProOnStorefront(){
         productGoProOnStorefront.click();
     }
-    @Step
+    
     public WebElement getVerticalBlock(){
         return verticalBlock;
     }
-    @Step
+    
     public WebElement getHorizontalBlock(){
         return horizontalBlock;
     }
-    @Step
+    
     public void chooseAnyProductOnStorefront(){
         anyProductOnStorefront.click();
     }
-    @Step
+    
     public void clickMainMenuOnStorefront(){
         mainMenuOnStorefront.click();
     }
