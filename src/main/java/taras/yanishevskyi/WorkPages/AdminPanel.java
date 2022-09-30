@@ -23,30 +23,18 @@ public class AdminPanel extends AbstractPage{
         hoverAddonsDropDown.perform();
         navigateToAddonsManagementPage();
     }
-/*    public void navigateToProductPage(ProductPage productPage){
-        WebElement elementOfMenuProducts = hoverMenuProducts();
-        Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
-        hoverMenuProducts.moveToElement(elementOfMenuProducts);
-        hoverMenuProducts.perform();
-        navigateToProductPage();
-    }*/
-    
+
     public void hoverToProductPage(){
         WebElement elementOfMenuProducts = hoverMenuProducts();
         Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
         hoverMenuProducts.moveToElement(elementOfMenuProducts);
         hoverMenuProducts.perform();
     }
-    /*
-    public void navigateToProductPage(){
-        productPage.click();
-    }*/
 
     public ProductPage navigateToProductPage(){
         productPage.click();
         return new ProductPage();
     }
-
 
     public void focusBrowserTab() {
         ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
@@ -153,11 +141,6 @@ public class AdminPanel extends AbstractPage{
     public WebElement hoverMenuProducts(){
         return menuProducts;
     }
-/*    
-    public ProductPage navigateToProductPage(){
-        productPage.click();
-        return new ProductPage();
-    }*/
     
     public void chooseGeolocationAddon(){
         geolocationAddon.click();
@@ -171,7 +154,7 @@ public class AdminPanel extends AbstractPage{
         getDropboxValueForGeolocation_Service().selectByValue(value);
         return value;
     }
-    
+
     public void clickGeolocationCheckbox_ShowShippingCost(){
         geolocationCheckbox_ShowShippingCost.click();
     }

@@ -1,4 +1,3 @@
-/*
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import taras.yanishevskyi.WorkPages.AdminPanel;
@@ -7,10 +6,9 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 
 public class VerticalAppearanceWithFramesTest extends TestRunner{
 
-    @Test
+    @Test(description = "Проверяем общие настройки модуля - вертикальное отображение с обрамлением")
     public void motivationBlockAppearance() {
         AdminPanel adminPanel = new AdminPanel();
-        adminPanel.clickButtonAuthorization();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
         adminPanel.navigateToGeneralSettings();
@@ -25,9 +23,8 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         motivationBlock.clickSubmitColorForBlock();
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара
-        ProductPage productPage = new ProductPage();
-        adminPanel.navigateToProductPage();
-
+        adminPanel.hoverToProductPage();
+        ProductPage productPage = adminPanel.navigateToProductPage();
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();
         productPage.clickGearWheelOfProduct();
@@ -38,4 +35,3 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         Assert.assertTrue(actualResult.contains("ab__vertical_tabs"),"Block is not vertical or missed on the product page.");
     }
 }
-*/

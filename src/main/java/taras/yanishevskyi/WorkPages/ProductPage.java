@@ -1,13 +1,9 @@
 package taras.yanishevskyi.WorkPages;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import taras.yanishevskyi.AbstractPage;
-import taras.yanishevskyi.DriverProvider;
 
 public class ProductPage extends AbstractPage {
     public ProductPage(){
@@ -27,9 +23,9 @@ public class ProductPage extends AbstractPage {
     private WebElement motivationBlockOnProductPage;
     @FindBy(xpath = "//div[@class='ab__mb_item'][1]")
     private WebElement elementOnProductPage_OurAdvantages;
-    @FindBy(xpath = "//div[@class='ab__mb_item'][2]")
+    @FindBy(xpath = "//div[text()='Варианты оплаты']")
     private WebElement elementOnProductPage_PaymentMethods;
-    @FindBy(xpath = "//div[@class='ab__mb_item'][4]")
+    @FindBy(xpath = "//div[text()='Найдите похожие']")
     private WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
     private WebElement categoryListAtElement;

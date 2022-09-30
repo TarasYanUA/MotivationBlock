@@ -56,9 +56,9 @@ public class MotivationBlock extends AbstractPage {
     private WebElement submitColorForBlock;
     @FindBy(id = "ab__mb_template_path")
     private WebElement elementPage_Template;
-    @FindBy(xpath = "(//div[@class='ab__mb_item'])[3]")
+    @FindBy(id = "sw_ab__mb_id_12_150_3")
     private WebElement elementDeliveryOnStorefront;
-    @FindBy(css = ".cs-icon.dropdown-icon.ab__icon")
+    @FindBy(css = ".btn-group.dropleft.ab__am-menu")
     private WebElement abMenuDropdown;
     @FindBy(xpath = "//a[contains(@href, 'ab__motivation_block.manage')][@id='2']")
     private WebElement sectionDataManagementAtabMenu;

@@ -1,6 +1,8 @@
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import taras.yanishevskyi.DriverProvider;
@@ -18,12 +20,8 @@ public class TestRunner {
         //Увеличиваем размер окна браузера
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
+        DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
     }
-/*    @AfterMethod
-    public void afterMethod(){
-        DriverProvider.getDriver().quit();
-        DriverProvider.destroyDriver();
-    }*/
 
     @AfterMethod
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
@@ -32,7 +30,7 @@ public class TestRunner {
             FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
                     + Arrays.toString(testResult.getParameters()) +  ".jpg"));
         }
-        DriverProvider.getDriver().quit();
-        DriverProvider.destroyDriver();
+        //DriverProvider.getDriver().quit();
+        //DriverProvider.destroyDriver();
     }
 }

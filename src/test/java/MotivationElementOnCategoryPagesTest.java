@@ -12,10 +12,9 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 import java.time.Duration;
 
 public class MotivationElementOnCategoryPagesTest extends TestRunner{
-    @Test
+    @Test(description="Проверяем настройку модуля 'Учитывать дополнительные категории товара' и отображение элемента мотивации на дочерних категориях")
     public void motivationElementIsDisplayedOnCategoryPages(){
         AdminPanel adminPanel = new AdminPanel();
-        adminPanel.clickButtonAuthorization();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
         adminPanel.navigateToGeneralSettings();
@@ -46,10 +45,9 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
         //Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
         //Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
+
         adminPanel.hoverToProductPage();
         ProductPage productPage = adminPanel.navigateToProductPage();
-
-        //ProductPage productPage = new ProductPage();
         productPage.clickAndTypeToSearchField();
         productPage.chooseProductGoPro();
         productPage.clickAtListOfCategories();
