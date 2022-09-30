@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,7 +11,7 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 import java.time.Duration;
 import java.util.ArrayList;
 
-public class ElementShipmentTest extends TestRunner{
+public class Element_ShipmentTest extends TestRunner{
     @Test(description = "Проверяем шаблон элемента мотивации 'Доставка'")
     public void elementShipmentOnStorefront(){
         AdminPanel adminPanel = new AdminPanel();

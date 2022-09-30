@@ -5,8 +5,8 @@
             <class name="MotivationElementOnCategoryPagesTest" />
             <class name="VerticalAppearanceWithFramesTest" />
             <class name="HorizontalAppearanceWithBackgroundTest" />
-            <class name="ElementShipmentTest" />
-            <class name ="PaymentMethods_CategoryListTest" />
+            <class name="Element_ShipmentTest" />
+            <class name="Elements_PaymentMethods_CategoryListTest" />
         </classes>
     </test>
 </suite>

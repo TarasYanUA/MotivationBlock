@@ -12,7 +12,7 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 import java.time.Duration;
 import java.util.ArrayList;
 
-public class PaymentMethods_CategoryListTest extends TestRunner {
+public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
     @Test(description = "Проверяем шаблон элемента мотивации 'Варианты оплаты'")
     public void manageTwoMotivationElements(){
         AdminPanel adminPanel = new AdminPanel();
