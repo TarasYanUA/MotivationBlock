@@ -47,7 +47,7 @@ public class PaymentMethods_CategoryListTest extends TestRunner {
         Assert.assertTrue(productPage.getCategoryListAtElement().isEnabled());
     }
     private static WebElement scrollToMotivationBlock(ProductPage productPage) {
-        WebElement elementOfMotivationBlock = productPage.hoverMotivationBlockOnProductPage();
+        WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(elementOfMotivationBlock).scrollByAmount(0,500);
         hoverMotivationBlock.perform();

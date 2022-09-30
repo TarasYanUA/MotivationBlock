@@ -66,8 +66,7 @@ public class ProductPage extends AbstractPage {
     public void clickPreviewButton(){
         previewButton.click();
     }
-    
-    public WebElement hoverMotivationBlockOnProductPage(){
+    public WebElement getMotivationBlockOnProductPage(){
         return motivationBlockOnProductPage;
     }
     

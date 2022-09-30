@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,14 +27,14 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
             motivationBlock.clickCheckboxUseAdditionalProductCategories();
         }
         motivationBlock.clickSaveButtonForSettings(); //Сохранили настройки
-        motivationBlock.clickGearWheelOfAddon();
+        /*motivationBlock.clickGearWheelOfAddon();
         motivationBlock.navigateToSectionDataManagement();
         motivationBlock.clickItemOurAdvantages();
         //Проверяем наличие боковой панели с доп. инфо на странице "Наши преимущества"
         String actualText = motivationBlock.getSidebarAdditionalInfo().getText();
         Assert.assertTrue(actualText.contains("Дополнительная информация для формирования контента"), "There is no sidebar on the page!");
 
-        /*//Проверяем категории и подкатегории для мотив. элементов
+        //Проверяем категории и подкатегории для мотив. элементов
         motivationBlock.clickTabCategories();
         motivationBlock.clickAddCategoriesButton();
         (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
@@ -70,17 +69,17 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Скроллим до блока мотивации
         scrollToMotivationBlock(productPage);
         //Проверяем, что блок мотивации отображается у главной категории
-        Assert.assertTrue(productPage.hoverMotivationBlockOnProductPage().isDisplayed());
+        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
         //Проверяем, что секция "Наши преимущества" отображается в дочерней категории
         productPage.clickMainMenuOnStorefront();
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
-        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isDisplayed());
+        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
     }
 
     private static WebElement scrollToMotivationBlock(ProductPage productPage) {
-        WebElement elementOfMotivationBlock = productPage.hoverMotivationBlockOnProductPage();
+        WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(elementOfMotivationBlock);
         hoverMotivationBlock.perform();
