@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +23,10 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         MotivationBlock motivationBlock = new MotivationBlock();
         motivationBlock.clickTabSettings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");
-        motivationBlock.clickCheckboxUseAdditionalProductCategories();
+
+        if(! DriverProvider.getDriver().findElement(By.xpath("//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")).isSelected()){
+            motivationBlock.clickCheckboxUseAdditionalProductCategories();
+        }
         motivationBlock.clickSaveButtonForSettings(); //Сохранили настройки
         motivationBlock.clickGearWheelOfAddon();
         motivationBlock.navigateToSectionDataManagement();
@@ -31,7 +35,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         String actualText = motivationBlock.getSidebarAdditionalInfo().getText();
         Assert.assertTrue(actualText.contains("Дополнительная информация для формирования контента"), "There is no sidebar on the page!");
 
-        //Проверяем категории и подкатегории для мотив. элементов
+        /*//Проверяем категории и подкатегории для мотив. элементов
         motivationBlock.clickTabCategories();
         motivationBlock.clickAddCategoriesButton();
         (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
@@ -43,9 +47,10 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Проверяем, что обе категории добавились в таблицу
         (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
-        //Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
-        //Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
-
+        Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
+        Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
+*/
+        //Переходим на страницу редактирования товара
         adminPanel.hoverToProductPage();
         ProductPage productPage = adminPanel.navigateToProductPage();
         productPage.clickAndTypeToSearchField();

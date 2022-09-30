@@ -7,7 +7,7 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
 
     @Test(description = "Проверяем общие настройки модуля - горизонтальный вид с заливкой фона")
-    public void motivationBlockAppearance() {
+    public void horizontalBlockAppearance() {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();

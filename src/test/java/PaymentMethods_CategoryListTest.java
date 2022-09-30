@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class PaymentMethods_CategoryListTest extends TestRunner {
     @Test(description = "Проверяем шаблон элемента мотивации 'Варианты оплаты'")
-    public void ManageTwoMotivationElements(){
+    public void manageTwoMotivationElements(){
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();

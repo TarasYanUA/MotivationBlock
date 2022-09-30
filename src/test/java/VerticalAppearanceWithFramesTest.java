@@ -7,7 +7,7 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 public class VerticalAppearanceWithFramesTest extends TestRunner{
 
     @Test(description = "Проверяем общие настройки модуля - вертикальное отображение с обрамлением")
-    public void motivationBlockAppearance() {
+    public void verticalBlockAppearance() {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();

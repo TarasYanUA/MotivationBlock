@@ -21,11 +21,11 @@ public class ProductPage extends AbstractPage {
     private WebElement previewButton;
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]")
     private WebElement motivationBlockOnProductPage;
-    @FindBy(xpath = "//div[@class='ab__mb_item'][1]")
+    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
     private WebElement elementOnProductPage_OurAdvantages;
-    @FindBy(xpath = "//div[text()='Варианты оплаты']")
+    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Варианты оплаты']")
     private WebElement elementOnProductPage_PaymentMethods;
-    @FindBy(xpath = "//div[text()='Найдите похожие']")
+    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Найдите похожие']")
     private WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
     private WebElement categoryListAtElement;

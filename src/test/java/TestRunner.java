@@ -30,7 +30,7 @@ public class TestRunner {
             FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
                     + Arrays.toString(testResult.getParameters()) +  ".jpg"));
         }
-        //DriverProvider.getDriver().quit();
-        //DriverProvider.destroyDriver();
+        DriverProvider.getDriver().quit();
+        DriverProvider.destroyDriver();
     }
 }
