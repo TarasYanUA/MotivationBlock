@@ -27,28 +27,6 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
             motivationBlock.clickCheckboxUseAdditionalProductCategories();
         }
         motivationBlock.clickSaveButtonForSettings(); //Сохранили настройки
-        /*motivationBlock.clickGearWheelOfAddon();
-        motivationBlock.navigateToSectionDataManagement();
-        motivationBlock.clickItemOurAdvantages();
-        //Проверяем наличие боковой панели с доп. инфо на странице "Наши преимущества"
-        String actualText = motivationBlock.getSidebarAdditionalInfo().getText();
-        Assert.assertTrue(actualText.contains("Дополнительная информация для формирования контента"), "There is no sidebar on the page!");
-
-        //Проверяем категории и подкатегории для мотив. элементов
-        motivationBlock.clickTabCategories();
-        motivationBlock.clickAddCategoriesButton();
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
-        adminPanel.chooseCategoryMenClothing();
-        adminPanel.chooseCategoryPlayStation();
-        adminPanel.clickSavePopup();
-        adminPanel.clickSaveButtonOnTopRight();
-        //Проверяем, что обе категории добавились в таблицу
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
-        Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
-        Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
-*/
         //Переходим на страницу редактирования товара
         adminPanel.hoverToProductPage();
         ProductPage productPage = adminPanel.navigateToProductPage();
@@ -66,16 +44,15 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         productPage.clickGearWheelOfProduct();
         productPage.clickPreviewButton();   //Находимся на витрине на странице товара
         adminPanel.focusBrowserTab();
-        //Скроллим до блока мотивации
-        scrollToMotivationBlock(productPage);
+        scrollToMotivationBlock(productPage);   //Скроллим до блока мотивации
         //Проверяем, что блок мотивации отображается у главной категории
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
-        //Проверяем, что секция "Наши преимущества" отображается в дочерней категории
+        //Проверяем, что блок мотивации отображается в дочерней категории
         productPage.clickMainMenuOnStorefront();
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
-        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
+        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(), "Motivation block is absent on subcategory page!");
     }
 
     private static WebElement scrollToMotivationBlock(ProductPage productPage) {

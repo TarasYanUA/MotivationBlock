@@ -4,6 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import taras.yanishevskyi.AbstractPage;
+import java.util.List;
 
 public class ProductPage extends AbstractPage {
     public ProductPage(){
@@ -33,6 +34,8 @@ public class ProductPage extends AbstractPage {
     private WebElement mainMenuOnStorefront;
     @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.first-lvl.ty-menu-item__apparel")
     private WebElement apparelCategoryOnStorefront;
+    @FindBy(xpath = "//span[text()='Мужская одежда']")
+    private WebElement menClothCategoryOnStorefront;
     @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
     private WebElement productGoProOnStorefront;
     @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
@@ -41,8 +44,8 @@ public class ProductPage extends AbstractPage {
     private WebElement horizontalBlock;
     @FindBy(className = "ut2-gl__image")
     private WebElement anyProductOnStorefront;
-
-
+    @FindBy(xpath = "//li[contains(@class, 'ab-mb-horizontal__item-tab')]")
+    private List<WebElement> numberOfTabsOfBlock;
 
     
     public void clickAndTypeToSearchField(){
@@ -89,6 +92,9 @@ public class ProductPage extends AbstractPage {
     public void navigateToApparelCategoryOnStorefront(){
         apparelCategoryOnStorefront.click();
     }
+    public void navigateToMenClothCategoryOnStorefront(){
+        menClothCategoryOnStorefront.click();
+    }
     
     public void chooseProductGoProOnStorefront(){
         productGoProOnStorefront.click();
@@ -108,5 +114,8 @@ public class ProductPage extends AbstractPage {
     
     public void clickMainMenuOnStorefront(){
         mainMenuOnStorefront.click();
+    }
+    public List<WebElement> getNumberOfTabsOfBlock(){
+        return numberOfTabsOfBlock;
     }
 }
