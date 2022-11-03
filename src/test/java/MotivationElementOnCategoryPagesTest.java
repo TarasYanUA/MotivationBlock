@@ -48,18 +48,25 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Проверяем, что блок мотивации отображается у главной категории
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
         //Проверяем, что блок мотивации отображается в дочерней категории
-        productPage.clickMainMenuOnStorefront();
+        scrollToMenuMenApparel(productPage);
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(), "Motivation block is absent on subcategory page!");
     }
 
-    private static WebElement scrollToMotivationBlock(ProductPage productPage) {
+    private static WebElement scrollToMotivationBlock (ProductPage productPage) {
         WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(elementOfMotivationBlock);
         hoverMotivationBlock.perform();
         return elementOfMotivationBlock;
+    }
+    private static WebElement scrollToMenuMenApparel (ProductPage productPage) {
+        WebElement menuMenApparel = productPage.getMenuMenApparel();
+        Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
+        hoverMotivationBlock.moveToElement(menuMenApparel);
+        hoverMotivationBlock.perform();
+        return menuMenApparel;
     }
 }

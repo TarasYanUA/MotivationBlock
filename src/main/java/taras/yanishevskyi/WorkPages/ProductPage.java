@@ -18,7 +18,7 @@ public class ProductPage extends AbstractPage {
     private WebElement listOfCategories;
     @FindBy(xpath = "//div[@class=\" btn-bar btn-toolbar nav__actions-bar dropleft\"]//div[@class=\"btn-group dropleft\"]")
     private WebElement gearwheelOfProduct;
-    @FindBy(xpath = "//a[@href[substring(.,string-length(.) - string-length('preview') + 1) = 'preview']]")
+    @FindBy(xpath = "//a[contains(text(), 'Предпросмотр')]")
     private WebElement previewButton;
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]")
     private WebElement motivationBlockOnProductPage;
@@ -32,7 +32,7 @@ public class ProductPage extends AbstractPage {
     private WebElement categoryListAtElement;
     @FindBy(xpath = "//div[@class='ty-dropdown-box__title ']")
     private WebElement mainMenuOnStorefront;
-    @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.first-lvl.ty-menu-item__apparel")
+    @FindBy(xpath = "//div[@class=\"ty-menu__submenu-item-header\"]//a[contains(@href, '/apparel/mens-clothing/')]")
     private WebElement apparelCategoryOnStorefront;
     @FindBy(xpath = "//span[text()='Мужская одежда']")
     private WebElement menClothCategoryOnStorefront;
@@ -46,6 +46,8 @@ public class ProductPage extends AbstractPage {
     private WebElement anyProductOnStorefront;
     @FindBy(xpath = "//li[contains(@class, 'ab-mb-horizontal__item-tab')]")
     private List<WebElement> numberOfTabsOfBlock;
+    @FindBy(xpath = "//li[@class=\"ty-menu__item cm-menu-item-responsive ty-menu-item__apparel\"]")
+    private WebElement menuMenApparel;
 
     
     public void clickAndTypeToSearchField(){
@@ -111,11 +113,15 @@ public class ProductPage extends AbstractPage {
     public void chooseAnyProductOnStorefront(){
         anyProductOnStorefront.click();
     }
-    
+
     public void clickMainMenuOnStorefront(){
         mainMenuOnStorefront.click();
     }
     public List<WebElement> getNumberOfTabsOfBlock(){
         return numberOfTabsOfBlock;
+    }
+
+    public WebElement getMenuMenApparel(){
+        return menuMenApparel;
     }
 }
