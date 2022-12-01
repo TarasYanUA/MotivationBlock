@@ -7,6 +7,7 @@
             <class name="HorizontalAppearanceWithBackgroundTest" />
             <class name="Element_ShipmentTest" />
             <class name="Elements_PaymentMethods_CategoryListTest" />
+            <class name="DisplayElementForSpecifiedCategoriesOnlyTest" />
         </classes>
     </test>
 </suite>

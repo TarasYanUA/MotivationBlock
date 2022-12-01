@@ -32,9 +32,9 @@ public class ProductPage extends AbstractPage {
     private WebElement categoryListAtElement;
     @FindBy(xpath = "//div[@class='ty-dropdown-box__title ']")
     private WebElement mainMenuOnStorefront;
-    @FindBy(xpath = "//div[@class=\"ty-menu__submenu-item-header\"]//a[contains(@href, '/apparel/mens-clothing/')]")
+    @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.ty-menu-item__apparel")
     private WebElement apparelCategoryOnStorefront;
-    @FindBy(xpath = "//span[text()='Мужская одежда']")
+    @FindBy(css = ".ut2-subcategories > li")
     private WebElement menClothCategoryOnStorefront;
     @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
     private WebElement productGoProOnStorefront;

@@ -51,7 +51,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
         int actualNumberOfTabs = listOfTabsOfBlock.size();
         Assert.assertEquals(actualNumberOfTabs, expectedNumberOfTabs, "Motivation element is present for a wrong category!");
         //Проверяем, что элемент "Наши примущемтва" присутствует для нужной категорий
-        productPage.clickMainMenuOnStorefront();
+        //productPage.clickMainMenuOnStorefront();
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.navigateToMenClothCategoryOnStorefront();
         productPage.chooseAnyProductOnStorefront();

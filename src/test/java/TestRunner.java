@@ -11,6 +11,14 @@ import java.time.Duration;
 import java.util.Arrays;
 import static taras.yanishevskyi.Constants.BASIC_URL;
 
+/*
+Модуль "Блок мотивации" + тема Юни2(UltRu). Можно установить весь пакет темы Юни2.
+Запускать через файл testng.xml
+
+Важно следить за версией файла chromedriver.exe Он расположен в папке test -> resources. Версия этого файла должна совпадать с версией браузера Хром на ПК.
+Если при запуске testng.xml тесты падают с самого начала, то значит версия файла chromedriver.exe устарела.
+*/
+
 public class TestRunner {
 
     @BeforeMethod
