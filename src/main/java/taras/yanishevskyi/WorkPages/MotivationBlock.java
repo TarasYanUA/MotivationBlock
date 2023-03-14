@@ -24,13 +24,13 @@ public class MotivationBlock extends AbstractPage {
     private WebElement gearWheelOfAddon;
     @FindBy(xpath = "(//ul[@class=\"dropdown-menu\"]//a[contains(@href, \"ab__motivation_block.manage\")])[2]")
     private WebElement sectionDataManagement;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=1')]")
+    @FindBy(xpath = "//a[text()='Доставка']")
     private WebElement elementDelivery;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=2')]")
+    @FindBy(xpath = "//a[text()='Варианты оплаты']")
     private WebElement elementPaymentMethods;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
+    @FindBy(xpath = "//a[text()='Наши преимущества']")
     private WebElement elementOurAdvantages;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=4')]")
+    @FindBy(xpath = "//a[text()='Найдите похожие']")
     private WebElement elementFindSimilar;
     @FindBy(css = ".sidebar-row.ab-mb-sidebar-row")
     private WebElement sidebarAdditionalInfo;
