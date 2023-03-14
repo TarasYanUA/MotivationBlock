@@ -14,12 +14,12 @@ import static taras.yanishevskyi.Constants.BASIC_URL;
 /*
 Модуль "Блок мотивации" + тема Юни2(UltRu). Можно установить весь пакет темы Юни2.
 Запустить тесты можно:
- 1) Через файл testng.xml
+ 1) Через файл testNG.xml
  2) Через Surefire отчёт: перейти в "Терминал" и ввести "mvn clean test". После этого в папке "target -> surefire reports"
  открыть файл "index.html" с помощью браузера.
 
 Важно следить за версией файла chromedriver.exe который расположен в папке test -> resources. Версия этого файла должна совпадать с версией браузера Хром на ПК.
-Если при запуске testng.xml тесты падают с самого начала, то значит версия файла chromedriver.exe устарела.
+Если при запуске testNG.xml тесты падают с самого начала, то значит версия файла chromedriver.exe устарела.
 */
 
 public class TestRunner {
@@ -31,6 +31,7 @@ public class TestRunner {
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
+        DriverProvider.getDriver().findElement(By.cssSelector(".cm-notification-close")).click();
     }
 
     @AfterMethod

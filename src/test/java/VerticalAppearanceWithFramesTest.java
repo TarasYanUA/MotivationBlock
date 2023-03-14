@@ -6,13 +6,12 @@ import taras.yanishevskyi.WorkPages.ProductPage;
 
 public class VerticalAppearanceWithFramesTest extends TestRunner{
 
-    @Test(description = "Проверяем общие настройки модуля - вертикальный вид с обрамлением", priority = 2)
+    @Test(description = "Проверяем общие настройки модуля - вертикальный вид с обрамлением")
     public void verticalBlockAppearance() {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
         adminPanel.navigateToGeneralSettings();
-
         MotivationBlock motivationBlock = new MotivationBlock();
         motivationBlock.clickTabSettings();
         motivationBlock.clickTabAppearance();

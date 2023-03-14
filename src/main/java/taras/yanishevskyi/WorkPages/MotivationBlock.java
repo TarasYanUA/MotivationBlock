@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import taras.yanishevskyi.AbstractPage;
 
+@SuppressWarnings("ALL")
 public class MotivationBlock extends AbstractPage {
     public MotivationBlock(){
         super();
@@ -23,12 +24,14 @@ public class MotivationBlock extends AbstractPage {
     private WebElement gearWheelOfAddon;
     @FindBy(xpath = "(//ul[@class=\"dropdown-menu\"]//a[contains(@href, \"ab__motivation_block.manage\")])[2]")
     private WebElement sectionDataManagement;
-    @FindBy(xpath = "//a[@href[substring(.,string-length(.) - string-length('motivation_item_id=1') + 1) = 'motivation_item_id=1']]")
-    private WebElement itemOurAdvantages;
-    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=1')]")
     private WebElement elementDelivery;
     @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=2')]")
     private WebElement elementPaymentMethods;
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=3')]")
+    private WebElement elementOurAdvantages;
+    @FindBy(xpath = "//td/a[contains(@href, 'motivation_item_id=4')]")
+    private WebElement elementFindSimilar;
     @FindBy(css = ".sidebar-row.ab-mb-sidebar-row")
     private WebElement sidebarAdditionalInfo;
     @FindBy(id = "categories")
@@ -100,7 +103,7 @@ public class MotivationBlock extends AbstractPage {
     }
     
     public void clickItemOurAdvantages(){
-        itemOurAdvantages.click();
+        elementOurAdvantages.click();
     }
     
     public WebElement getSidebarAdditionalInfo(){

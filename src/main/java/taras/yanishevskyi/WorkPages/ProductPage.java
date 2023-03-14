@@ -24,9 +24,9 @@ public class ProductPage extends AbstractPage {
     private WebElement motivationBlockOnProductPage;
     @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
     private WebElement elementOnProductPage_OurAdvantages;
-    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Варианты оплаты']")
+    @FindBy(css = ".ut2-icon-baseline-credit_card")
     private WebElement elementOnProductPage_PaymentMethods;
-    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Найдите похожие']")
+    @FindBy(css = "li[data-mb-id$='_4']")
     private WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
     private WebElement categoryListAtElement;

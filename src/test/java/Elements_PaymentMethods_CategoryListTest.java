@@ -1,4 +1,4 @@
-import org.openqa.selenium.By;;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +10,6 @@ import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
     @Test(description = "Проверяем шаблон элемента мотивации 'Варианты оплаты'")
@@ -25,7 +24,6 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         adminPanel.clickSaveButtonOnTopRight();
         motivationBlock.clickABMenuDropdown();
         motivationBlock.chooseSectionDataManagementAtABMenu();
-
         if(DriverProvider.getDriver().findElement(By.xpath("//a[@id=\"sw_select_4_wrap\"]")).getText().contains("Выкл.")){
             motivationBlock.clickStatusButton();
             motivationBlock.clickStatusActive();
@@ -33,10 +31,7 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
                 .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cs-icon.icon-shopping-cart")));
         adminPanel.clickStorefrontMainButton();
-        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
-        for(int ii = 0; ii <= 1; ii++) {
-            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
-        }
+        adminPanel.focusBrowserTab();
         ProductPage productPage = new ProductPage();
         productPage.chooseAnyProductOnStorefront();
         //scroll to block
