@@ -9,13 +9,12 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
-
-import java.sql.Driver;
+import java.io.IOException;
 import java.time.Duration;
 
 public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
     @Test(description = "Проверяем ШАБЛОНЫ элемента мотивации 'Варианты оплаты' и 'Список категорий'")
-    public void manageTwoMotivationElements(){
+    public void manageTwoMotivationElements() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
@@ -36,17 +35,19 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         adminPanel.clickStorefrontMainButton();
         adminPanel.focusBrowserTab();
         ProductPage productPage = new ProductPage();
-        productPage.chooseAnyProductOnStorefront();
+        productPage.chooseProductOnHomepage();
         //scroll to block
         scrollToMotivationBlock(productPage);
         productPage.clickElementOnProductPage_PaymentMethods();
         //Проверяем, что у элемента присутствует шаблон "Способы оплаты"
         Assert.assertTrue(productPage.getPaymentMethodsAtElement().size() >=1,
                 "Motivation element does not have a template 'Payment methods'!");
+        takeScreenShot("500 Payment options element with template 'Payment methods'");
         productPage.clickElementOnProductPage_FindSimilar();
         //Проверяем, что у элемента "Найдите похожие" присутствует шаблон "Список категорий" вместо обычного текста
         Assert.assertTrue(productPage.getCategoryListAtElement().size() >=1,
-                "Motivation element does not have a template 'Category list'!");
+                "Motivation element does not have a template 'Categories list'!");
+        takeScreenShot("510 Find similar element with template 'Categories list'");
     }
     private static void scrollToMotivationBlock(ProductPage productPage) {
         WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();

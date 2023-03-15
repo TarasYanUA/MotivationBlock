@@ -38,10 +38,14 @@ public class TestRunner {
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
         if (testResult.getStatus() == ITestResult.FAILURE) {
             File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("errorScreenshots\\" + testResult.getName() + "-"
-                    + Arrays.toString(testResult.getParameters()) +  ".jpg"));
+            FileUtils.copyFile(scrFile, new File("myErrorScreenshots\\" + testResult.getName() + "-"
+                    + Arrays.toString(testResult.getParameters()) + ".jpg"));
         }
         DriverProvider.getDriver().quit();
         DriverProvider.destroyDriver();
+    }
+    public void takeScreenShot(String screenshotName) throws IOException {
+        File scrFile = ((TakesScreenshot) DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("mySuccessScreenshots\\" + screenshotName + ".jpg"));
     }
 }

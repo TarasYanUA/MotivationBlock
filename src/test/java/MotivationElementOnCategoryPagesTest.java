@@ -9,11 +9,12 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+import java.io.IOException;
 import java.time.Duration;
 
 public class MotivationElementOnCategoryPagesTest extends TestRunner{
     @Test(description="Проверяем настройку модуля 'Учитывать дополнительные категории товара' и отображение элемента мотивации на дочерних категориях")
-    public void motivationElementIsDisplayedOnCategoryPages(){
+    public void motivationElementIsDisplayedOnCategoryPages() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
@@ -51,12 +52,14 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Проверяем, что блок мотивации отображается у главной категории
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(),
                 "Motivation block is present on the product page!");
+        takeScreenShot("100 Motivation block on product page of main category 'Camcorders'");
         //Проверяем, что блок мотивации отображается в дочерней категории
         scrollToMenuMenApparel(productPage);
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.chooseProductGoProOnStorefront();
         scrollToMotivationBlock(productPage);
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(), "Motivation block is absent on subcategory page!");
+        takeScreenShot("110 Motivation block on product page of subcategory 'Men's clothing'");
     }
 
     private static void scrollToMotivationBlock (ProductPage productPage) {

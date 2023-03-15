@@ -8,13 +8,14 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
     @Test(description = "Элементу 'Наши преимущества' добавляем категории и проверяем отображение этого элемента на стр товаров из этих категорий")
-    public void checkCategoriesForMotivationElement(){
+    public void checkCategoriesForMotivationElement() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         MotivationBlock motivationBlock = new MotivationBlock();
         adminPanel.navigateToAddonsPage(adminPanel);
@@ -44,17 +45,20 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
             DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
         }
         ProductPage productPage = new ProductPage();
-        productPage.chooseAnyProductOnStorefront();
+        productPage.chooseProductOnHomepage();
         //Проверяем, что элемента "Наши примущества" нет на странице левого товара
         List<WebElement> listOfTabsOfBlock = productPage.getNumberOfTabsOfBlock();
         int expectedNumberOfTabs = 3;
         int actualNumberOfTabs = listOfTabsOfBlock.size();
-        Assert.assertEquals(actualNumberOfTabs, expectedNumberOfTabs, "Motivation element is present for a wrong category!");
+        Assert.assertEquals(actualNumberOfTabs, expectedNumberOfTabs,
+                "Motivation element 'Our advantages' is present for a wrong category!");
+        takeScreenShot("600 Our advantages element is absent for Electronic category");
         //Проверяем, что элемент "Наши примущемтва" присутствует для нужной категорий
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.navigateToMenClothCategoryOnStorefront();
-        productPage.chooseAnyProductOnStorefront();
-        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isEnabled(),
+        productPage.chooseClothProduct();
+        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().size() >=1,
                 "Motivation element is not displayed for a specified category!");
+        takeScreenShot("610 Our advantages element is present for Men's cloth category");
     }
 }

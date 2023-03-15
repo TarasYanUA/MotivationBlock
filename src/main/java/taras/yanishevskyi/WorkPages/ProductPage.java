@@ -23,7 +23,7 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]")
     private WebElement motivationBlockOnProductPage;
     @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
-    private WebElement elementOnProductPage_OurAdvantages;
+    private List<WebElement> elementOnProductPage_OurAdvantages;
     @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
     private WebElement elementOnProductPage_PaymentMethods;
     @FindBy(css = "li[data-mb-id$='_4']")
@@ -32,8 +32,6 @@ public class ProductPage extends AbstractPage {
     private List<WebElement> categoryListAtElement;
     @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
     private List<WebElement> paymentMethodsAtElement;
-    @FindBy(xpath = "//div[@class='ty-dropdown-box__title ']")
-    private WebElement mainMenuOnStorefront;
     @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.ty-menu-item__apparel")
     private WebElement apparelCategoryOnStorefront;
     @FindBy(css = ".ut2-subcategories > li")
@@ -44,8 +42,10 @@ public class ProductPage extends AbstractPage {
     private WebElement verticalBlock;
     @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
     private WebElement horizontalBlock;
-    @FindBy(className = "ut2-gl__image")
-    private WebElement anyProductOnStorefront;
+    @FindBy(css = "a[title='Samsung MV800']")
+    private WebElement samsungOnHomePage;
+    @FindBy(css = "a[title*='Nike']")
+    private WebElement clothProduct;
     @FindBy(xpath = "//li[contains(@class, 'ab-mb-horizontal__item-tab')]")
     private List<WebElement> numberOfTabsOfBlock;
     @FindBy(xpath = "//li[@class=\"ty-menu__item cm-menu-item-responsive ty-menu-item__apparel\"]")
@@ -77,7 +77,7 @@ public class ProductPage extends AbstractPage {
         return motivationBlockOnProductPage;
     }
     
-    public WebElement getElementOnProductPage_OurAdvantages(){
+    public List<WebElement> getElementOnProductPage_OurAdvantages(){
         return elementOnProductPage_OurAdvantages;
     }
     
@@ -115,13 +115,13 @@ public class ProductPage extends AbstractPage {
         return horizontalBlock;
     }
     
-    public void chooseAnyProductOnStorefront(){
-        anyProductOnStorefront.click();
+    public void chooseProductOnHomepage(){
+        samsungOnHomePage.click();
+    }
+    public void chooseClothProduct(){
+        clothProduct.click();
     }
 
-    public void clickMainMenuOnStorefront(){
-        mainMenuOnStorefront.click();
-    }
     public List<WebElement> getNumberOfTabsOfBlock(){
         return numberOfTabsOfBlock;
     }

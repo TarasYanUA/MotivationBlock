@@ -1,13 +1,16 @@
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+import java.io.IOException;
 
 public class VerticalAppearanceWithFramesTest extends TestRunner{
 
     @Test(description = "Проверяем общие настройки модуля - вертикальный вид с обрамлением")
-    public void verticalBlockAppearance() {
+    public void verticalBlockAppearance() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
@@ -16,7 +19,7 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         motivationBlock.clickTabSettings();
         motivationBlock.clickTabAppearance();
         motivationBlock.selectSettingTemplateVariant("vertical_tabs");
-        motivationBlock.selectSettingBlockStyle("fill");
+        motivationBlock.selectSettingBlockStyle("framed");
         motivationBlock.clicksettingBlockColor();
         motivationBlock.chooseBlueColorForBlock();
         motivationBlock.clickSubmitColorForBlock();
@@ -31,6 +34,9 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         adminPanel.focusBrowserTab();
         //Проверяем, что блок вертикальный
         String actualResult = String.valueOf(productPage.getVerticalBlock());
-        Assert.assertTrue(actualResult.contains("ab__vertical_tabs"),"Block is not vertical or missed on the product page.");
+        Assert.assertTrue(actualResult.contains("ab__vertical_tabs"),"Block is not vertical or missed on the product page!");
+        Assert.assertTrue(DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.framed.colored")).size() >=1,
+                "Motivation block doesn't have a style 'With frames'");
+        takeScreenShot("200 Vertical block with frames");
     }
 }

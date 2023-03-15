@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -8,12 +7,13 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class Element_ShipmentTest extends TestRunner{
     @Test(description = "Проверяем ШАБЛОН элемента мотивации 'Доставка'")
-    public void elementShipmentOnStorefront(){
+    public void elementShipmentOnStorefront() throws IOException {
         //Настраиваем модуль "Карты и геолокация"
         AdminPanel adminPanel = new AdminPanel();
         MotivationBlock motivationBlock = new MotivationBlock();
@@ -42,13 +42,13 @@ public class Element_ShipmentTest extends TestRunner{
             DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
         }
         ProductPage productPage = new ProductPage();
-        productPage.chooseAnyProductOnStorefront();
+        productPage.chooseProductOnHomepage();
         //Проверяем, что элемент "Доставка" присутствует на странице товара
         Assert.assertTrue(motivationBlock.getElementDeliveryOnStorefront().isEnabled(), "Element \"Delivery\" is not present on the product page");
         //Проверяем, что присутствует шаблон от модуля "Карты и геолокация" в элементе "Доставка"
         Assert.assertTrue(DriverProvider.getDriver().findElements(By.cssSelector(".ty-geo-maps-shipping__wrapper")).size() >= 1,
                 "Motivation element does not have a template 'Shipping method'!");
-        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("scroll(0,550);");
         motivationBlock.clickElementDeliveryOnStorefront();
+        takeScreenShot("400 Delivery element with template 'Shipping information'");
     }
 }
