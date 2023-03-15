@@ -21,7 +21,7 @@ public class VerticalAppearanceWithFramesTest extends TestRunner{
         motivationBlock.selectSettingTemplateVariant("vertical_tabs");
         motivationBlock.selectSettingBlockStyle("framed");
         motivationBlock.clicksettingBlockColor();
-        motivationBlock.chooseBlueColorForBlock();
+        motivationBlock.chooseRedColorForBlock();
         motivationBlock.clickSubmitColorForBlock();
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара

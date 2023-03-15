@@ -5,7 +5,6 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
-
 import java.io.IOException;
 
 public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
@@ -22,7 +21,7 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.selectSettingTemplateVariant("horizontal_tabs");
         motivationBlock.selectSettingBlockStyle("fill");
         motivationBlock.clicksettingBlockColor();
-        motivationBlock.chooseRedColorForBlock();
+        motivationBlock.chooseBlueColorForBlock();
         motivationBlock.clickSubmitColorForBlock();
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара
