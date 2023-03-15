@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
-    @Test
+    @Test(description = "Элементу 'Наши преимущества' добавляем категории и проверяем отображение этого элемента на стр товаров из этих категорий")
     public void checkCategoriesForMotivationElement(){
         AdminPanel adminPanel = new AdminPanel();
         MotivationBlock motivationBlock = new MotivationBlock();
@@ -45,7 +45,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
         }
         ProductPage productPage = new ProductPage();
         productPage.chooseAnyProductOnStorefront();
-        //Проверяем, что элемента "Наши примущемтва" нет на странице левого товара
+        //Проверяем, что элемента "Наши примущества" нет на странице левого товара
         List<WebElement> listOfTabsOfBlock = productPage.getNumberOfTabsOfBlock();
         int expectedNumberOfTabs = 3;
         int actualNumberOfTabs = listOfTabsOfBlock.size();
@@ -54,6 +54,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
         productPage.navigateToApparelCategoryOnStorefront();
         productPage.navigateToMenClothCategoryOnStorefront();
         productPage.chooseAnyProductOnStorefront();
-        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isEnabled());
+        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().isEnabled(),
+                "Motivation element is not displayed for a specified category!");
     }
 }

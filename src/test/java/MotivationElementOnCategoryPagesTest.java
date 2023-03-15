@@ -49,7 +49,8 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         adminPanel.focusBrowserTab();
         scrollToMotivationBlock(productPage);   //Скроллим до блока мотивации
         //Проверяем, что блок мотивации отображается у главной категории
-        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed());
+        Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(),
+                "Motivation block is present on the product page!");
         //Проверяем, что блок мотивации отображается в дочерней категории
         scrollToMenuMenApparel(productPage);
         productPage.navigateToApparelCategoryOnStorefront();
