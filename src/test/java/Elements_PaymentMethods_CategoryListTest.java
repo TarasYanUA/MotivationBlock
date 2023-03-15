@@ -9,10 +9,12 @@ import taras.yanishevskyi.DriverProvider;
 import taras.yanishevskyi.WorkPages.AdminPanel;
 import taras.yanishevskyi.WorkPages.MotivationBlock;
 import taras.yanishevskyi.WorkPages.ProductPage;
+
+import java.sql.Driver;
 import java.time.Duration;
 
 public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
-    @Test(description = "Проверяем шаблон элемента мотивации 'Варианты оплаты'")
+    @Test(description = "Проверяем ШАБЛОНЫ элемента мотивации 'Варианты оплаты' и 'Список категорий'")
     public void manageTwoMotivationElements(){
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
@@ -22,6 +24,7 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         motivationBlock.chooseElementPaymentMethods();
         motivationBlock.selectElementPage_Template("addons/ab__motivation_block/blocks/components/item_templates/payment_methods.tpl");
         adminPanel.clickSaveButtonOnTopRight();
+        //Включаем элемент "Найдите похожие" с шаблоном "Список категорий"
         motivationBlock.clickABMenuDropdown();
         motivationBlock.chooseSectionDataManagementAtABMenu();
         if(DriverProvider.getDriver().findElement(By.xpath("//a[@id=\"sw_select_4_wrap\"]")).getText().contains("Выкл.")){
@@ -37,15 +40,18 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         //scroll to block
         scrollToMotivationBlock(productPage);
         productPage.clickElementOnProductPage_PaymentMethods();
+        //Проверяем, что у элемента присутствует шаблон "Способы оплаты"
+        Assert.assertTrue(productPage.getPaymentMethodsAtElement().size() >=1,
+                "Motivation element does not have a template 'Payment methods'!");
         productPage.clickElementOnProductPage_FindSimilar();
-        //Проверяем, что у элемента "Найдите похожие" отображается список категорий вместо обычного текста
-        Assert.assertTrue(productPage.getCategoryListAtElement().isEnabled());
+        //Проверяем, что у элемента "Найдите похожие" присутствует шаблон "Список категорий" вместо обычного текста
+        Assert.assertTrue(productPage.getCategoryListAtElement().size() >=1,
+                "Motivation element does not have a template 'Category list'!");
     }
-    private static WebElement scrollToMotivationBlock(ProductPage productPage) {
+    private static void scrollToMotivationBlock(ProductPage productPage) {
         WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
-        hoverMotivationBlock.moveToElement(elementOfMotivationBlock).scrollByAmount(0,500);
+        hoverMotivationBlock.scrollToElement(elementOfMotivationBlock);
         hoverMotivationBlock.perform();
-        return elementOfMotivationBlock;
     }
 }

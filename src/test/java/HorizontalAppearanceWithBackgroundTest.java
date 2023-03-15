@@ -12,7 +12,6 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
         adminPanel.navigateToGeneralSettings();
-
         MotivationBlock motivationBlock = new MotivationBlock();
         motivationBlock.clickTabSettings();
         motivationBlock.clickTabAppearance();

@@ -12,8 +12,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class Element_ShipmentTest extends TestRunner{
-    @Test(description = "Проверяем шаблон элемента мотивации 'Доставка'")
+    @Test(description = "Проверяем ШАБЛОН элемента мотивации 'Доставка'")
     public void elementShipmentOnStorefront(){
+        //Настраиваем модуль "Карты и геолокация"
         AdminPanel adminPanel = new AdminPanel();
         MotivationBlock motivationBlock = new MotivationBlock();
         adminPanel.navigateToAddonsPage(adminPanel);
@@ -44,6 +45,8 @@ public class Element_ShipmentTest extends TestRunner{
         productPage.chooseAnyProductOnStorefront();
         //Проверяем, что элемент "Доставка" присутствует на странице товара
         Assert.assertTrue(motivationBlock.getElementDeliveryOnStorefront().isEnabled(), "Element \"Delivery\" is not present on the product page");
+        //Проверяем, что присутствует шаблон от модуля "Карты и геолокация" в элементе "Доставка"
+        Assert.assertTrue(DriverProvider.getDriver().findElements(By.cssSelector(".ty-geo-maps-shipping__wrapper")).size() >= 1);
         ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("scroll(0,550);");
         motivationBlock.clickElementDeliveryOnStorefront();
     }

@@ -24,12 +24,14 @@ public class ProductPage extends AbstractPage {
     private WebElement motivationBlockOnProductPage;
     @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
     private WebElement elementOnProductPage_OurAdvantages;
-    @FindBy(css = ".ut2-icon-baseline-credit_card")
+    @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
     private WebElement elementOnProductPage_PaymentMethods;
     @FindBy(css = "li[data-mb-id$='_4']")
     private WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
-    private WebElement categoryListAtElement;
+    private List<WebElement> categoryListAtElement;
+    @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
+    private List<WebElement> paymentMethodsAtElement;
     @FindBy(xpath = "//div[@class='ty-dropdown-box__title ']")
     private WebElement mainMenuOnStorefront;
     @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.ty-menu-item__apparel")
@@ -87,8 +89,11 @@ public class ProductPage extends AbstractPage {
         elementOnProductPage_FindSimilar.click();
     }
     
-    public WebElement getCategoryListAtElement(){
+    public List<WebElement> getCategoryListAtElement(){
         return categoryListAtElement;
+    }
+    public List<WebElement> getPaymentMethodsAtElement(){
+        return paymentMethodsAtElement;
     }
     
     public void navigateToApparelCategoryOnStorefront(){

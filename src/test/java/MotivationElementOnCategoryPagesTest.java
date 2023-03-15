@@ -21,7 +21,6 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         MotivationBlock motivationBlock = new MotivationBlock();
         motivationBlock.clickTabSettings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");
-
         if(! DriverProvider.getDriver().findElement(By.xpath("//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")).isSelected()){
             motivationBlock.clickCheckboxUseAdditionalProductCategories();
         }
@@ -59,18 +58,16 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         Assert.assertTrue(productPage.getMotivationBlockOnProductPage().isDisplayed(), "Motivation block is absent on subcategory page!");
     }
 
-    private static WebElement scrollToMotivationBlock (ProductPage productPage) {
+    private static void scrollToMotivationBlock (ProductPage productPage) {
         WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(elementOfMotivationBlock);
         hoverMotivationBlock.perform();
-        return elementOfMotivationBlock;
     }
-    private static WebElement scrollToMenuMenApparel (ProductPage productPage) {
+    private static void scrollToMenuMenApparel (ProductPage productPage) {
         WebElement menuMenApparel = productPage.getMenuMenApparel();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(menuMenApparel);
         hoverMotivationBlock.perform();
-        return menuMenApparel;
     }
 }
