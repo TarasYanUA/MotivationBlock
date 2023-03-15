@@ -12,9 +12,9 @@ import java.util.Arrays;
 import static taras.yanishevskyi.Constants.BASIC_URL;
 
 /*
-Модуль "Блок мотивации" + тема Юни2(UltRu) v4.16.1b. Можно установить весь пакет темы Юни2.
+Модуль "Блок мотивации" v2.12.2 + тема Юни2(UltRu) v4.16.1b. Можно установить весь пакет темы Юни2.
 Запустить тесты можно:
- 1) Через файл testng.xml
+ 1) Через файл testNG.xml
  2) Через Surefire отчёт: перейти в "Терминал" и ввести "mvn clean test". После этого в папке "target -> surefire reports"
  открыть файл "index.html" с помощью браузера (правая кнопка мыши -> Open in -> Browser).
 
