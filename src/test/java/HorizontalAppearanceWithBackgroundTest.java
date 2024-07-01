@@ -1,10 +1,12 @@
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import taras.constants.DriverProvider;
 import taras.workPages.AdminPanel;
 import taras.workPages.MotivationBlock;
 import taras.workPages.ProductPage;
+import taras.workPages.Storefront;
+
 import java.io.IOException;
 
 public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
@@ -12,31 +14,30 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
     @Test(description = "Проверяем общие настройки модуля - горизонтальный вид с цветом фона")
     public void horizontalBlockAppearance() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
-        adminPanel.navigateToAddonsPage(adminPanel);
-        adminPanel.clickButtonOfAddon();
-        adminPanel.navigateTo_MotivationBlockSettings();
-        MotivationBlock motivationBlock = new MotivationBlock();
-        motivationBlock.clickTabSettings();
-        motivationBlock.clickTabAppearance();
+        //Настраиваем настройки модуля
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlockSettings();
+        motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("horizontal_tabs");
         motivationBlock.selectSettingBlockStyle("fill");
-        motivationBlock.clicksettingBlockColor();
-        motivationBlock.chooseBlueColorForBlock();
-        motivationBlock.clickSubmitColorForBlock();
-        motivationBlock.clickSaveButtonForSettings();
+        motivationBlock.settingBlockColor.click();
+        motivationBlock.blueColorForBlock.click();
+        motivationBlock.submitColorForBlock.click();
+        motivationBlock.saveButtonForSettings.click();
+
         //Переходим на страницу товара
-        adminPanel.hoverToProductPage();
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct();
+        productPage.clickAndType_SearchFieldOfProduct("GoPro");
         productPage.chooseAnyProduct();
-        productPage.navigateToStorefront_ProductPage();
-        productPage.clickPreviewButton();   //Находимся на витрине на странице товара
-        adminPanel.focusBrowserTab();
+        Storefront storefront = productPage.navigateToStorefront_ProductPage();
+
+        //Работаем с витриной
+        SoftAssert softAssert = new SoftAssert();
         //Проверяем, что блок горизонтальный
-        String actualResult = String.valueOf(productPage.getHorizontalBlock());
-        Assert.assertTrue(actualResult.contains("ab__horizontal_tabs"),"Block is not horizontal or missed on the product page.");
-        Assert.assertTrue(DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.fill.colored")).size() >=1,
+        softAssert.assertTrue(!storefront.horizontalBlock.isEmpty(),"Block is not horizontal or missed on the product page.");
+        softAssert.assertTrue(!DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.fill.colored")).isEmpty(),
                 "Motivation block doesn't have a style 'With background'");
         takeScreenShot("300 Horizontal block with background");
+        softAssert.assertAll();
+        System.out.println("HorizontalAppearanceWithBackgroundTest has passed successfully!");
     }
 }

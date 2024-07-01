@@ -69,11 +69,6 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//a[contains(@class, 'status-link-a cm-ajax')]")
     private WebElement statusActive;
 
-    
-    public void clickTabAppearance(){
-        tabAppearance.click();
-    }
-
     public Select getDropboxValueForElements_description_type(){
         return new Select(dropboxValueForElements_description_type);
     }
@@ -129,10 +124,6 @@ public class MotivationBlock extends AbstractPage {
     public String selectSettingBlockStyle(String value){
         getSettingBlockStyle().selectByValue(value);
         return value;
-    }
-    
-    public void chooseBlueColorForBlock(){
-        blueColorForBlock.click();
     }
 
     public void chooseElementDelivery(){
