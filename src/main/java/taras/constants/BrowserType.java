@@ -1,4 +1,4 @@
-package taras.yanishevskyi;
+package taras.constants;
 
 public enum BrowserType {
     CHROME,

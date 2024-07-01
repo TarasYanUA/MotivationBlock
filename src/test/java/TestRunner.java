@@ -4,12 +4,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import taras.yanishevskyi.DriverProvider;
+import taras.constants.DriverProvider;
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Arrays;
-import static taras.yanishevskyi.Constants.BASIC_URL;
+import static taras.constants.Constants.BASIC_URL;
 
 public class TestRunner {
 
@@ -17,7 +16,7 @@ public class TestRunner {
     public void beforeMethod() {
         DriverProvider.getDriver().get(BASIC_URL);
         //Увеличиваем размер окна браузера
-        DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
+        //DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
         DriverProvider.getDriver().findElement(By.cssSelector(".cm-notification-close")).click();
@@ -27,7 +26,7 @@ public class TestRunner {
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
         if (testResult.getStatus() == ITestResult.FAILURE) {
             File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("myErrorScreenshots\\" + testResult.getName() + "-"
+            FileUtils.copyFile(scrFile, new File("error_Screenshots\\" + testResult.getName() + "-"
                     + Arrays.toString(testResult.getParameters()) + ".jpg"));
         }
         DriverProvider.getDriver().quit();
@@ -35,6 +34,6 @@ public class TestRunner {
     }
     public void takeScreenShot(String screenshotName) throws IOException {
         File scrFile = ((TakesScreenshot) DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("mySuccessScreenshots\\" + screenshotName + ".jpg"));
+        FileUtils.copyFile(scrFile, new File("success_Screenshots\\" + screenshotName + ".jpg"));
     }
 }

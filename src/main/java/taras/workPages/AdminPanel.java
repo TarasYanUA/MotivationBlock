@@ -1,4 +1,4 @@
-package taras.yanishevskyi.WorkPages;
+package taras.workPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -6,14 +6,100 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import taras.yanishevskyi.AbstractPage;
-import taras.yanishevskyi.DriverProvider;
-import java.util.ArrayList;
+import taras.constants.AbstractPage;
+import taras.constants.DriverProvider;
 
-public class AdminPanel extends AbstractPage{
-    public AdminPanel(){
-        super();
+
+public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
+    public AdminPanel() {super();}
+
+    @FindBy(css = ".btn.btn-primary.cm-submit")
+    public WebElement saveButtonOnTopRight;
+
+    //Меню -- Модули -- Скачанные модули
+    @FindBy(xpath = "//span[text()='Модули']")
+    private WebElement menu_Addons;
+
+    @FindBy(id = "addons_downloaded_add_ons")
+    private WebElement menu_DownloadedAddons;
+
+    @FindBy(xpath = "//tr[@id='addon_ab__motivation_block']//button[@class='btn dropdown-toggle']")
+    private WebElement themeSectionsOnPage_DownloadedAddons;
+
+    @FindBy(xpath = "//div[@class=\"btn-group dropleft open\"]//a[contains(@href, 'addon=ab__motivation_block')]")
+    private WebElement generalSettings;
+
+    @FindBy(id = "settings")
+    private WebElement tabSettings;
+
+    public void navigateTo_DownloadedAddonsPage() {
+        checkMenuToBeActive("dispatch=addons.manage", menu_Addons);
+        menu_DownloadedAddons.click();
     }
+
+    public MotivationBlock navigateTo_MotivationBlockSettings() {
+        navigateTo_DownloadedAddonsPage();
+        themeSectionsOnPage_DownloadedAddons.click();
+        generalSettings.click();
+        tabSettings.click();
+        return new MotivationBlock();
+    }
+
+
+    //Меню "Товары --Товары"
+    @FindBy(id = "products_products")
+    private WebElement section_Products;
+
+    public ProductPage navigateToSection_Products() {
+        checkMenu_Products_ToBeActive();
+        section_Products.click();
+        return new ProductPage();
+    }
+
+
+    //Меню "Веб-сайт -- Темы -- Макеты"
+    @FindBy(xpath = "//span[text()='Веб-сайт']")
+    private WebElement menu_Website;
+
+    @FindBy(id = "website_themes")
+    private WebElement menu_Themes;
+
+    @FindBy(css = ".nav__actions-bar a[href$='block_manager.manage']")
+    private WebElement section_Layouts;
+
+    @FindBy(css = "a[href$='block_manager.manage&s_layout=6']")
+    public WebElement layout_Lightv2;
+
+    @FindBy(css = ".with-menu.active .dropdown-toggle")
+    private WebElement gearwheelOfActiveLayout;
+
+    @FindBy(css = ".with-menu.active a[href*='block_manager.set_default_layout']")
+    private WebElement button_makeByDefault;
+
+    public void navigateToSection_WebsiteLayouts(){
+        checkMenuToBeActive("dispatch=themes.manage", menu_Website);
+        menu_Themes.click();
+        section_Layouts.click();
+    }
+
+    public WebElement hoverGearwheelOfActiveLayout(){return gearwheelOfActiveLayout;}
+    public void setLayout_Lightv2_AsDefault(){
+        layout_Lightv2.click();
+        WebElement element = hoverGearwheelOfActiveLayout();
+        Actions hover = new Actions(DriverProvider.getDriver());
+        hover.moveToElement(element);
+        hover.perform();
+        gearwheelOfActiveLayout.click();
+        if(!DriverProvider.getDriver().findElements(By.cssSelector(".with-menu.active a[href*='block_manager.set_default_layout']")).isEmpty()){
+            button_makeByDefault.click();
+            try { Thread.sleep(1500);
+            } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+    }
+
+
+
+    ////////////////////////////
 
     public void navigateToAddonsPage(AdminPanel adminPanel) {
         WebElement elementOfAddonsDropDown = hoverAddonsDropDown();
@@ -21,28 +107,6 @@ public class AdminPanel extends AbstractPage{
         hoverAddonsDropDown.moveToElement(elementOfAddonsDropDown);
         hoverAddonsDropDown.perform();
         navigateToAddonsManagementPage();
-    }
-
-    public void hoverToProductPage(){
-        WebElement elementOfMenuProducts = hoverMenuProducts();
-        Actions hoverMenuProducts = new Actions(DriverProvider.getDriver());
-        hoverMenuProducts.moveToElement(elementOfMenuProducts);
-        hoverMenuProducts.perform();
-    }
-
-    public ProductPage navigateToProductPage(){
-        productPage.click();
-        return new ProductPage();
-    }
-
-    public void focusBrowserTab() {
-        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
-        for(int ii = 0; ii <= 1; ii++) {
-            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
-        }
-        if(DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).isEnabled()){
-            DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).click();
-        }
     }
 
     @FindBy(id = "elm_menu_addons")
@@ -53,18 +117,8 @@ public class AdminPanel extends AbstractPage{
     private WebElement closeWarning;
     @FindBy(xpath = "//tr[@id=\"addon_ab__motivation_block\"]//button[@class=\"btn dropdown-toggle\"]")
     private WebElement buttonOfAddon;
-    @FindBy(xpath = "(//div[@class=\"btn-group dropleft open\"]//a[contains(@href, 'ab__motivation_block')])[2]")
-    private WebElement generalSettings;
     @FindBy(xpath = "(//div[@class=\"btn-group dropleft open\"]//a[contains(@href, 'ab__motivation_block')])[1]")
     private WebElement dataManagementPage;
-    @FindBy(id = "input_cat_224")
-    private WebElement categoryMenClothing;
-    @FindBy(id = "input_cat_259")
-    private WebElement categoryPlayStation;
-    @FindBy(css = ".btn.cm-dialog-closer.btn-primary")
-    private WebElement savePopup;
-    @FindBy(css = ".btn.btn-primary.cm-submit")
-    private WebElement saveButtonOnTopRight;
     @FindBy(xpath = "//a[@class='btn cm-submit cm-addons-save-settings']")
     private WebElement saveButtonForAddonSettings;
     @FindBy(xpath = "//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']")
@@ -99,38 +153,9 @@ public class AdminPanel extends AbstractPage{
         }
     }
     
-    public void clickCloseWarning(){
-        closeWarning.click();
-    }
-    
-    public void clickButtonOfAddon(){
-        buttonOfAddon.click();
-    }
-    
-    public MotivationBlock navigateToGeneralSettings(){
-        generalSettings.click();
-        return new MotivationBlock();
-    }
-    
     public MotivationBlock navigateToDataManagementPage(){
         dataManagementPage.click();
         return new MotivationBlock();
-    }
-    
-    public void chooseCategoryMenClothing(){
-        categoryMenClothing.click();
-    }
-    
-    public void chooseCategoryPlayStation(){
-        categoryPlayStation.click();
-    }
-    
-    public void clickSavePopup(){
-        savePopup.click();
-    }
-    
-    public void clickSaveButtonOnTopRight(){
-        saveButtonOnTopRight.click();
     }
     
     public void clickSaveButtonForAddonSettings(){

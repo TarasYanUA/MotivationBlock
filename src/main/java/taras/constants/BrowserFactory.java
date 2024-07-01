@@ -1,4 +1,4 @@
-package taras.yanishevskyi;
+package taras.constants;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,7 +29,7 @@ public class BrowserFactory {
 
     public WebDriver createDriver(){
         WebDriver webDriver;
-        taras.yanishevskyi.BrowserType browserType = taras.yanishevskyi.BrowserType.valueOf(getProperties().getProperty("browser"));
+        BrowserType browserType = BrowserType.valueOf(getProperties().getProperty("browser"));
         switch (browserType) {
             case CHROME:
                 System.setProperty(Constants.CHROME_DRIVER_PROPERTY, Constants.CHROME_DRIVER_PATH);

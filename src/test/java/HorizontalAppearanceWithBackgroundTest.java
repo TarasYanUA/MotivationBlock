@@ -1,10 +1,10 @@
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import taras.yanishevskyi.DriverProvider;
-import taras.yanishevskyi.WorkPages.AdminPanel;
-import taras.yanishevskyi.WorkPages.MotivationBlock;
-import taras.yanishevskyi.WorkPages.ProductPage;
+import taras.constants.DriverProvider;
+import taras.workPages.AdminPanel;
+import taras.workPages.MotivationBlock;
+import taras.workPages.ProductPage;
 import java.io.IOException;
 
 public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
@@ -14,7 +14,7 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToAddonsPage(adminPanel);
         adminPanel.clickButtonOfAddon();
-        adminPanel.navigateToGeneralSettings();
+        adminPanel.navigateTo_MotivationBlockSettings();
         MotivationBlock motivationBlock = new MotivationBlock();
         motivationBlock.clickTabSettings();
         motivationBlock.clickTabAppearance();
@@ -26,10 +26,10 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.clickSaveButtonForSettings();
         //Переходим на страницу товара
         adminPanel.hoverToProductPage();
-        ProductPage productPage = adminPanel.navigateToProductPage();
-        productPage.clickAndTypeToSearchField();
-        productPage.chooseProductGoPro();
-        productPage.clickGearWheelOfProduct();
+        ProductPage productPage = adminPanel.navigateToSection_Products();
+        productPage.clickAndType_SearchFieldOfProduct();
+        productPage.chooseAnyProduct();
+        productPage.navigateToStorefront_ProductPage();
         productPage.clickPreviewButton();   //Находимся на витрине на странице товара
         adminPanel.focusBrowserTab();
         //Проверяем, что блок горизонтальный
