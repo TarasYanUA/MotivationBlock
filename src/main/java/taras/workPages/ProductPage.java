@@ -3,11 +3,13 @@ package taras.workPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProductPage extends AbstractPage {
@@ -16,10 +18,10 @@ public class ProductPage extends AbstractPage {
     }
 
     @FindBy(css = "input[form='search_filters_form']")
-    private WebElement searchFieldOfProduct;
+    WebElement searchFieldOfProduct;
 
     @FindBy(className = "products-list__image")
-    public WebElement chooseAnyProduct;
+    WebElement chooseAnyProduct;
 
     @FindBy(css = ".object-categories-add__picker")
     public WebElement pickerOfCategories;
@@ -34,33 +36,30 @@ public class ProductPage extends AbstractPage {
     public WebElement savePopup;
 
     @FindBy(css = ".dropdown-icon--tools")
-    private WebElement gearwheelOfProduct;
+    WebElement gearwheelOfProduct;
     @FindBy(xpath = "//a[contains(text(), 'Предпросмотр')]")
-    private WebElement previewButton;
+    WebElement previewButton;
     @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
-    private List<WebElement> elementOnProductPage_OurAdvantages;
+    List<WebElement> elementOnProductPage_OurAdvantages;
     @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
-    private WebElement elementOnProductPage_PaymentMethods;
+    WebElement elementOnProductPage_PaymentMethods;
     @FindBy(css = "li[data-mb-id$='_4']")
-    private WebElement elementOnProductPage_FindSimilar;
+    WebElement elementOnProductPage_FindSimilar;
     @FindBy(className = "ab-mb-prod-categories-list")
-    private List<WebElement> categoryListAtElement;
+    List<WebElement> categoryListAtElement;
     @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
-    private List<WebElement> paymentMethodsAtElement;
+    List<WebElement> paymentMethodsAtElement;
     @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.ty-menu-item__apparel")
-    private WebElement apparelCategoryOnStorefront;
+    WebElement apparelCategoryOnStorefront;
     @FindBy(css = ".ut2-subcategories > li")
-    private WebElement menClothCategoryOnStorefront;
-    @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
-    private WebElement verticalBlock;
-    @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
-    private WebElement horizontalBlock;
+    WebElement menClothCategoryOnStorefront;
+
     @FindBy(css = "a[title='Samsung MV800']")
-    private WebElement samsungOnHomePage;
+    WebElement samsungOnHomePage;
     @FindBy(css = "a[title*='Nike']")
-    private WebElement clothProduct;
+    WebElement clothProduct;
     @FindBy(xpath = "//li[contains(@class, 'ab-mb-horizontal__item-tab')]")
-    private List<WebElement> numberOfTabsOfBlock;
+    List<WebElement> numberOfTabsOfBlock;
 
 
 
@@ -73,6 +72,12 @@ public class ProductPage extends AbstractPage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void chooseAnyProduct(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(chooseAnyProduct));
+        chooseAnyProduct.click();
     }
 
     public Storefront navigateToStorefront_ProductPage() {
@@ -112,14 +117,6 @@ public class ProductPage extends AbstractPage {
 
     public void navigateToMenClothCategoryOnStorefront() {
         menClothCategoryOnStorefront.click();
-    }
-
-    public WebElement getVerticalBlock() {
-        return verticalBlock;
-    }
-
-    public WebElement getHorizontalBlock() {
-        return horizontalBlock;
     }
 
     public void chooseProductOnHomepage() {

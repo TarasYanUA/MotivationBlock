@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import taras.constants.DriverProvider;
@@ -32,7 +31,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
         //Переходим на страницу редактирования товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
         productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct.click();
+        productPage.chooseAnyProduct();
         if(DriverProvider.getDriver().findElements(By.cssSelector(".select2-selection__choice")).size() < 2) {
             productPage.pickerOfCategories.click();
             (new WebDriverWait((productPage.driver), Duration.ofSeconds(4)))
@@ -44,25 +43,25 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
                     .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
             adminPanel.saveButtonOnTopRight.click();
         }
+        Storefront storefront = productPage.navigateToStorefront_ProductPage();
 
         //Работаем с витриной
-        Storefront storefront = productPage.navigateToStorefront_ProductPage();
         SoftAssert softAssert = new SoftAssert();
-        storefront.scrollToMotivationBlock();   //Скроллим до блока мотивации
+        storefront.scrollToMotivationBlock();
         //Проверяем, что блок мотивации отображается у главной категории
         softAssert.assertTrue(storefront.motivationBlock.isDisplayed(),
                 "Motivation block is absent on the product page of the main category!");
         takeScreenShot("100 Motivation block on product page of main category 'Camcorders'");
         storefront.selectLanguage("ar");
-        storefront.scrollToMotivationBlock();   //Скроллим до блока мотивации
+        storefront.scrollToMotivationBlock();
         takeScreenShot("102 Motivation block on product page of main category 'Camcorders' (RTL)");
         //Проверяем, что блок мотивации отображается в дочерней категории
         storefront.navigateTo_MenClothCategory();
         storefront.productGoProOnStorefront.click();
         storefront.scrollToMotivationBlock();
-        softAssert.assertTrue(storefront.motivationBlockOnProductPage.isDisplayed(), "Motivation block is absent on subcategory 'MenCloth' page!");
+        softAssert.assertTrue(storefront.motivationBlock.isDisplayed(), "Motivation block is absent on subcategory 'MenCloth' page!");
         takeScreenShot("110 Motivation block on product page of subcategory 'Men's clothing'");
+        softAssert.assertAll();
+        System.out.println("MotivationElementOnCategoryPagesTest has passed successfully!");
     }
-
-
 }

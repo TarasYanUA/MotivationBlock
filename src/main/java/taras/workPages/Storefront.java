@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
+import java.util.List;
+
 public class Storefront extends AbstractPage {
     public Storefront() {super();}
 
@@ -25,9 +27,11 @@ public class Storefront extends AbstractPage {
     @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
     public WebElement productGoProOnStorefront;
 
-    @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]")
-    public WebElement motivationBlockOnProductPage;
+    @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
+    public List<WebElement> verticalBlock;
 
+    @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
+    public List<WebElement> horizontalBlock;
 
     private WebElement getMotivationBlock(){
         return motivationBlock;

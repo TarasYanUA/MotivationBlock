@@ -15,7 +15,7 @@ public class MotivationBlock extends AbstractPage {
     public WebElement saveButtonForSettings;
 
     @FindBy(id = "ab__motivation_block_appearance")
-    private WebElement tabAppearance;
+    public WebElement tabAppearance;
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_description_type')]")
     private WebElement dropboxValueForElements_description_type;
     @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")
@@ -45,17 +45,17 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//tr[@id[substring(.,string-length(.) - string-length('_259') + 1) = '_259']]")
     private WebElement categoryPlayStationExists;
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_template_variant')]")
-    private WebElement settingTemplateVariant;
+    WebElement settingTemplateVariant;
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_appearance_type_styles')]")
-    private WebElement settingBlockStyle;
+    WebElement settingBlockStyle;
     @FindBy(className = "sp-preview-inner")
-    private WebElement settingBlockColor;
+    public WebElement settingBlockColor;
     @FindBy(xpath = "//span[@title='#ff0000']")
-    private WebElement redColorForBlock;
+    public WebElement redColorForBlock;
     @FindBy(xpath = "//span[@title='#cfe2f3']")
-    private WebElement blueColorForBlock;
+    public WebElement blueColorForBlock;
     @FindBy(className = "sp-choose")
-    private WebElement submitColorForBlock;
+    public WebElement submitColorForBlock;
     @FindBy(id = "ab__mb_template_path")
     private WebElement elementPage_Template;
     @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Доставка']")
@@ -118,7 +118,6 @@ public class MotivationBlock extends AbstractPage {
     public Select getSettingTemplateVariant(){
         return new Select(settingTemplateVariant);
     }
-    
     public String selectSettingTemplateVariant(String value){
         getSettingTemplateVariant().selectByValue(value);
         return value;
@@ -127,28 +126,15 @@ public class MotivationBlock extends AbstractPage {
     public Select getSettingBlockStyle(){
         return new Select(settingBlockStyle);
     }
-    
     public String selectSettingBlockStyle(String value){
         getSettingBlockStyle().selectByValue(value);
         return value;
     }
     
-    public void clicksettingBlockColor(){
-        settingBlockColor.click();
-    }
-    
-    public void chooseRedColorForBlock(){
-        redColorForBlock.click();
-    }
-    
     public void chooseBlueColorForBlock(){
         blueColorForBlock.click();
     }
-    
-    public void clickSubmitColorForBlock(){
-        submitColorForBlock.click();
-    }
-    
+
     public void chooseElementDelivery(){
         elementDelivery.click();
     }

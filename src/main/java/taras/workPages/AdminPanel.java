@@ -24,7 +24,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     private WebElement menu_DownloadedAddons;
 
     @FindBy(xpath = "//tr[@id='addon_ab__motivation_block']//button[@class='btn dropdown-toggle']")
-    private WebElement themeSectionsOnPage_DownloadedAddons;
+    private WebElement addonSectionsOnPage_DownloadedAddons;
 
     @FindBy(xpath = "//div[@class=\"btn-group dropleft open\"]//a[contains(@href, 'addon=ab__motivation_block')]")
     private WebElement generalSettings;
@@ -39,7 +39,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public MotivationBlock navigateTo_MotivationBlockSettings() {
         navigateTo_DownloadedAddonsPage();
-        themeSectionsOnPage_DownloadedAddons.click();
+        addonSectionsOnPage_DownloadedAddons.click();
         generalSettings.click();
         tabSettings.click();
         return new MotivationBlock();
@@ -100,15 +100,6 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
 
     ////////////////////////////
-
-    public void navigateToAddonsPage(AdminPanel adminPanel) {
-        WebElement elementOfAddonsDropDown = hoverAddonsDropDown();
-        Actions hoverAddonsDropDown = new Actions(DriverProvider.getDriver());
-        hoverAddonsDropDown.moveToElement(elementOfAddonsDropDown);
-        hoverAddonsDropDown.perform();
-        navigateToAddonsManagementPage();
-    }
-
     @FindBy(id = "elm_menu_addons")
     private WebElement addonsDropDown;
     @FindBy(id = "elm_menu_addons_downloaded_add_ons")
