@@ -16,10 +16,6 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
     @Test(description="Проверяем настройку модуля 'Учитывать дополнительные категории товара' и отображение элемента мотивации на дочерних категориях")
     public void motivationElementIsDisplayedOnCategoryPages() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
-        //Настраиваем макет для тест-кейса
-        adminPanel.navigateToSection_WebsiteLayouts();
-        adminPanel.setLayout_Lightv2_AsDefault();
-
         //Настраиваем настройки модуля
         MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlockSettings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");

@@ -5,6 +5,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import taras.constants.DriverProvider;
+import taras.workPages.AdminPanel;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,11 +17,13 @@ public class TestRunner {
     @BeforeMethod
     public void beforeMethod() {
         DriverProvider.getDriver().get(BASIC_URL);
-        //Увеличиваем размер окна браузера
-        //DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); //Общая задержка
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
         DriverProvider.getDriver().findElement(By.cssSelector(".cm-notification-close")).click();
+        //Настраиваем макет для каждого тест-кейса
+        AdminPanel adminPanel = new AdminPanel();
+        adminPanel.navigateToSection_WebsiteLayouts();
+        adminPanel.setLayout_Lightv2_AsDefault();
     }
 
     @AfterMethod
