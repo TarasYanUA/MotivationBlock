@@ -22,16 +22,16 @@ public class MotivationBlock extends AbstractPage {
     public WebElement checkbox_UseAdditionalProductCategories;
 
     @FindBy(css = ".btn-group.dropleft.ab__am-menu")
-    public WebElement gearWheelOfAddon;
+    public WebElement gearWheelOfABMenu;
 
     @FindBy(xpath = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
-    public WebElement sectionDataManagement;
+    public WebElement abMenu_sectionDataManagement;
 
     @FindBy(xpath = "//a[text()='Доставка']")
     public WebElement elementDelivery;
 
     @FindBy(xpath = "//a[text()='Варианты оплаты']")
-    WebElement elementPaymentMethods;
+    public WebElement elementPaymentMethods;
 
     @FindBy(xpath = "//a[text()='Наши преимущества']")
     WebElement elementOurAdvantages;
@@ -78,16 +78,16 @@ public class MotivationBlock extends AbstractPage {
 
 
     @FindBy(css = ".btn-group.dropleft.ab__am-menu")
-    WebElement abMenuDropdown;
+    public WebElement abMenuDropdown;
 
     @FindBy(xpath = "//a[contains(@href, 'ab__motivation_block.manage')][@id='2']")
     WebElement sectionDataManagementAtabMenu;
 
     @FindBy(id = "sw_select_4_wrap")
-    WebElement statusButton;
+    public WebElement statusButton;
 
-    @FindBy(xpath = "//a[contains(@class, 'status-link-a cm-ajax')]")
-    WebElement statusActive;
+    @FindBy(xpath = "//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
+    public WebElement statusActive;
 
 
     private Select getDropboxValueForElements_description_type(){

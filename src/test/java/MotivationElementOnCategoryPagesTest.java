@@ -12,7 +12,8 @@ import taras.workPages.Storefront;
 import java.io.IOException;
 import java.time.Duration;
 
-public class MotivationElementOnCategoryPagesTest extends TestRunner{
+public class MotivationElementOnCategoryPagesTest extends TestRunner {
+
     @Test(description="Проверяем настройку модуля 'Учитывать дополнительные категории товара' и отображение элемента мотивации на дочерних категориях")
     public void motivationElementIsDisplayedOnCategoryPages() throws IOException {
         AdminPanel adminPanel = new AdminPanel();

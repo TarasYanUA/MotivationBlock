@@ -9,7 +9,7 @@ import taras.workPages.Storefront;
 
 import java.io.IOException;
 
-public class VerticalAppearanceWithFramesTest extends TestRunner{
+public class VerticalAppearanceWithFramesTest extends TestRunner {
 
     @Test(description = "Проверяем общие настройки модуля - вертикальный вид с обрамлением")
     public void verticalBlockAppearance() throws IOException {

@@ -33,7 +33,6 @@ public class Element_ShipmentTest extends TestRunner {
         productPage.chooseAnyProduct();
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
-
         //Проверяем, что элемент "Доставка" присутствует на странице товара
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(storefront.elementDelivery.isDisplayed(),

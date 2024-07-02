@@ -39,6 +39,20 @@ public class Storefront extends AbstractPage {
     @FindBy(css = ".ty-geo-maps-shipping__wrapper")
     public WebElement template_ShippingMethod;
 
+    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
+    public WebElement element_OurAdvantages;
+
+    @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
+    public WebElement element_PaymentMethods;
+
+    @FindBy(css = "li[data-mb-id$='_4']")
+    public WebElement element_FindSimilar;
+
+    @FindBy(className = "ab-mb-prod-categories-list")
+    List<WebElement> categoryListAtElement;
+
+    @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
+    List<WebElement> paymentMethodsAtElement;
 
 
     private WebElement getMotivationBlock(){

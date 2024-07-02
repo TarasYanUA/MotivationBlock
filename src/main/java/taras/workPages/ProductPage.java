@@ -39,20 +39,7 @@ public class ProductPage extends AbstractPage {
     WebElement gearwheelOfProduct;
     @FindBy(xpath = "//a[contains(text(), 'Предпросмотр')]")
     WebElement previewButton;
-    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
-    List<WebElement> elementOnProductPage_OurAdvantages;
-    @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
-    WebElement elementOnProductPage_PaymentMethods;
-    @FindBy(css = "li[data-mb-id$='_4']")
-    WebElement elementOnProductPage_FindSimilar;
-    @FindBy(className = "ab-mb-prod-categories-list")
-    List<WebElement> categoryListAtElement;
-    @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
-    List<WebElement> paymentMethodsAtElement;
-    @FindBy(css = ".ty-menu__item.cm-menu-item-responsive.ty-menu-item__apparel")
-    WebElement apparelCategoryOnStorefront;
-    @FindBy(css = ".ut2-subcategories > li")
-    WebElement menClothCategoryOnStorefront;
+
 
     @FindBy(css = "a[title='Samsung MV800']")
     WebElement samsungOnHomePage;
@@ -93,31 +80,6 @@ public class ProductPage extends AbstractPage {
 
     /////////////////////////////////////
 
-
-
-    public List<WebElement> getElementOnProductPage_OurAdvantages() {
-        return elementOnProductPage_OurAdvantages;
-    }
-
-    public void clickElementOnProductPage_PaymentMethods() {
-        elementOnProductPage_PaymentMethods.click();
-    }
-
-    public void clickElementOnProductPage_FindSimilar() {
-        elementOnProductPage_FindSimilar.click();
-    }
-
-    public List<WebElement> getCategoryListAtElement() {
-        return categoryListAtElement;
-    }
-
-    public List<WebElement> getPaymentMethodsAtElement() {
-        return paymentMethodsAtElement;
-    }
-
-    public void navigateToMenClothCategoryOnStorefront() {
-        menClothCategoryOnStorefront.click();
-    }
 
     public void chooseProductOnHomepage() {
         samsungOnHomePage.click();
