@@ -33,6 +33,14 @@ public class Storefront extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
     public List<WebElement> horizontalBlock;
 
+    @FindBy(xpath = "//div[text()='Доставка']")
+    public WebElement elementDelivery;
+
+    @FindBy(css = ".ty-geo-maps-shipping__wrapper")
+    public WebElement template_ShippingMethod;
+
+
+
     private WebElement getMotivationBlock(){
         return motivationBlock;
     }

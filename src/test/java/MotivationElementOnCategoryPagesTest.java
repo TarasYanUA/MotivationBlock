@@ -17,12 +17,12 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner{
     public void motivationElementIsDisplayedOnCategoryPages() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         //Настраиваем настройки модуля
-        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlockSettings();
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");
         if(!motivationBlock.checkbox_UseAdditionalProductCategories.isSelected()){
             motivationBlock.checkbox_UseAdditionalProductCategories.click();
         }
-        motivationBlock.saveButtonForSettings.click();
+        adminPanel.saveButtonOnTopRight.click();
 
         //Переходим на страницу редактирования товара
         ProductPage productPage = adminPanel.navigateToSection_Products();

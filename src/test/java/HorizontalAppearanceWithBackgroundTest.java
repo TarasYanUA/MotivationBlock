@@ -15,14 +15,14 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
     public void horizontalBlockAppearance() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         //Настраиваем настройки модуля
-        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlockSettings();
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
         motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("horizontal_tabs");
         motivationBlock.selectSettingBlockStyle("fill");
         motivationBlock.settingBlockColor.click();
         motivationBlock.blueColorForBlock.click();
         motivationBlock.submitColorForBlock.click();
-        motivationBlock.saveButtonForSettings.click();
+        adminPanel.saveButtonOnTopRight.click();
 
         //Переходим на страницу товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
