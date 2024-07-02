@@ -10,7 +10,6 @@ import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
 import java.time.Duration;
-import java.util.List;
 
 public class ProductPage extends AbstractPage {
     public ProductPage() {
@@ -41,15 +40,6 @@ public class ProductPage extends AbstractPage {
     WebElement previewButton;
 
 
-    @FindBy(css = "a[title='Samsung MV800']")
-    WebElement samsungOnHomePage;
-    @FindBy(css = "a[title*='Nike']")
-    WebElement clothProduct;
-    @FindBy(xpath = "//li[contains(@class, 'ab-mb-horizontal__item-tab')]")
-    List<WebElement> numberOfTabsOfBlock;
-
-
-
     public void clickAndType_SearchFieldOfProduct(String value) {
         searchFieldOfProduct.click();
         searchFieldOfProduct.sendKeys(value);
@@ -75,21 +65,5 @@ public class ProductPage extends AbstractPage {
             DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).click();
         }
         return new Storefront();
-    }
-
-
-    /////////////////////////////////////
-
-
-    public void chooseProductOnHomepage() {
-        samsungOnHomePage.click();
-    }
-
-    public void chooseClothProduct() {
-        clothProduct.click();
-    }
-
-    public List<WebElement> getNumberOfTabsOfBlock() {
-        return numberOfTabsOfBlock;
     }
 }

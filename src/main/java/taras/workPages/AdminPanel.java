@@ -115,38 +115,4 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
             } catch (InterruptedException e) { e.printStackTrace(); }
         }
     }
-
-
-
-    ////////////////////////////
-    @FindBy(id = "elm_menu_addons")
-    private WebElement addonsDropDown;
-    @FindBy(id = "elm_menu_addons_downloaded_add_ons")
-    private WebElement addonsManagementPage;
-    @FindBy(xpath = "//button[@class=\"close cm-notification-close cm-notification-close-ajax\"]")
-    private WebElement closeWarning;
-    @FindBy(xpath = "//tr[@id=\"addon_ab__motivation_block\"]//button[@class=\"btn dropdown-toggle\"]")
-    private WebElement buttonOfAddon;
-
-    @FindBy(xpath = "//a[@class='btn cm-submit cm-addons-save-settings']")
-    private WebElement saveButtonForAddonSettings;
-    @FindBy(xpath = "//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']")
-    private WebElement menuProducts;
-    @FindBy(xpath = "//span[text()='Товары']")
-    private WebElement productPage;
-
-
-    @FindBy(id = "elm_addon")
-    private WebElement searchFieldOfAddons;
-    @FindBy(css = ".cs-icon.icon-shopping-cart")
-    private WebElement storefrontMainButton;
-
-
-
-
-
-    
-    public void clickStorefrontMainButton(){
-        storefrontMainButton.click();
-    }
 }

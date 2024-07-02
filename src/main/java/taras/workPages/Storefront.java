@@ -19,7 +19,7 @@ public class Storefront extends AbstractPage {
     WebElement languageButton;
 
     @FindBy(xpath = "//li[@class=\"ty-menu__item cm-menu-item-responsive ty-menu-item__apparel\"]")
-    WebElement menu_Apparel;
+    public WebElement menu_Apparel;
 
     @FindBy(css = ".ty-menu-item__apparel div[id*='topmenu_'] .ty-menu__submenu-col")
     WebElement menu_MenCloth;
@@ -27,19 +27,22 @@ public class Storefront extends AbstractPage {
     @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
     public WebElement productGoProOnStorefront;
 
+    @FindBy(css = ".ut2-gl__image")
+    public WebElement chooseFirstProduct;
+
     @FindBy(xpath = "//div[contains(@class, 'ab__vertical_tabs')]")
     public List<WebElement> verticalBlock;
 
     @FindBy(xpath = "//div[contains(@class, 'ab__horizontal_tabs')]")
     public List<WebElement> horizontalBlock;
 
-    @FindBy(xpath = "//div[text()='Доставка']")
-    public WebElement elementDelivery;
-
     @FindBy(css = ".ty-geo-maps-shipping__wrapper")
     public WebElement template_ShippingMethod;
 
-    @FindBy(xpath = "//div[contains(@class, 'title-tab')]//span[text()='Наши преимущества']")
+    @FindBy(xpath = "//div[text()='Доставка']")
+    public WebElement elementDelivery;
+
+    @FindBy(xpath = "//div[text()='Наши преимущества']")
     public WebElement element_OurAdvantages;
 
     @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
@@ -47,12 +50,6 @@ public class Storefront extends AbstractPage {
 
     @FindBy(css = "li[data-mb-id$='_4']")
     public WebElement element_FindSimilar;
-
-    @FindBy(className = "ab-mb-prod-categories-list")
-    List<WebElement> categoryListAtElement;
-
-    @FindBy(css = ".ty-wysiwyg-content.ab-mb-style-presets")
-    List<WebElement> paymentMethodsAtElement;
 
 
     private WebElement getMotivationBlock(){
@@ -78,7 +75,7 @@ public class Storefront extends AbstractPage {
     private WebElement getMenu_Apparel() {
         return menu_Apparel;
     }
-    private void scrollTo_ApparelCategory() {
+    public void scrollTo_ApparelCategory() {
         WebElement menuApparel = getMenu_Apparel();
         Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
         hoverMotivationBlock.moveToElement(menuApparel);

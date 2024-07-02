@@ -11,7 +11,10 @@ public class MotivationBlock extends AbstractPage {
         super();
     }
 
+    @FindBy(css = ".btn-group.dropleft.ab__am-menu")
+    public WebElement abMenuDropdown;
 
+    //Меню "Настройки модуля"
     @FindBy(id = "ab__motivation_block_appearance")
     public WebElement tabAppearance;
 
@@ -20,39 +23,6 @@ public class MotivationBlock extends AbstractPage {
 
     @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")
     public WebElement checkbox_UseAdditionalProductCategories;
-
-    @FindBy(css = ".btn-group.dropleft.ab__am-menu")
-    public WebElement gearWheelOfABMenu;
-
-    @FindBy(xpath = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
-    public WebElement abMenu_sectionDataManagement;
-
-    @FindBy(xpath = "//a[text()='Доставка']")
-    public WebElement elementDelivery;
-
-    @FindBy(xpath = "//a[text()='Варианты оплаты']")
-    public WebElement elementPaymentMethods;
-
-    @FindBy(xpath = "//a[text()='Наши преимущества']")
-    WebElement elementOurAdvantages;
-
-    @FindBy(xpath = "//a[text()='Найдите похожие']")
-    WebElement elementFindSimilar;
-
-    @FindBy(css = ".sidebar-row.ab-mb-sidebar-row")
-    WebElement sidebarAdditionalInfo;
-
-    @FindBy(id = "categories")
-    WebElement tabCategories;
-
-    @FindBy(xpath = "//a[contains(@id, 'opener_picker_category_ids_')]")
-    WebElement addCategoriesButton;
-
-    @FindBy(xpath = "//tr[@id[substring(.,string-length(.) - string-length('_224') + 1) = '_224']]")
-    WebElement categoryMenClothingExists;
-
-    @FindBy(xpath = "//tr[@id[substring(.,string-length(.) - string-length('_259') + 1) = '_259']]")
-    WebElement categoryPlayStationExists;
 
     @FindBy(id = "ab__mb_template_path")
     WebElement settingTemplateVariant;
@@ -72,37 +42,12 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(className = "sp-choose")
     public WebElement submitColorForBlock;
 
-    @FindBy(id = "ab__mb_template_path")
-    WebElement elementPage_Template;
-
-
-
-    @FindBy(css = ".btn-group.dropleft.ab__am-menu")
-    public WebElement abMenuDropdown;
-
-    @FindBy(xpath = "//a[contains(@href, 'ab__motivation_block.manage')][@id='2']")
-    WebElement sectionDataManagementAtabMenu;
-
-    @FindBy(id = "sw_select_4_wrap")
-    public WebElement statusButton;
-
-    @FindBy(xpath = "//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
-    public WebElement statusActive;
-
 
     private Select getDropboxValueForElements_description_type(){
         return new Select(dropboxValueForElements_description_type);
     }
     public void selectDropboxValueForElements_description_type(String value) {
         getDropboxValueForElements_description_type().selectByValue(value);
-    }
-    
-    public WebElement getCategoryMenClothingExists(){
-        return categoryMenClothingExists;
-    }
-    
-    public WebElement getCategoryPlayStation(){
-        return categoryPlayStationExists;
     }
 
     private Select getSettingTemplateVariant(){
@@ -118,6 +63,45 @@ public class MotivationBlock extends AbstractPage {
     public void selectSettingBlockStyle(String value){
         getSettingBlockStyle().selectByValue(value);
     }
+
+
+    //Меню "Управление данными"
+    @FindBy(xpath = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
+    public WebElement abMenu_sectionDataManagement;
+
+    @FindBy(xpath = "//a[text()='Доставка']")
+    public WebElement elementDelivery;
+
+    @FindBy(xpath = "//a[text()='Варианты оплаты']")
+    public WebElement elementPaymentMethods;
+
+    @FindBy(xpath = "//a[text()='Наши преимущества']")
+    public WebElement elementOurAdvantages;
+
+    @FindBy(id = "categories")
+    public WebElement tabCategories;
+
+    @FindBy(xpath = "//a[contains(@id, 'opener_picker_category_ids_')]")
+    public WebElement addCategoriesButton;
+
+    @FindBy(id = "input_cat_224")
+    public WebElement chooseCategory_MenCloth;
+
+    @FindBy(id = "input_cat_254")
+    public WebElement chooseCategory_GameConsoles;
+
+    @FindBy(id = "ab__mb_template_path")
+    WebElement elementPage_Template;
+
+    @FindBy(id = "sw_select_4_wrap")
+    public WebElement statusButton;
+
+    @FindBy(xpath = "//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
+    public WebElement statusActive;
+
+    @FindBy(css = "cm-form-dialog-closer")
+    public WebElement saveCategoriesAtPopup;
+
     
     private Select getElementPage_Template(){
         return new Select(elementPage_Template);
