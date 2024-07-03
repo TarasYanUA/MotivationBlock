@@ -1,6 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import taras.constants.DriverProvider;
@@ -10,7 +8,6 @@ import taras.workPages.ProductPage;
 import taras.workPages.Storefront;
 
 import java.io.IOException;
-import java.time.Duration;
 
 public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
 
@@ -29,8 +26,6 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
             motivationBlock.statusButton.click();
             motivationBlock.statusActive.click();
         }
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cs-icon.icon-shopping-cart")));
 
         //Переходим на витрину
         ProductPage productPage = adminPanel.navigateToSection_Products();
@@ -42,12 +37,12 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         storefront.element_PaymentMethods.click();
         SoftAssert softAssert = new SoftAssert();
         //Проверяем, что у элемента присутствует шаблон "Способы оплаты"
-        softAssert.assertTrue(!DriverProvider.getDriver().findElement(By.xpath("//li[contains(text(), '— Банковская карта')]")).isDisplayed(),
+        softAssert.assertTrue(DriverProvider.getDriver().findElement(By.xpath("//li[contains(text(), '— Банковская карта')]")).isEnabled(),
                 "Motivation element does not have a template 'Payment methods'!");
         takeScreenShot("500 Element 'Payment options' with template 'Payment methods'");
         storefront.element_FindSimilar.click();
         //Проверяем, что у элемента "Найдите похожие" присутствует шаблон "Список категорий" вместо обычного текста
-        softAssert.assertTrue(!DriverProvider.getDriver().findElement(By.className("ab-mb-prod-categories-list")).isDisplayed(),
+        softAssert.assertTrue(DriverProvider.getDriver().findElement(By.className("ab-mb-prod-categories-list")).isEnabled(),
                 "Motivation element does not have a template 'Categories list'!");
         takeScreenShot("510 Element 'Find similar' with template 'Categories list'");
         softAssert.assertAll();

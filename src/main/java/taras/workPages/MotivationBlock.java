@@ -87,8 +87,8 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(id = "input_cat_224")
     public WebElement chooseCategory_MenCloth;
 
-    @FindBy(id = "input_cat_254")
-    public WebElement chooseCategory_GameConsoles;
+    @FindBy(id = "input_cat_255")
+    public WebElement chooseCategory_ConsolesMicrosoft;
 
     @FindBy(id = "ab__mb_template_path")
     WebElement elementPage_Template;

@@ -42,16 +42,16 @@ public class Storefront extends AbstractPage {
     @FindBy(css = ".ty-geo-maps-shipping__wrapper")
     public WebElement template_ShippingMethod;
 
-    @FindBy(xpath = "//div[text()='Доставка']")
+    @FindBy(css = ".ab__mb_items .ut2-icon-outline-local_shipping")
     public WebElement elementDelivery;
 
-    @FindBy(xpath = "//div[text()='Наши преимущества']")
+    @FindBy(css = ".ab__mb_items .ut2-icon-outline-new_releases")
     public WebElement element_OurAdvantages;
 
-    @FindBy(xpath = "//div[@class='ab-mb-horizontal__title-tab']/span[text()='Варианты оплаты']")
+    @FindBy(css = ".ab__mb_items .ut2-icon-baseline-credit_card")
     public WebElement element_PaymentMethods;
 
-    @FindBy(css = "li[data-mb-id$='_4']")
+    @FindBy(css = ".ab__mb_items .ut2-icon-outline-menu")
     public WebElement element_FindSimilar;
 
 
