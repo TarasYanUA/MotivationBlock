@@ -4,8 +4,11 @@ public class Constants {
     public static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
     public static final String CHROME_DRIVER_PATH = "src/test/resources/chromedriver.exe";
 
+    public static final String EDGE_DRIVER_PROPERTY = "webdriver.edge.driver";
+    public static final String EDGE_DRIVER_PATH = "src/test/resources/msedgedriver.exe";
+
     public static final String FIREFOX_DRIVER_PROPERTY = "webdriver.gecko.driver";
     public static final String FIREFOX_DRIVER_PATH = "src/test/resources/geckodriver.exe";
 
-    public static final String BASIC_URL = "https://trs.test.abt.team/4181ultru/admin.php?dispatch=addons.manage";
+    public static final String BASIC_URL = "https://abd-bc31a1e201.demos.abt.team/admin.php?dispatch=categories.update&category_id=254";
 }

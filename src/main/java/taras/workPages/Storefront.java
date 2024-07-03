@@ -8,6 +8,9 @@ import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
 import java.util.List;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class Storefront extends AbstractPage {
     public Storefront() {super();}
@@ -18,10 +21,10 @@ public class Storefront extends AbstractPage {
     @FindBy(css = "a[id*='wrap_language']")
     WebElement languageButton;
 
-    @FindBy(xpath = "//li[@class=\"ty-menu__item cm-menu-item-responsive ty-menu-item__apparel\"]")
+    @FindBy(xpath = "//li[@class='ty-menu__item cm-menu-item-responsive ty-menu-item__apparel']")
     public WebElement menu_Apparel;
 
-    @FindBy(css = ".ty-menu-item__apparel div[id*='topmenu_'] .ty-menu__submenu-col")
+    @FindBy(xpath = "//li[contains(@class, 'ty-menu-item__apparel')]//div[@data-elem-index='0']")
     WebElement menu_MenCloth;
 
     @FindBy(xpath = "//a[contains(@href, 'gopro-hero3-black-edition-camera')]")
@@ -83,6 +86,8 @@ public class Storefront extends AbstractPage {
     }
     public void navigateTo_MenClothCategory() {
         scrollTo_ApparelCategory();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(menu_MenCloth));
         menu_MenCloth.click();
     }
 }

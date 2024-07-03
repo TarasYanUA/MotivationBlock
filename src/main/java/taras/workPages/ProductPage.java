@@ -10,6 +10,9 @@ import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
 import java.time.Duration;
+import java.util.ArrayList;
+
+import static taras.constants.DriverProvider.getDriver;
 
 public class ProductPage extends AbstractPage {
     public ProductPage() {
@@ -31,7 +34,7 @@ public class ProductPage extends AbstractPage {
     @FindBy(id = "input_cat_259")
     public WebElement categoryPlayStation;
 
-    @FindBy(css = ".btn.cm-dialog-closer.btn-primary")
+    @FindBy(css = ".ui-dialog-content .btn.cm-dialog-closer.btn-primary")
     public WebElement savePopup;
 
     @FindBy(css = ".dropdown-icon--tools")
@@ -60,7 +63,8 @@ public class ProductPage extends AbstractPage {
     public Storefront navigateToStorefront_ProductPage() {
         gearwheelOfProduct.click();
         previewButton.click();
-        DriverProvider.getDriver().switchTo().window(String.valueOf(1));
+        ArrayList<String> tabs = new ArrayList<> (getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1));
         if (DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).isEnabled()) {
             DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).click();
         }

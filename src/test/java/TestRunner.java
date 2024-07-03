@@ -19,7 +19,6 @@ public class TestRunner {
         DriverProvider.getDriver().get(BASIC_URL);
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
-        DriverProvider.getDriver().findElement(By.cssSelector(".cm-notification-close")).click();
         //Настраиваем макет для каждого тест-кейса
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToSection_WebsiteLayouts();
@@ -30,7 +29,7 @@ public class TestRunner {
     public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
         if (testResult.getStatus() == ITestResult.FAILURE) {
             File scrFile = ((TakesScreenshot)DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("error_Screenshots\\" + testResult.getName() + "-"
+            FileUtils.copyFile(scrFile, new File("myError_Screenshots\\" + testResult.getName() + "-"
                     + Arrays.toString(testResult.getParameters()) + ".jpg"));
         }
         DriverProvider.getDriver().quit();
@@ -38,6 +37,6 @@ public class TestRunner {
     }
     public void takeScreenShot(String screenshotName) throws IOException {
         File scrFile = ((TakesScreenshot) DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("success_Screenshots\\" + screenshotName + ".jpg"));
+        FileUtils.copyFile(scrFile, new File("mySuccess_Screenshots\\" + screenshotName + ".jpg"));
     }
 }

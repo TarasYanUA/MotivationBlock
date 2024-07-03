@@ -24,7 +24,7 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")
     public WebElement checkbox_UseAdditionalProductCategories;
 
-    @FindBy(id = "ab__mb_template_path")
+    @FindBy(css = "select[id*='addon_option_ab__motivation_block_template_variant_']")
     WebElement settingTemplateVariant;
 
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_appearance_type_styles')]")
@@ -66,7 +66,7 @@ public class MotivationBlock extends AbstractPage {
 
 
     //Меню "Управление данными"
-    @FindBy(xpath = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
+    @FindBy(css = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
     public WebElement abMenu_sectionDataManagement;
 
     @FindBy(xpath = "//a[text()='Доставка']")
@@ -99,7 +99,7 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
     public WebElement statusActive;
 
-    @FindBy(css = "cm-form-dialog-closer")
+    @FindBy(css = ".cm-form-dialog-closer")
     public WebElement saveCategoriesAtPopup;
 
     

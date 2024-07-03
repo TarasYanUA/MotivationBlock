@@ -59,6 +59,9 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public MapsAndGeolocation navigateTo_MapsAndGeolocation_Settings(){
         navigateTo_DownloadedAddonsPage();
+        if(DriverProvider.getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled()){
+            DriverProvider.getDriver().findElement(By.cssSelector("#bp_off_bottom_panel svg")).click();
+        }
         addon_MapsAndGeolocation.click();
         tab_Settings.click();
         return new MapsAndGeolocation();
