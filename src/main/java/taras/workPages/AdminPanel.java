@@ -28,7 +28,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     @FindBy(xpath = "//div[@class='btn-group dropleft open']//a[contains(@href, 'addon=ab__motivation_block')]")
     WebElement section_GeneralSettings;
 
-    @FindBy(xpath = "//a[contains(@href, 'dispatch=ab__motivation_block.manage')]")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']//a[contains(@href, 'dispatch=ab__motivation_block.manage')]")
     WebElement section_DataManagementPage;
 
     @FindBy(id = "settings")

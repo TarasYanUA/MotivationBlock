@@ -9,4 +9,6 @@
 
 Сайт для chromedriver: https://getwebdriver.com/
 
+Сайт для msedgedriver: https://developer.microsoft.com/ru-ru/microsoft-edge/tools/webdriver/?form=MA13LH
+
 Сайт для geckodriver: https://github.com/mozilla/geckodriver/releases
