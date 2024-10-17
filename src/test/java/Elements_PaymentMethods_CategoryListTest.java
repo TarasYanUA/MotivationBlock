@@ -1,58 +1,51 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import taras.yanishevskyi.DriverProvider;
-import taras.yanishevskyi.WorkPages.AdminPanel;
-import taras.yanishevskyi.WorkPages.MotivationBlock;
-import taras.yanishevskyi.WorkPages.ProductPage;
+import org.testng.asserts.SoftAssert;
+import taras.constants.DriverProvider;
+import taras.workPages.AdminPanel;
+import taras.workPages.MotivationBlock;
+import taras.workPages.ProductPage;
+import taras.workPages.Storefront;
+
 import java.io.IOException;
-import java.time.Duration;
 
 public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
-    @Test(description = "Проверяем ШАБЛОНЫ элемента мотивации 'Варианты оплаты' и 'Список категорий'")
-    public void manageTwoMotivationElements() throws IOException {
+
+    @Test(description = "Проверяем ШАБЛОНЫ элементов мотивации 'Варианты оплаты' и 'Список категорий'")
+    public void checkElements_PaymentMethods_CategoryListTest() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
-        adminPanel.navigateToAddonsPage(adminPanel);
-        adminPanel.clickButtonOfAddon();
-        adminPanel.navigateToDataManagementPage();  //я на странице "Управление данными"
-        MotivationBlock motivationBlock = new MotivationBlock();
-        motivationBlock.chooseElementPaymentMethods();
+        //Настраиваем модуль "Блок мотивации -- Управление данными"
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_DataManagementPage();
+        motivationBlock.elementPaymentMethods.click();
         motivationBlock.selectElementPage_Template("addons/ab__motivation_block/blocks/components/item_templates/payment_methods.tpl");
-        adminPanel.clickSaveButtonOnTopRight();
+        adminPanel.saveButtonOnTopRight.click();
         //Включаем элемент "Найдите похожие" с шаблоном "Список категорий"
-        motivationBlock.clickABMenuDropdown();
-        motivationBlock.chooseSectionDataManagementAtABMenu();
-        if(DriverProvider.getDriver().findElement(By.xpath("//a[@id=\"sw_select_4_wrap\"]")).getText().contains("Выкл.")){
-            motivationBlock.clickStatusButton();
-            motivationBlock.clickStatusActive();
+        motivationBlock.abMenuDropdown.click();
+        motivationBlock.abMenu_sectionDataManagement.click();
+        if(DriverProvider.getDriver().findElement(By.xpath("//a[@id='sw_select_4_wrap']")).getText().contains("Выкл.")){
+            motivationBlock.statusButton.click();
+            motivationBlock.statusActive.click();
         }
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cs-icon.icon-shopping-cart")));
-        adminPanel.clickStorefrontMainButton();
-        adminPanel.focusBrowserTab();
-        ProductPage productPage = new ProductPage();
-        productPage.chooseProductOnHomepage();
-        //scroll to block
-        scrollToMotivationBlock(productPage);
-        productPage.clickElementOnProductPage_PaymentMethods();
+
+        //Переходим на витрину
+        ProductPage productPage = adminPanel.navigateToSection_Products();
+        productPage.clickAndType_SearchFieldOfProduct("GoPro");
+        productPage.chooseAnyProduct();
+        Storefront storefront = productPage.navigateToStorefront_ProductPage();
+        storefront.selectLanguage("ru");
+        storefront.scrollToMotivationBlock();
+        storefront.element_PaymentMethods.click();
+        SoftAssert softAssert = new SoftAssert();
         //Проверяем, что у элемента присутствует шаблон "Способы оплаты"
-        Assert.assertTrue(productPage.getPaymentMethodsAtElement().size() >=1,
+        softAssert.assertTrue(DriverProvider.getDriver().findElement(By.xpath("//li[contains(text(), '— Банковская карта')]")).isEnabled(),
                 "Motivation element does not have a template 'Payment methods'!");
-        takeScreenShot("500 Payment options element with template 'Payment methods'");
-        productPage.clickElementOnProductPage_FindSimilar();
+        takeScreenShot("500 Element 'Payment options' with template 'Payment methods'");
+        storefront.element_FindSimilar.click();
         //Проверяем, что у элемента "Найдите похожие" присутствует шаблон "Список категорий" вместо обычного текста
-        Assert.assertTrue(productPage.getCategoryListAtElement().size() >=1,
+        softAssert.assertTrue(DriverProvider.getDriver().findElement(By.className("ab-mb-prod-categories-list")).isEnabled(),
                 "Motivation element does not have a template 'Categories list'!");
-        takeScreenShot("510 Find similar element with template 'Categories list'");
-    }
-    private static void scrollToMotivationBlock(ProductPage productPage) {
-        WebElement elementOfMotivationBlock = productPage.getMotivationBlockOnProductPage();
-        Actions hoverMotivationBlock = new Actions(DriverProvider.getDriver());
-        hoverMotivationBlock.scrollToElement(elementOfMotivationBlock);
-        hoverMotivationBlock.perform();
+        takeScreenShot("510 Element 'Find similar' with template 'Categories list'");
+        softAssert.assertAll();
+        System.out.println("Elements_PaymentMethods_CategoryListTest has passed successfully!");
     }
 }

@@ -1,64 +1,77 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import taras.yanishevskyi.DriverProvider;
-import taras.yanishevskyi.WorkPages.AdminPanel;
-import taras.yanishevskyi.WorkPages.MotivationBlock;
-import taras.yanishevskyi.WorkPages.ProductPage;
+import org.testng.asserts.SoftAssert;
+import taras.constants.DriverProvider;
+import taras.workPages.AdminPanel;
+import taras.workPages.MotivationBlock;
+import taras.workPages.ProductPage;
+import taras.workPages.Storefront;
+
 import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner{
+public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
+
     @Test(description = "Элементу 'Наши преимущества' добавляем категории и проверяем отображение этого элемента на стр товаров из этих категорий")
     public void checkCategoriesForMotivationElement() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
-        MotivationBlock motivationBlock = new MotivationBlock();
-        adminPanel.navigateToAddonsPage(adminPanel);
-        adminPanel.clickButtonOfAddon();
-        adminPanel.navigateToDataManagementPage();  //я на странице "Управление данными"
-        motivationBlock.clickItemOurAdvantages();
+        //Настраиваем настройки модуля
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
+        motivationBlock.tabAppearance.click();
+        motivationBlock.selectSettingTemplateVariant("vertical_tabs");
+        adminPanel.saveButtonOnTopRight.click();
+
+        //Настраиваем модуль "Блок мотивации -- Управление данными"
+        adminPanel.navigateTo_MotivationBlock_DataManagementPage();
+        motivationBlock.elementOurAdvantages.click();
         //Добавляем категории для мотив. элемента
-        motivationBlock.clickTabCategories();
-        if(DriverProvider.getDriver().findElement(By.xpath("//p[text()='Все категории включены']")).isDisplayed()){
-        motivationBlock.clickAddCategoriesButton();
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
-        adminPanel.chooseCategoryMenClothing();
-        adminPanel.chooseCategoryPlayStation();
-        adminPanel.clickSavePopup();
-        adminPanel.clickSaveButtonOnTopRight();
+        motivationBlock.tabCategories.click();
+        if (DriverProvider.getDriver().findElement(By.xpath("//p[text()='Все категории включены']")).isDisplayed()) {
+            motivationBlock.addCategoriesButton.click();
+            (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
+            motivationBlock.chooseCategory_ConsolesMicrosoft.click();
+            motivationBlock.chooseCategory_MenCloth.click();
+            motivationBlock.saveCategoriesAtPopup.click();
+            adminPanel.saveButtonOnTopRight.click();
         }
-        //Проверяем, что обе категории находятся в таблице
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
-        Assert.assertTrue(motivationBlock.getCategoryMenClothingExists().isDisplayed());
-        Assert.assertTrue(motivationBlock.getCategoryPlayStation().isDisplayed());
+
         //Переходим на витрину
-        adminPanel.clickStorefrontMainButton();
-        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
-        for(int ii = 0; ii <= 1; ii++) {
-            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
-        }
-        ProductPage productPage = new ProductPage();
-        productPage.chooseProductOnHomepage();
-        //Проверяем, что элемента "Наши примущества" нет на странице левого товара
-        List<WebElement> listOfTabsOfBlock = productPage.getNumberOfTabsOfBlock();
-        int expectedNumberOfTabs = 3;
-        int actualNumberOfTabs = listOfTabsOfBlock.size();
-        Assert.assertEquals(actualNumberOfTabs, expectedNumberOfTabs,
-                "Motivation element 'Our advantages' is present for a wrong category!");
-        takeScreenShot("600 Our advantages element is absent for Electronic category");
-        //Проверяем, что элемент "Наши примущемтва" присутствует для нужной категорий
-        productPage.navigateToApparelCategoryOnStorefront();
-        productPage.navigateToMenClothCategoryOnStorefront();
-        productPage.chooseClothProduct();
-        Assert.assertTrue(productPage.getElementOnProductPage_OurAdvantages().size() >=1,
-                "Motivation element is not displayed for a specified category!");
-        takeScreenShot("610 Our advantages element is present for Men's cloth category");
+        ProductPage productPage = adminPanel.navigateToSection_Products();
+        productPage.clickAndType_SearchFieldOfProduct("X-Box");
+        productPage.chooseAnyProduct();
+        Storefront storefront = productPage.navigateToStorefront_ProductPage();
+        storefront.selectLanguage("ru");
+        storefront.scrollToMotivationBlock();
+        //Проверяем, что элемент "Наши преимущества" присутствует для нужной категорий
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(storefront.element_OurAdvantages.isDisplayed(),
+                "Motivation element 'Our Advantages' is not displayed for a specified category 'Game consoles'!");
+        storefront.scrollToMotivationBlock();
+        takeScreenShot("600 'Our Advantages' is present at the product of 'Game consoles' category");
+        storefront.selectLanguage("ar");
+        storefront.scrollToMotivationBlock();
+        takeScreenShot("602 'Our Advantages' is present at the product of 'Men cloth' category (RTL)");
+        storefront.selectLanguage("ru");
+        storefront.navigateTo_MenClothCategory();
+        storefront.chooseFirstProduct.click();
+        softAssert.assertTrue(storefront.element_OurAdvantages.isEnabled(),
+                "Motivation element 'Our Advantages' is not displayed for a specified category 'Men cloth'!");
+        storefront.scrollToMotivationBlock();
+        takeScreenShot("605 'Our Advantages' is present at the product of 'Men cloth' category");
+
+        //Проверяем, что элемента "Наши преимущества" нет на странице левого товара
+        storefront.scrollTo_ApparelCategory();
+        storefront.menu_Apparel.click();
+        storefront.chooseFirstProduct.click();
+        int actualNumberOfTabs = DriverProvider.getDriver().findElements(By.cssSelector(".ab__motivation_block .ab__mb_item")).size();
+        softAssert.assertEquals(actualNumberOfTabs, 3,
+                "Motivation element 'Our advantages' is present for a wrong category 'Apparel'!");
+        storefront.scrollToMotivationBlock();
+        takeScreenShot("610 Three motivation elements on the category 'Apparel'");
+        softAssert.assertAll();
+        System.out.println("DisplayElementForSpecifiedCategoriesOnlyTest has passed successfully!");
     }
 }

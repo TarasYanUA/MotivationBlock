@@ -1,54 +1,49 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import taras.yanishevskyi.DriverProvider;
-import taras.yanishevskyi.WorkPages.AdminPanel;
-import taras.yanishevskyi.WorkPages.MotivationBlock;
-import taras.yanishevskyi.WorkPages.ProductPage;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.ArrayList;
+import org.testng.asserts.SoftAssert;
+import taras.constants.DriverProvider;
+import taras.workPages.*;
 
-public class Element_ShipmentTest extends TestRunner{
+import java.io.IOException;
+
+public class Element_ShipmentTest extends TestRunner {
+
     @Test(description = "Проверяем ШАБЛОН элемента мотивации 'Доставка'")
     public void elementShipmentOnStorefront() throws IOException {
         //Настраиваем модуль "Карты и геолокация"
         AdminPanel adminPanel = new AdminPanel();
-        MotivationBlock motivationBlock = new MotivationBlock();
-        adminPanel.navigateToAddonsPage(adminPanel);
-        adminPanel.clickAndTypeSearchFieldOfAddons();
-        adminPanel.chooseGeolocationAddon();
-        motivationBlock.clickTabSettings();
-        adminPanel.selectDropboxValueForGeolocation_Service("google");
-        if(! DriverProvider.getDriver().findElement(By.xpath("//input[contains(@id, 'addon_option_geo_maps_show_shippings_on_product')]")).isSelected()){
-            adminPanel.clickGeolocationCheckbox_ShowShippingCost();
+        MapsAndGeolocation mapsAndGeolocation = adminPanel.navigateTo_MapsAndGeolocation_Settings();
+        mapsAndGeolocation.selectDropboxValue_Service("google");
+        if(!DriverProvider.getDriver().findElement(By.xpath("//input[contains(@id, 'addon_option_geo_maps_show_shippings_on_product')]")).isSelected()){
+            mapsAndGeolocation.checkbox_ShowShippingCost.click();
         }
-        adminPanel.clickGeolocationTabGoogle();
-        adminPanel.clickAndTypeGeolocation_ApiKey();
-        adminPanel.clickSaveButtonForAddonSettings();
-        adminPanel.navigateToAddonsPage(adminPanel);
-        adminPanel.clickButtonOfAddon();
-        adminPanel.navigateToDataManagementPage();
-        motivationBlock.chooseElementDelivery();
+        mapsAndGeolocation.tab_Google.click();
+        mapsAndGeolocation.clickAndType_GoogleApiKey();
+        adminPanel.saveButtonOnTopRight.click();
+
+        //Настраиваем модуль "Блок мотивации -- Управление данными"
+        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_DataManagementPage();
+        motivationBlock.elementDelivery.click();
         motivationBlock.selectElementPage_Template("addons/ab__motivation_block/blocks/components/item_templates/geo_maps.tpl");
-        adminPanel.clickSaveButtonOnTopRight();
-        (new WebDriverWait((motivationBlock.driver), Duration.ofSeconds(4)))
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cs-icon.icon-shopping-cart")));
-        adminPanel.clickStorefrontMainButton();
-        ArrayList tabs = new ArrayList<String> (DriverProvider.getDriver().getWindowHandles());
-        for(int ii = 0; ii <= 1; ii++) {
-            DriverProvider.getDriver().switchTo().window(tabs.get(ii).toString());
-        }
-        ProductPage productPage = new ProductPage();
-        productPage.chooseProductOnHomepage();
+        adminPanel.saveButtonOnTopRight.click();
+
+        //Переходим на витрину
+        ProductPage productPage = adminPanel.navigateToSection_Products();
+        productPage.clickAndType_SearchFieldOfProduct("GoPro");
+        productPage.chooseAnyProduct();
+        Storefront storefront = productPage.navigateToStorefront_ProductPage();
+        storefront.selectLanguage("ru");
         //Проверяем, что элемент "Доставка" присутствует на странице товара
-        Assert.assertTrue(motivationBlock.getElementDeliveryOnStorefront().isEnabled(), "Element \"Delivery\" is not present on the product page");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(storefront.elementDelivery.isDisplayed(),
+                "Element 'Delivery' is not present on the product page");
         //Проверяем, что присутствует шаблон от модуля "Карты и геолокация" в элементе "Доставка"
-        Assert.assertTrue(DriverProvider.getDriver().findElements(By.cssSelector(".ty-geo-maps-shipping__wrapper")).size() >= 1,
-                "Motivation element does not have a template 'Shipping method'!");
-        motivationBlock.clickElementDeliveryOnStorefront();
+        softAssert.assertTrue(storefront.template_ShippingMethod.isEnabled(),
+                "Motivation element does not have a template 'Shipping method' on the product page!");
+        storefront.scrollToMotivationBlock();
+        storefront.elementDelivery.click();
         takeScreenShot("400 Delivery element with template 'Shipping information'");
+        softAssert.assertAll();
+        System.out.println("Element_ShipmentTest has passed successfully!");
     }
 }
