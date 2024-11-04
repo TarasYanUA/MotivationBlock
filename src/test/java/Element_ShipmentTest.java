@@ -33,16 +33,21 @@ public class Element_ShipmentTest extends TestRunner {
         productPage.chooseAnyProduct();
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
-        //Проверяем, что элемент "Доставка" присутствует на странице товара
+
         SoftAssert softAssert = new SoftAssert();
+
+        //Проверяем, что элемент "Доставка" присутствует на странице товара
         softAssert.assertTrue(storefront.elementDelivery.isDisplayed(),
                 "Element 'Delivery' is not present on the product page");
+
         //Проверяем, что присутствует шаблон от модуля "Карты и геолокация" в элементе "Доставка"
         softAssert.assertTrue(storefront.template_ShippingMethod.isEnabled(),
                 "Motivation element does not have a template 'Shipping method' on the product page!");
+
         storefront.scrollToMotivationBlock();
         storefront.elementDelivery.click();
         takeScreenShot("400 Delivery element with template 'Shipping information'");
+        
         softAssert.assertAll();
         System.out.println("Element_ShipmentTest has passed successfully!");
     }

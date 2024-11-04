@@ -32,12 +32,17 @@ public class VerticalAppearanceWithFramesTest extends TestRunner {
 
         //Работаем с витриной
         SoftAssert softAssert = new SoftAssert();
+
         //Проверяем, что блок вертикальный
         softAssert.assertTrue(!storefront.verticalBlock.isEmpty(),"Block is not vertical or missed on the product page!");
+
+        //Проверяем, что мотив. элемент с обрамлением
         softAssert.assertTrue(!DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.framed.colored")).isEmpty(),
                 "Motivation block doesn't have a style 'With frames'");
+
         storefront.scrollToMotivationBlock();
         takeScreenShot("200 Vertical block with frames");
+
         softAssert.assertAll();
         System.out.println("VerticalAppearanceWithFramesTest has passed successfully!");
     }

@@ -45,10 +45,13 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
         storefront.scrollToMotivationBlock();
-        //Проверяем, что элемент "Наши преимущества" присутствует для нужной категорий
+
         SoftAssert softAssert = new SoftAssert();
+
+        //Проверяем, что элемент "Наши преимущества" присутствует для нужной категорий
         softAssert.assertTrue(storefront.element_OurAdvantages.isDisplayed(),
                 "Motivation element 'Our Advantages' is not displayed for a specified category 'Game consoles'!");
+
         storefront.scrollToMotivationBlock();
         takeScreenShot("600 'Our Advantages' is present at the product of 'Game consoles' category");
         storefront.selectLanguage("ar");
@@ -71,6 +74,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
                 "Motivation element 'Our advantages' is present for a wrong category 'Apparel'!");
         storefront.scrollToMotivationBlock();
         takeScreenShot("610 Three motivation elements on the category 'Apparel'");
+
         softAssert.assertAll();
         System.out.println("DisplayElementForSpecifiedCategoriesOnlyTest has passed successfully!");
     }

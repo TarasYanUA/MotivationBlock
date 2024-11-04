@@ -32,11 +32,15 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
 
         //Работаем с витриной
         SoftAssert softAssert = new SoftAssert();
+
         //Проверяем, что блок горизонтальный
         softAssert.assertTrue(!storefront.horizontalBlock.isEmpty(),"Block is not horizontal or missed on the product page.");
+
+        //Проверяем, что мотив. элемент с фоном
         softAssert.assertTrue(!DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.fill.colored")).isEmpty(),
                 "Motivation block doesn't have a style 'With background'");
         takeScreenShot("300 Horizontal block with background");
+
         softAssert.assertAll();
         System.out.println("HorizontalAppearanceWithBackgroundTest has passed successfully!");
     }

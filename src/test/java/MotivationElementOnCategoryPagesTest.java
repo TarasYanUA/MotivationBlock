@@ -45,19 +45,23 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner {
         //Работаем с витриной
         SoftAssert softAssert = new SoftAssert();
         storefront.scrollToMotivationBlock();
+
         //Проверяем, что блок мотивации отображается у главной категории
         softAssert.assertTrue(storefront.motivationBlock.isDisplayed(),
                 "Motivation block is absent on the product page of the main category!");
+
         takeScreenShot("100 Motivation block on product page of main category 'Camcorders'");
         storefront.selectLanguage("ar");
         storefront.scrollToMotivationBlock();
         takeScreenShot("102 Motivation block on product page of main category 'Camcorders' (RTL)");
+
         //Проверяем, что блок мотивации отображается в дочерней категории
         storefront.navigateTo_MenClothCategory();
         storefront.productGoProOnStorefront.click();
         storefront.scrollToMotivationBlock();
         softAssert.assertTrue(storefront.motivationBlock.isDisplayed(), "Motivation block is absent on subcategory 'MenCloth' page!");
         takeScreenShot("110 Motivation block on product page of subcategory 'Men's clothing'");
+
         softAssert.assertAll();
         System.out.println("MotivationElementOnCategoryPagesTest has passed successfully!");
     }

@@ -35,16 +35,20 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
         storefront.selectLanguage("ru");
         storefront.scrollToMotivationBlock();
         storefront.element_PaymentMethods.click();
+
         SoftAssert softAssert = new SoftAssert();
+
         //Проверяем, что у элемента присутствует шаблон "Способы оплаты"
         softAssert.assertTrue(DriverProvider.getDriver().findElement(By.xpath("//li[contains(text(), '— Банковская карта')]")).isEnabled(),
                 "Motivation element does not have a template 'Payment methods'!");
         takeScreenShot("500 Element 'Payment options' with template 'Payment methods'");
         storefront.element_FindSimilar.click();
+
         //Проверяем, что у элемента "Найдите похожие" присутствует шаблон "Список категорий" вместо обычного текста
         softAssert.assertTrue(DriverProvider.getDriver().findElement(By.className("ab-mb-prod-categories-list")).isEnabled(),
                 "Motivation element does not have a template 'Categories list'!");
         takeScreenShot("510 Element 'Find similar' with template 'Categories list'");
+
         softAssert.assertAll();
         System.out.println("Elements_PaymentMethods_CategoryListTest has passed successfully!");
     }
