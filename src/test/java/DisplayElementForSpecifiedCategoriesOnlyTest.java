@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -66,7 +67,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
         takeScreenShot("605 'Warranty and returns' is present at the product of 'Men cloth' category");
 
         //Проверяем, что элемента "Гарантия и возврат" нет на странице левого товара
-        storefront.scrollTo_ApparelCategory();
+        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollTo(0, 0);");
         storefront.menu_Apparel.click();
         storefront.chooseFirstProduct.click();
         softAssert.assertTrue(storefront.element_WarrantyAndReturns.isEmpty(),
