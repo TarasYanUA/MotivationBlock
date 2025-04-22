@@ -19,8 +19,10 @@ public class VerticalAppearanceWithFramesTest extends TestRunner {
         motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("vertical_tabs");
         motivationBlock.selectSettingBlockStyle("framed");
+        if (!motivationBlock.setting_ApplyContrastToElements.isSelected())
+            motivationBlock.setting_ApplyContrastToElements.click();
         motivationBlock.settingBlockColor.click();
-        motivationBlock.redColorForBlock.click();
+        motivationBlock.violetColorForBlock.click();
         motivationBlock.submitColorForBlock.click();
         adminPanel.saveButtonOnTopRight.click();
 

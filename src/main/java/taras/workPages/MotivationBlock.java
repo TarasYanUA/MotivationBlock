@@ -30,11 +30,14 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_appearance_type_styles')]")
     WebElement settingBlockStyle;
 
+    public @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_contrast_style_elements_')]")
+    WebElement setting_ApplyContrastToElements;
+
     @FindBy(className = "sp-preview-inner")
     public WebElement settingBlockColor;
 
-    @FindBy(xpath = "//span[@title='#ff0000']")
-    public WebElement redColorForBlock;
+    @FindBy(xpath = "//span[@title='#9900ff']")
+    public WebElement violetColorForBlock;
 
     @FindBy(xpath = "//span[@title='#cfe2f3']")
     public WebElement blueColorForBlock;
@@ -43,25 +46,21 @@ public class MotivationBlock extends AbstractPage {
     public WebElement submitColorForBlock;
 
 
-    private Select getDropboxValueForElements_description_type(){
-        return new Select(dropboxValueForElements_description_type);
-    }
     public void selectDropboxValueForElements_description_type(String value) {
-        getDropboxValueForElements_description_type().selectByValue(value);
+        new Select(dropboxValueForElements_description_type).selectByValue(value);
     }
 
-    private Select getSettingTemplateVariant(){
-        return new Select(settingTemplateVariant);
-    }
     public void selectSettingTemplateVariant(String value){
-        getSettingTemplateVariant().selectByValue(value);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Select(settingTemplateVariant).selectByValue(value);
     }
 
-    private Select getSettingBlockStyle(){
-        return new Select(settingBlockStyle);
-    }
-    public void selectSettingBlockStyle(String value){
-        getSettingBlockStyle().selectByValue(value);
+    public void selectSettingBlockStyle(String value) {
+        new Select(settingBlockStyle).selectByValue(value);
     }
 
 
@@ -75,8 +74,8 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//a[text()='Варианты оплаты']")
     public WebElement elementPaymentMethods;
 
-    @FindBy(xpath = "//a[text()='Наши преимущества']")
-    public WebElement elementOurAdvantages;
+    @FindBy(xpath = "//a[text()='Гарантия и возврат']")
+    public WebElement element_WarrantyAndReturns;
 
     @FindBy(id = "categories")
     public WebElement tabCategories;
@@ -96,17 +95,14 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(id = "sw_select_4_wrap")
     public WebElement statusButton;
 
-    @FindBy(xpath = "//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
+    @FindBy(xpath = "//div[contains(@class, 'dropleft open')]//a[contains(@class, 'status-link-a  cm-ajax')][@title='Вкл.']")
     public WebElement statusActive;
 
     @FindBy(css = ".cm-form-dialog-closer")
     public WebElement saveCategoriesAtPopup;
 
     
-    private Select getElementPage_Template(){
-        return new Select(elementPage_Template);
-    }
     public void selectElementPage_Template(String value){
-        getElementPage_Template().selectByValue(value);
+        new Select(elementPage_Template).selectByValue(value);
     }
 }
