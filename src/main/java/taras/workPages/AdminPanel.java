@@ -9,7 +9,9 @@ import taras.constants.DriverProvider;
 
 
 public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
-    public AdminPanel() {super();}
+    public AdminPanel() {
+        super();
+    }
 
     @FindBy(css = ".btn.btn-primary.cm-submit")
     public WebElement saveButtonOnTopRight;
@@ -50,18 +52,17 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
         return new MotivationBlock();
     }
 
-    public MotivationBlock navigateTo_MotivationBlock_DataManagementPage(){
+    public MotivationBlock navigateTo_MotivationBlock_DataManagementPage() {
         navigateTo_DownloadedAddonsPage();
         addonSectionsOnPage_DownloadedAddons.click();
         section_DataManagementPage.click();
         return new MotivationBlock();
     }
 
-    public MapsAndGeolocation navigateTo_MapsAndGeolocation_Settings(){
+    public MapsAndGeolocation navigateTo_MapsAndGeolocation_Settings() {
         navigateTo_DownloadedAddonsPage();
-        if(DriverProvider.getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled()){
+        if (DriverProvider.getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled())
             DriverProvider.getDriver().findElement(By.cssSelector("#bp_off_bottom_panel")).click();
-        }
         addon_MapsAndGeolocation.click();
         tab_Settings.click();
         return new MapsAndGeolocation();
@@ -98,24 +99,25 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     @FindBy(css = ".with-menu.active a[href*='block_manager.set_default_layout']")
     WebElement button_makeByDefault;
 
-    public void navigateToSection_WebsiteLayouts(){
+
+    public void navigateToSection_WebsiteLayouts() {
         checkMenuToBeActive("dispatch=themes.manage", menu_Website);
         menu_Themes.click();
         section_Layouts.click();
     }
 
-    public WebElement hoverGearwheelOfActiveLayout(){return gearwheelOfActiveLayout;}
-    public void setLayout_Lightv2_AsDefault(){
+    public void setLayout_Lightv2_AsDefault() {
         layout_Lightv2.click();
-        WebElement element = hoverGearwheelOfActiveLayout();
         Actions hover = new Actions(DriverProvider.getDriver());
-        hover.moveToElement(element);
-        hover.perform();
+        hover.moveToElement(gearwheelOfActiveLayout).perform();
         gearwheelOfActiveLayout.click();
-        if(!DriverProvider.getDriver().findElements(By.cssSelector(".with-menu.active a[href*='block_manager.set_default_layout']")).isEmpty()){
+        if (!DriverProvider.getDriver().findElements(By.cssSelector(".with-menu.active a[href*='block_manager.set_default_layout']")).isEmpty()) {
             button_makeByDefault.click();
-            try { Thread.sleep(1500);
-            } catch (InterruptedException e) { e.printStackTrace(); }
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -50,7 +51,6 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
         //Проверяем, что элемент "Гарантия и возврат" присутствует для нужной категорий
         softAssert.assertTrue(!storefront.element_WarrantyAndReturns.isEmpty(),
                 "Motivation element 'Warranty and returns' does not exist for a specified category 'Game consoles -- Microsoft'!");
-        //БАГ https://abteam.planfix.com/task/53457
 
         storefront.scrollToMotivationBlock();
         takeScreenShot("600 'Warranty and returns' is present at the product of 'Game consoles' category");
@@ -66,7 +66,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
         takeScreenShot("605 'Warranty and returns' is present at the product of 'Men cloth' category");
 
         //Проверяем, что элемента "Гарантия и возврат" нет на странице левого товара
-        storefront.scrollTo_ApparelCategory();
+        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollTo(0, 0);");
         storefront.menu_Apparel.click();
         storefront.chooseFirstProduct.click();
         softAssert.assertTrue(storefront.element_WarrantyAndReturns.isEmpty(),

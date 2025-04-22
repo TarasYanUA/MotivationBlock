@@ -21,11 +21,8 @@ public class MapsAndGeolocation extends AbstractPage {
     WebElement google_ApiKey;
 
 
-    private Select getDropboxValue_Service(){
-        return new Select(dropboxValue_Service);
-    }
     public void selectDropboxValue_Service(String value){
-        getDropboxValue_Service().selectByValue(value);
+        new Select(dropboxValue_Service).selectByValue(value);
     }
 
     public void clickAndType_GoogleApiKey() {

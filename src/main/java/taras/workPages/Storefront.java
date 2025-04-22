@@ -71,7 +71,7 @@ public class Storefront extends AbstractPage {
             e.printStackTrace();
         }
         Actions actions = new Actions(DriverProvider.getDriver());
-        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(motivationBlock), 0, 550).perform();
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(motivationBlock), 0, 450).perform();
     }
 
     public void selectLanguage(String arRuEn) {
