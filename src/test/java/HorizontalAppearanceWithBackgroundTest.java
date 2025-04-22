@@ -19,6 +19,8 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("horizontal_tabs");
         motivationBlock.selectSettingBlockStyle("fill");
+        if (motivationBlock.setting_ApplyContrastToElements.isSelected())
+            motivationBlock.setting_ApplyContrastToElements.click();
         motivationBlock.settingBlockColor.click();
         motivationBlock.blueColorForBlock.click();
         motivationBlock.submitColorForBlock.click();

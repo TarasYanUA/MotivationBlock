@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
 
-    @Test(description = "Элементу 'Наши преимущества' добавляем категории и проверяем отображение этого элемента на стр товаров из этих категорий")
+    @Test(description = "Элементу 'Гарантия и возврат' добавляем категории и проверяем отображение этого элемента на стр товаров из этих категорий")
     public void checkCategoriesForMotivationElement() throws IOException {
         AdminPanel adminPanel = new AdminPanel();
         //Настраиваем настройки модуля
@@ -25,7 +25,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
 
         //Настраиваем модуль "Блок мотивации -- Управление данными"
         adminPanel.navigateTo_MotivationBlock_DataManagementPage();
-        motivationBlock.elementOurAdvantages.click();
+        motivationBlock.element_WarrantyAndReturns.click();
         //Добавляем категории для мотив. элемента
         motivationBlock.tabCategories.click();
         if (DriverProvider.getDriver().findElement(By.xpath("//p[text()='Все категории включены']")).isDisplayed()) {
@@ -40,38 +40,37 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
 
         //Переходим на витрину
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("X-Box");
+        productPage.clickAndType_SearchFieldOfProduct("X-Box 360");
         productPage.chooseAnyProduct();
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
-        storefront.scrollToMotivationBlock();
 
         SoftAssert softAssert = new SoftAssert();
 
-        //Проверяем, что элемент "Наши преимущества" присутствует для нужной категорий
-        softAssert.assertTrue(storefront.element_OurAdvantages.isDisplayed(),
-                "Motivation element 'Our Advantages' is not displayed for a specified category 'Game consoles'!");
+        //Проверяем, что элемент "Гарантия и возврат" присутствует для нужной категорий
+        softAssert.assertTrue(!storefront.element_WarrantyAndReturns.isEmpty(),
+                "Motivation element 'Warranty and returns' does not exist for a specified category 'Game consoles -- Microsoft'!");
+        //БАГ https://abteam.planfix.com/task/53457
 
         storefront.scrollToMotivationBlock();
-        takeScreenShot("600 'Our Advantages' is present at the product of 'Game consoles' category");
+        takeScreenShot("600 'Warranty and returns' is present at the product of 'Game consoles' category");
         storefront.selectLanguage("ar");
         storefront.scrollToMotivationBlock();
-        takeScreenShot("602 'Our Advantages' is present at the product of 'Men cloth' category (RTL)");
+        takeScreenShot("602 'Warranty and returns' is present at the product of 'Men cloth' category (RTL)");
         storefront.selectLanguage("ru");
         storefront.navigateTo_MenClothCategory();
         storefront.chooseFirstProduct.click();
-        softAssert.assertTrue(storefront.element_OurAdvantages.isEnabled(),
-                "Motivation element 'Our Advantages' is not displayed for a specified category 'Men cloth'!");
+        softAssert.assertTrue(!storefront.element_WarrantyAndReturns.isEmpty(),
+                "Motivation element 'Warranty and returns' does not exist for a specified category 'Men cloth'!");
         storefront.scrollToMotivationBlock();
-        takeScreenShot("605 'Our Advantages' is present at the product of 'Men cloth' category");
+        takeScreenShot("605 'Warranty and returns' is present at the product of 'Men cloth' category");
 
-        //Проверяем, что элемента "Наши преимущества" нет на странице левого товара
+        //Проверяем, что элемента "Гарантия и возврат" нет на странице левого товара
         storefront.scrollTo_ApparelCategory();
         storefront.menu_Apparel.click();
         storefront.chooseFirstProduct.click();
-        int actualNumberOfTabs = DriverProvider.getDriver().findElements(By.cssSelector(".ab__motivation_block .ab__mb_item")).size();
-        softAssert.assertEquals(actualNumberOfTabs, 3,
-                "Motivation element 'Our advantages' is present for a wrong category 'Apparel'!");
+        softAssert.assertTrue(storefront.element_WarrantyAndReturns.isEmpty(),
+                "Motivation element 'Warranty and returns' is present for a wrong category 'Apparel'!");
         storefront.scrollToMotivationBlock();
         takeScreenShot("610 Three motivation elements on the category 'Apparel'");
 

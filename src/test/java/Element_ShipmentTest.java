@@ -37,7 +37,7 @@ public class Element_ShipmentTest extends TestRunner {
         SoftAssert softAssert = new SoftAssert();
 
         //Проверяем, что элемент "Доставка" присутствует на странице товара
-        softAssert.assertTrue(storefront.elementDelivery.isDisplayed(),
+        softAssert.assertTrue(!storefront.elements_Delivery.isEmpty(),
                 "Element 'Delivery' is not present on the product page");
 
         //Проверяем, что присутствует шаблон от модуля "Карты и геолокация" в элементе "Доставка"
@@ -45,7 +45,7 @@ public class Element_ShipmentTest extends TestRunner {
                 "Motivation element does not have a template 'Shipping method' on the product page!");
 
         storefront.scrollToMotivationBlock();
-        storefront.elementDelivery.click();
+        storefront.element_Delivery.click();
         takeScreenShot("400 Delivery element with template 'Shipping information'");
         
         softAssert.assertAll();
