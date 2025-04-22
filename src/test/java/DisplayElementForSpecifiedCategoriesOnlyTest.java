@@ -51,7 +51,6 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
         //Проверяем, что элемент "Гарантия и возврат" присутствует для нужной категорий
         softAssert.assertTrue(!storefront.element_WarrantyAndReturns.isEmpty(),
                 "Motivation element 'Warranty and returns' does not exist for a specified category 'Game consoles -- Microsoft'!");
-        //БАГ https://abteam.planfix.com/task/53457
 
         storefront.scrollToMotivationBlock();
         takeScreenShot("600 'Warranty and returns' is present at the product of 'Game consoles' category");
