@@ -1,9 +1,16 @@
 package taras.workPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
+import taras.constants.DriverProvider;
+
+import java.time.Duration;
+import java.util.Collection;
 
 
 public class MotivationBlock extends AbstractPage {
@@ -45,6 +52,12 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(className = "sp-choose")
     public WebElement submitColorForBlock;
 
+    @FindBy(css = ".ab__mb_items.framed.colored")
+    public Collection<WebElement> elementIsFramed;
+
+    @FindBy(css = ".ab__mb_items.fill.colored")
+    public Collection<WebElement> elementIsFilled;
+
 
     public void selectDropboxValueForElements_description_type(String value) {
         new Select(dropboxValueForElements_description_type).selectByValue(value);
@@ -63,13 +76,16 @@ public class MotivationBlock extends AbstractPage {
         new Select(settingBlockStyle).selectByValue(value);
     }
 
+    public void selectColorForBlock(WebElement color) {
+        settingBlockColor.click();
+        color.click();
+        submitColorForBlock.click();
+    }
+
 
     //Меню "Управление данными"
     @FindBy(css = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
     public WebElement abMenu_sectionDataManagement;
-
-    @FindBy(xpath = "//a[text()='Доставка']")
-    public WebElement elementDelivery;
 
     @FindBy(xpath = "//a[text()='Варианты оплаты']")
     public WebElement elementPaymentMethods;
@@ -104,5 +120,29 @@ public class MotivationBlock extends AbstractPage {
     
     public void selectElementPage_Template(String value){
         new Select(elementPage_Template).selectByValue(value);
+    }
+
+    public void configureFindSimilarAsCategoryList() {
+        abMenuDropdown.click();
+        abMenu_sectionDataManagement.click();
+        if(DriverProvider.getDriver().findElement(By.xpath("//a[@id='sw_select_4_wrap']")).getText().contains("Выкл.")){
+            statusButton.click();
+            statusActive.click();
+        }
+    }
+
+    public void addCategoriesToMotivationElement() {
+        AdminPanel adminPanel = new AdminPanel();
+
+        tabCategories.click();
+        if (DriverProvider.getDriver().findElement(By.xpath("//p[text()='Все категории включены']")).isDisplayed()) {
+            addCategoriesButton.click();
+            (new WebDriverWait((driver), Duration.ofSeconds(8)))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
+            chooseCategory_ConsolesMicrosoft.click();
+            chooseCategory_MenCloth.click();
+            saveCategoriesAtPopup.click();
+            adminPanel.saveButtonOnTopRight.click();
+        }
     }
 }

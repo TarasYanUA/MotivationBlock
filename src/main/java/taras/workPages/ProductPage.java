@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
+import taras.constants.DriverProvider;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class ProductPage extends AbstractPage {
         searchInput.click();
         searchInput.sendKeys(value);
         (new WebDriverWait((getDriver()), Duration.ofSeconds(10)))
-                .until(ExpectedConditions.elementToBeClickable(By.linkText(value)))
+                .until(ExpectedConditions.elementToBeClickable(By.partialLinkText(value)))
                 .click();
     }
 
@@ -58,5 +59,21 @@ public class ProductPage extends AbstractPage {
             confirmCookies.click();
 
         return new Storefront();
+    }
+
+    public void addCategoriesToProduct() {
+        AdminPanel adminPanel = new AdminPanel();
+
+        if (DriverProvider.getDriver().findElements(By.cssSelector(".select2-selection__choice")).size() < 2) {
+            pickerOfCategories.click();
+            (new WebDriverWait((driver), Duration.ofSeconds(4)))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
+            categoryMenClothing.click();
+            categoryPlayStation.click();
+            savePopup.click();
+            (new WebDriverWait((driver), Duration.ofSeconds(4)))
+                    .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
+            adminPanel.saveButtonOnTopRight.click();
+        }
     }
 }

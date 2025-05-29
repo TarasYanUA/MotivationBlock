@@ -1,7 +1,5 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import taras.constants.DriverProvider;
 import taras.workPages.*;
 
 import java.io.IOException;
@@ -10,20 +8,16 @@ public class Element_ShipmentTest extends TestRunner {
 
     @Test(description = "Проверяем ШАБЛОН элемента мотивации 'Доставка'")
     public void elementShipmentOnStorefront() throws IOException {
-        //Настраиваем модуль "Карты и геолокация"
         AdminPanel adminPanel = new AdminPanel();
+
+        //Настраиваем модуль "Карты и геолокация"
         MapsAndGeolocation mapsAndGeolocation = adminPanel.navigateTo_MapsAndGeolocation_Settings();
-        mapsAndGeolocation.selectDropboxValue_Service("google");
-        if(!DriverProvider.getDriver().findElement(By.xpath("//input[contains(@id, 'addon_option_geo_maps_show_shippings_on_product')]")).isSelected()){
-            mapsAndGeolocation.checkbox_ShowShippingCost.click();
-        }
-        mapsAndGeolocation.tab_Google.click();
-        mapsAndGeolocation.setGoogleApiKey();
+        mapsAndGeolocation.configureMapsAndGeolocation();
         adminPanel.saveButtonOnTopRight.click();
 
         //Настраиваем модуль "Блок мотивации -- Управление данными"
         MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_DataManagementPage();
-        motivationBlock.elementDelivery.click();
+        mapsAndGeolocation.configureMapsAndGeolocation();
         motivationBlock.selectElementPage_Template("addons/ab__motivation_block/blocks/components/item_templates/geo_maps.tpl");
         adminPanel.saveButtonOnTopRight.click();
 

@@ -1,7 +1,5 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import taras.constants.DriverProvider;
 import taras.workPages.AdminPanel;
 import taras.workPages.MotivationBlock;
 import taras.workPages.ProductPage;
@@ -19,11 +17,8 @@ public class VerticalAppearanceWithFramesTest extends TestRunner {
         motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("vertical_tabs");
         motivationBlock.selectSettingBlockStyle("framed");
-        if (!motivationBlock.setting_ApplyContrastToElements.isSelected())
-            motivationBlock.setting_ApplyContrastToElements.click();
-        motivationBlock.settingBlockColor.click();
-        motivationBlock.violetColorForBlock.click();
-        motivationBlock.submitColorForBlock.click();
+        Utils.setCheckboxState(motivationBlock.setting_ApplyContrastToElements, true);
+        motivationBlock.selectColorForBlock(motivationBlock.violetColorForBlock);
         adminPanel.saveButtonOnTopRight.click();
 
         //Переходим на страницу товара
@@ -38,7 +33,7 @@ public class VerticalAppearanceWithFramesTest extends TestRunner {
         softAssert.assertTrue(!storefront.verticalBlock.isEmpty(),"Block is not vertical or missed on the product page!");
 
         //Проверяем, что мотив. элемент с обрамлением
-        softAssert.assertTrue(!DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.framed.colored")).isEmpty(),
+        softAssert.assertTrue(!motivationBlock.elementIsFramed.isEmpty(),
                 "Motivation block doesn't have a style 'With frames'");
 
         storefront.scrollToMotivationBlock();

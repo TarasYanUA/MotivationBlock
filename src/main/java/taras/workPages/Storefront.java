@@ -60,6 +60,12 @@ public class Storefront extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]//*[text()='Найдите похожие']")
     public WebElement element_FindSimilar;
 
+    @FindBy(xpath = "//li[contains(text(), '— Банковская карта')]")
+    public WebElement template_PaymentMethods;
+
+    @FindBy(css = ".ab-mb-prod-categories-list")
+    public WebElement template_CategoriesList;
+
 
     Actions actions = new Actions(DriverProvider.getDriver());
 
