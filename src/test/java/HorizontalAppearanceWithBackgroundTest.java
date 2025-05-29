@@ -28,8 +28,7 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
 
         //Переходим на страницу товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("GoPro");
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
 
         //Работаем с витриной

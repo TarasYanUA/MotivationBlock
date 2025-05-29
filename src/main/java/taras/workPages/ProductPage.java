@@ -1,13 +1,11 @@
 package taras.workPages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
-import taras.constants.DriverProvider;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -20,10 +18,7 @@ public class ProductPage extends AbstractPage {
     }
 
     @FindBy(css = "input[form='search_filters_form']")
-    WebElement searchFieldOfProduct;
-
-    @FindBy(className = "products-list__image")
-    WebElement chooseAnyProduct;
+    WebElement searchInput;
 
     @FindBy(css = ".object-categories-add__picker")
     public WebElement pickerOfCategories;
@@ -39,25 +34,17 @@ public class ProductPage extends AbstractPage {
 
     @FindBy(css = ".dropdown-icon--tools")
     WebElement gearwheelOfProduct;
+
     @FindBy(xpath = "//a[contains(text(), 'Предпросмотр')]")
     WebElement previewButton;
 
 
-    public void clickAndType_SearchFieldOfProduct(String value) {
-        searchFieldOfProduct.click();
-        searchFieldOfProduct.sendKeys(value);
-        searchFieldOfProduct.sendKeys(Keys.ENTER);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void chooseAnyProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(chooseAnyProduct));
-        chooseAnyProduct.click();
+    public void searchProduct(String value) {
+        searchInput.click();
+        searchInput.sendKeys(value);
+        (new WebDriverWait((getDriver()), Duration.ofSeconds(10)))
+                .until(ExpectedConditions.elementToBeClickable(By.linkText(value)))
+                .click();
     }
 
     public Storefront navigateToStorefront_ProductPage() {
@@ -65,9 +52,11 @@ public class ProductPage extends AbstractPage {
         previewButton.click();
         ArrayList<String> tabs = new ArrayList<> (getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
-        if (DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).isEnabled()) {
-            DriverProvider.getDriver().findElement(By.cssSelector(".cm-btn-success")).click();
-        }
+
+        WebElement confirmCookies = getDriver().findElement(By.cssSelector(".cm-btn-success"));
+        if (confirmCookies.isEnabled())
+            confirmCookies.click();
+
         return new Storefront();
     }
 }

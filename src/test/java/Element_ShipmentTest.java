@@ -18,7 +18,7 @@ public class Element_ShipmentTest extends TestRunner {
             mapsAndGeolocation.checkbox_ShowShippingCost.click();
         }
         mapsAndGeolocation.tab_Google.click();
-        mapsAndGeolocation.clickAndType_GoogleApiKey();
+        mapsAndGeolocation.setGoogleApiKey();
         adminPanel.saveButtonOnTopRight.click();
 
         //Настраиваем модуль "Блок мотивации -- Управление данными"
@@ -29,8 +29,7 @@ public class Element_ShipmentTest extends TestRunner {
 
         //Переходим на витрину
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("GoPro");
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
 
@@ -45,7 +44,7 @@ public class Element_ShipmentTest extends TestRunner {
                 "Motivation element does not have a template 'Shipping method' on the product page!");
 
         storefront.scrollToMotivationBlock();
-        storefront.element_Delivery.click();
+        storefront.elements_Delivery.getFirst().click();
         takeScreenShot("400 Delivery element with template 'Shipping information'");
         
         softAssert.assertAll();

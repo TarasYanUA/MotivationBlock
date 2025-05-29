@@ -30,8 +30,8 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_appearance_type_styles')]")
     WebElement settingBlockStyle;
 
-    public @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_contrast_style_elements_')]")
-    WebElement setting_ApplyContrastToElements;
+    @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_contrast_style_elements_')]")
+    public WebElement setting_ApplyContrastToElements;
 
     @FindBy(className = "sp-preview-inner")
     public WebElement settingBlockColor;

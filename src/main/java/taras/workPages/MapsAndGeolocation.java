@@ -25,7 +25,7 @@ public class MapsAndGeolocation extends AbstractPage {
         new Select(dropboxValue_Service).selectByValue(value);
     }
 
-    public void clickAndType_GoogleApiKey() {
+    public void setGoogleApiKey() {
         google_ApiKey.click();
         google_ApiKey.sendKeys("AIzaSyBN51Tl05m8bPKtgHswOGtllu_TO3_bEN8");
     }

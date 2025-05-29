@@ -49,9 +49,6 @@ public class Storefront extends AbstractPage {
     public WebElement template_ShippingMethod;
 
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]//*[text()='Доставка']")
-    public WebElement element_Delivery;
-
-    @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]//*[text()='Доставка']")
     public List<WebElement> elements_Delivery;
 
     @FindBy(xpath = "//div[contains(@class, 'ab__motivation_block')]//*[text()='Гарантия и возврат']")
@@ -64,27 +61,30 @@ public class Storefront extends AbstractPage {
     public WebElement element_FindSimilar;
 
 
+    Actions actions = new Actions(DriverProvider.getDriver());
+
+    public void scrollToTop() {
+        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollTo(0, 0);");
+    }
+
     public void scrollToMotivationBlock() {
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Actions actions = new Actions(DriverProvider.getDriver());
         actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(motivationBlock), 0, 450).perform();
     }
 
     public void selectLanguage(String arRuEn) {
-        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollTo(0, 0);");
-        Actions actions = new Actions((DriverProvider.getDriver()));
+        scrollToTop();
         actions.moveToElement(languageButton).perform();
         languageButton.click();
         DriverProvider.getDriver().findElement(By.cssSelector(".ty-select-block__list-item a[data-ca-name='" + arRuEn + "']")).click();
     }
 
     public void scrollTo_ApparelCategory() {
-        ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollTo(0, 0);");
-        Actions actions = new Actions(DriverProvider.getDriver());
+        scrollToTop();
         actions.moveToElement(menu_Apparel).perform();
     }
 

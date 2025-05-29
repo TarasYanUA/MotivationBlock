@@ -41,8 +41,7 @@ public class DisplayElementForSpecifiedCategoriesOnlyTest extends TestRunner {
 
         //Переходим на витрину
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("X-Box 360");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("X-Box 360");
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
 

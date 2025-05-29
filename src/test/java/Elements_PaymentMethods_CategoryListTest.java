@@ -29,8 +29,7 @@ public class Elements_PaymentMethods_CategoryListTest extends TestRunner {
 
         //Переходим на витрину
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("GoPro");
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
         storefront.selectLanguage("ru");
         storefront.scrollToMotivationBlock();

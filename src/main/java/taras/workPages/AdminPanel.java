@@ -4,8 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
-import taras.constants.DriverProvider;
+
+import java.time.Duration;
+
+import static taras.constants.DriverProvider.getDriver;
 
 
 public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
@@ -39,6 +44,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     @FindBy(xpath = "//a[contains(@href, 'addon=geo_maps')][contains(@class, 'addons-addon-icon__wrapper')]")
     WebElement addon_MapsAndGeolocation;
 
+
     public void navigateTo_DownloadedAddonsPage() {
         checkMenuToBeActive("dispatch=addons.manage", menu_Addons);
         menu_DownloadedAddons.click();
@@ -61,8 +67,8 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public MapsAndGeolocation navigateTo_MapsAndGeolocation_Settings() {
         navigateTo_DownloadedAddonsPage();
-        if (DriverProvider.getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled())
-            DriverProvider.getDriver().findElement(By.cssSelector("#bp_off_bottom_panel")).click();
+        if (getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled())
+            getDriver().findElement(By.cssSelector("#bp_off_bottom_panel")).click();
         addon_MapsAndGeolocation.click();
         tab_Settings.click();
         return new MapsAndGeolocation();
@@ -72,6 +78,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     //Меню "Товары --Товары"
     @FindBy(id = "products_products")
     WebElement section_Products;
+
 
     public ProductPage navigateToSection_Products() {
         checkMenu_Products_ToBeActive();
@@ -108,16 +115,13 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public void setLayout_Lightv2_AsDefault() {
         layout_Lightv2.click();
-        Actions hover = new Actions(DriverProvider.getDriver());
+        Actions hover = new Actions(getDriver());
         hover.moveToElement(gearwheelOfActiveLayout).perform();
         gearwheelOfActiveLayout.click();
-        if (!DriverProvider.getDriver().findElements(By.cssSelector(".with-menu.active a[href*='block_manager.set_default_layout']")).isEmpty()) {
+        if (!getDriver().findElements(By.cssSelector(".with-menu.active a[href*='block_manager.set_default_layout']")).isEmpty()) {
             button_makeByDefault.click();
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            (new WebDriverWait((getDriver()), Duration.ofSeconds(10)))
+                    .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div#ajax_loading_box[style = 'display: block;']")));
         }
     }
 }

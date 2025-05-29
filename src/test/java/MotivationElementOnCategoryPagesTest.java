@@ -27,8 +27,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner {
 
         //Переходим на страницу редактирования товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("GoPro");
         if(DriverProvider.getDriver().findElements(By.cssSelector(".select2-selection__choice")).size() < 2) {
             productPage.pickerOfCategories.click();
             (new WebDriverWait((productPage.driver), Duration.ofSeconds(4)))
