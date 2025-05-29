@@ -1,7 +1,5 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import taras.constants.DriverProvider;
 import taras.workPages.AdminPanel;
 import taras.workPages.MotivationBlock;
 import taras.workPages.ProductPage;
@@ -19,17 +17,13 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         motivationBlock.tabAppearance.click();
         motivationBlock.selectSettingTemplateVariant("horizontal_tabs");
         motivationBlock.selectSettingBlockStyle("fill");
-        if (motivationBlock.setting_ApplyContrastToElements.isSelected())
-            motivationBlock.setting_ApplyContrastToElements.click();
-        motivationBlock.settingBlockColor.click();
-        motivationBlock.blueColorForBlock.click();
-        motivationBlock.submitColorForBlock.click();
+        Utils.setCheckboxState(motivationBlock.setting_ApplyContrastToElements, false);
+        motivationBlock.selectColorForBlock(motivationBlock.blueColorForBlock);
         adminPanel.saveButtonOnTopRight.click();
 
         //Переходим на страницу товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
-        productPage.clickAndType_SearchFieldOfProduct("GoPro");
-        productPage.chooseAnyProduct();
+        productPage.searchProduct("GoPro");
         Storefront storefront = productPage.navigateToStorefront_ProductPage();
 
         //Работаем с витриной
@@ -39,7 +33,7 @@ public class HorizontalAppearanceWithBackgroundTest extends TestRunner{
         softAssert.assertTrue(!storefront.horizontalBlock.isEmpty(),"Block is not horizontal or missed on the product page.");
 
         //Проверяем, что мотив. элемент с фоном
-        softAssert.assertTrue(!DriverProvider.getDriver().findElements(By.cssSelector(".ab__mb_items.fill.colored")).isEmpty(),
+        softAssert.assertTrue(!motivationBlock.elementIsFilled.isEmpty(),
                 "Motivation block doesn't have a style 'With background'");
         takeScreenShot("300 Horizontal block with background");
 
