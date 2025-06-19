@@ -11,7 +11,7 @@ public class MapsAndGeolocation extends AbstractPage {
     @FindBy(xpath = "//select[contains(@id, 'addon_option_geo_maps_provider')]")
     WebElement dropboxValue_Service;
 
-//    @FindBy(xpath = "//input[contains(@id, 'addon_option_geo_maps_show_shippings_on_product')]")
+    @FindBy(xpath = "//input[contains(@id, 'addon_option_geo_maps_show_shippings_on_product')]")
     public WebElement checkbox_ShowShippingCost;
 
     @FindBy(id = "geo_maps_google")
@@ -27,6 +27,7 @@ public class MapsAndGeolocation extends AbstractPage {
 
     public void setGoogleApiKey() {
         google_ApiKey.click();
+        google_ApiKey.clear();
         google_ApiKey.sendKeys("AIzaSyBN51Tl05m8bPKtgHswOGtllu_TO3_bEN8");
     }
 
