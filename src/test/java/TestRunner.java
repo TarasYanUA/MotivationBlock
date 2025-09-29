@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import static taras.constants.Constants.BASIC_URL;
+import static taras.constants.DriverProvider.getDriver;
 
 public class TestRunner {
 
@@ -19,6 +20,8 @@ public class TestRunner {
         DriverProvider.getDriver().get(BASIC_URL);
         DriverProvider.getDriver().manage().window().maximize();    //Размер браузера на весь экран
         DriverProvider.getDriver().findElement(By.cssSelector(".btn.btn-primary")).click();
+        getDriver().findElement(By.id("bp_off_bottom_panel")).click(); //Закрываем нижнюю панель
+
         //Настраиваем макет для каждого тест-кейса
         AdminPanel adminPanel = new AdminPanel();
         adminPanel.navigateToSection_WebsiteLayouts();
