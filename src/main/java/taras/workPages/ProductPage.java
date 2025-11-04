@@ -41,6 +41,7 @@ public class ProductPage extends AbstractPage {
 
 
     public void searchProduct(String value) {
+        AdminPanel.closeAllNotifications();
         searchInput.click();
         searchInput.sendKeys(value);
         (new WebDriverWait((getDriver()), Duration.ofSeconds(10)))

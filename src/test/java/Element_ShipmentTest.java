@@ -17,7 +17,7 @@ public class Element_ShipmentTest extends TestRunner {
 
         //Настраиваем модуль "Блок мотивации -- Управление данными"
         MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_DataManagementPage();
-        mapsAndGeolocation.configureMapsAndGeolocation();
+        motivationBlock.elementShipment.click();
         motivationBlock.selectElementPage_Template("addons/ab__motivation_block/blocks/components/item_templates/geo_maps.tpl");
         adminPanel.saveButtonOnTopRight.click();
 

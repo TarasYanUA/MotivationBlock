@@ -87,6 +87,9 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(css = ".ab__am-menu a[href*='dispatch=ab__motivation_block.manage']")
     public WebElement abMenu_sectionDataManagement;
 
+    @FindBy(xpath = "//a[text()='Доставка']")
+    public WebElement elementShipment;
+
     @FindBy(xpath = "//a[text()='Варианты оплаты']")
     public WebElement elementPaymentMethods;
 

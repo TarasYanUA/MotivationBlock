@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
+import taras.constants.DriverProvider;
 
 import java.time.Duration;
 
@@ -20,6 +21,15 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     @FindBy(css = ".btn.btn-primary.cm-submit")
     public WebElement saveButtonOnTopRight;
+
+    public static void closeAllNotifications() {
+        while (!DriverProvider.getDriver().findElements(By.cssSelector(".cm-notification-close")).isEmpty()) {
+            DriverProvider.getDriver().findElements(By.cssSelector(".cm-notification-close")).getFirst().click();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ignored) {}
+        }
+    }
 
 
     //Меню -- Модули -- Скачанные модули
@@ -67,7 +77,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public MapsAndGeolocation navigateTo_MapsAndGeolocation_Settings() {
         navigateTo_DownloadedAddonsPage();
-        if (getDriver().findElement(By.cssSelector(".bp-panel-active")).isEnabled())
+        if (!getDriver().findElements(By.cssSelector(".bp-bottom-button--disabled-panel")).isEmpty())
             getDriver().findElement(By.cssSelector("#bp_off_bottom_panel")).click();
         addon_MapsAndGeolocation.click();
         tab_Settings.click();
