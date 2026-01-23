@@ -22,6 +22,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
     @FindBy(css = ".btn.btn-primary.cm-submit")
     public WebElement saveButtonOnTopRight;
 
+
     public static void closeAllNotifications() {
         while (!DriverProvider.getDriver().findElements(By.cssSelector(".cm-notification-close")).isEmpty()) {
             DriverProvider.getDriver().findElements(By.cssSelector(".cm-notification-close")).getFirst().click();
@@ -125,6 +126,7 @@ public class AdminPanel extends AbstractPage implements CheckMenuToBeActive {
 
     public void setLayout_Lightv2_AsDefault() {
         layout_Lightv2.click();
+        AdminPanel.closeAllNotifications();
         Actions hover = new Actions(getDriver());
         hover.moveToElement(gearwheelOfActiveLayout).perform();
         gearwheelOfActiveLayout.click();

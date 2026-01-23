@@ -35,6 +35,7 @@ public class MapsAndGeolocation extends AbstractPage {
         selectDropboxValue_Service("google");
         if(!checkbox_ShowShippingCost.isSelected())
             checkbox_ShowShippingCost.click();
+        AdminPanel.closeAllNotifications();
         tab_Google.click();
         setGoogleApiKey();
     }
