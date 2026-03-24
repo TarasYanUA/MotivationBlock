@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
-
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -52,7 +51,7 @@ public class ProductPage extends AbstractPage {
     public Storefront navigateToStorefront_ProductPage() {
         gearwheelOfProduct.click();
         previewButton.click();
-        ArrayList<String> tabs = new ArrayList<> (getDriver().getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
 
         WebElement confirmCookies = getDriver().findElement(By.cssSelector(".cm-btn-success"));
@@ -65,16 +64,44 @@ public class ProductPage extends AbstractPage {
     public void addCategoriesToProduct() {
         AdminPanel adminPanel = new AdminPanel();
 
-        if (DriverProvider.getDriver().findElements(By.cssSelector(".select2-selection__choice")).size() < 2) {
+        if (DriverProvider.getDriver().findElements(By.cssSelector(".object-picker__simple--categories .select2-selection__choice")).size() < 2) {
             pickerOfCategories.click();
             (new WebDriverWait((driver), Duration.ofSeconds(4)))
                     .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
-            categoryMenClothing.click();
-            categoryPlayStation.click();
+            if (!DriverProvider.getDriver().findElements(By.cssSelector
+                    ("span[id*='off_comp'][class='hand cm-combination-cat cm-uncheck hidden']")).isEmpty()) {
+                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
+                        ("//span[text()='Магазин: CS-Cart']/..//span[contains(@class, 'icon-caret-right')]")));
+                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
+                        ("//tr[contains(@id, 'cat_223')]/..//span[contains(@class, 'icon-caret-right')]")));
+                waitForElementToBeClickableAndClick(categoryMenClothing);
+
+                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
+                        ("//tr[contains(@id, 'cat_166')]/..//span[contains(@class, 'icon-caret-right')]")));
+                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
+                        ("//tr[contains(@id, 'cat_264')]/..//span[contains(@class, 'icon-caret-right')]")));
+                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
+                        ("//tr[contains(@id, 'cat_245')]/..//span[contains(@class, 'icon-caret-right')]")));
+                waitForElementToBeClickableAndClick(categoryPlayStation);
+            } else {
+                categoryMenClothing.click();
+                categoryPlayStation.click();
+            }
             savePopup.click();
             (new WebDriverWait((driver), Duration.ofSeconds(4)))
                     .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
             adminPanel.saveButtonOnTopRight.click();
+        }
+    }
+
+    public void waitForElementToBeClickableAndClick(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

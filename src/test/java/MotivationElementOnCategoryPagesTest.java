@@ -1,7 +1,6 @@
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import taras.workPages.AdminPanel;
-import taras.workPages.MotivationBlock;
 import taras.workPages.ProductPage;
 import taras.workPages.Storefront;
 
@@ -14,10 +13,10 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner {
         AdminPanel adminPanel = new AdminPanel();
 
         //Настраиваем настройки модуля
-        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
+/*        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");
         Utils.setCheckboxState(motivationBlock.checkbox_UseAdditionalProductCategories, true);
-        adminPanel.saveButtonOnTopRight.click();
+        adminPanel.saveButtonOnTopRight.click();*/
 
         //Переходим на страницу редактирования товара
         ProductPage productPage = adminPanel.navigateToSection_Products();
