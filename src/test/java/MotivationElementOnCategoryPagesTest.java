@@ -15,7 +15,7 @@ public class MotivationElementOnCategoryPagesTest extends TestRunner {
         //Настраиваем настройки модуля
 /*        MotivationBlock motivationBlock = adminPanel.navigateTo_MotivationBlock_Settings();
         motivationBlock.selectDropboxValueForElements_description_type("smarty");
-        Utils.setCheckboxState(motivationBlock.checkbox_UseAdditionalProductCategories, true);
+        taras.workPages.Utils.setCheckboxState(motivationBlock.checkbox_UseAdditionalProductCategories, true);
         adminPanel.saveButtonOnTopRight.click();*/
 
         //Переходим на страницу редактирования товара

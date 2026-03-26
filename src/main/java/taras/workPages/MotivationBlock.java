@@ -3,18 +3,15 @@ package taras.workPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
 
-import java.time.Duration;
-import java.util.Collection;
+import java.util.List;
 
 
 public class MotivationBlock extends AbstractPage {
-    public MotivationBlock(){
+    public MotivationBlock() {
         super();
     }
 
@@ -24,12 +21,6 @@ public class MotivationBlock extends AbstractPage {
     //Меню "Настройки модуля"
     @FindBy(id = "ab__motivation_block_appearance")
     public WebElement tabAppearance;
-
-    @FindBy(xpath = "//select[contains(@id, 'addon_option_ab__motivation_block_description_type')]")
-    WebElement dropboxValueForElements_description_type;
-
-    @FindBy(xpath = "//input[contains(@id, 'addon_option_ab__motivation_block_use_additional_categories')]")
-    public WebElement checkbox_UseAdditionalProductCategories;
 
     @FindBy(css = "select[id*='addon_option_ab__motivation_block_template_variant_']")
     WebElement settingTemplateVariant;
@@ -53,22 +44,13 @@ public class MotivationBlock extends AbstractPage {
     public WebElement submitColorForBlock;
 
     @FindBy(css = ".ab__mb_items.framed.colored")
-    public Collection<WebElement> elementIsFramed;
+    public List<WebElement> elementIsFramed;
 
     @FindBy(css = ".ab__mb_items.fill.colored")
-    public Collection<WebElement> elementIsFilled;
+    public List<WebElement> elementIsFilled;
 
-
-    public void selectDropboxValueForElements_description_type(String value) {
-        new Select(dropboxValueForElements_description_type).selectByValue(value);
-    }
-
-    public void selectSettingTemplateVariant(String value){
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void selectSettingTemplateVariant(String value) {
+        Utils.makePause(1500);
         new Select(settingTemplateVariant).selectByValue(value);
     }
 
@@ -102,12 +84,6 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(xpath = "//a[contains(@id, 'opener_picker_category_ids_')]")
     public WebElement addCategoriesButton;
 
-    @FindBy(id = "input_cat_224")
-    public WebElement chooseCategory_MenCloth;
-
-    @FindBy(id = "input_cat_255")
-    public WebElement chooseCategory_ConsolesMicrosoft;
-
     @FindBy(id = "ab__mb_template_path")
     WebElement elementPage_Template;
 
@@ -120,15 +96,15 @@ public class MotivationBlock extends AbstractPage {
     @FindBy(css = ".cm-form-dialog-closer")
     public WebElement saveCategoriesAtPopup;
 
-    
-    public void selectElementPage_Template(String value){
+
+    public void selectElementPage_Template(String value) {
         new Select(elementPage_Template).selectByValue(value);
     }
 
     public void configureFindSimilarAsCategoryList() {
         abMenuDropdown.click();
         abMenu_sectionDataManagement.click();
-        if(DriverProvider.getDriver().findElement(By.xpath("//a[@id='sw_select_4_wrap']")).getText().contains("Выкл.")){
+        if (DriverProvider.getDriver().findElement(By.xpath("//a[@id='sw_select_4_wrap']")).getText().contains("Выкл.")) {
             statusButton.click();
             statusActive.click();
         }
@@ -136,14 +112,25 @@ public class MotivationBlock extends AbstractPage {
 
     public void addCategoriesToMotivationElement() {
         AdminPanel adminPanel = new AdminPanel();
+        CategoryPage categoryPage = new CategoryPage();
 
         tabCategories.click();
         if (DriverProvider.getDriver().findElement(By.xpath("//p[text()='Все категории включены']")).isDisplayed()) {
             addCategoriesButton.click();
-            (new WebDriverWait((driver), Duration.ofSeconds(8)))
-                    .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
-            chooseCategory_ConsolesMicrosoft.click();
-            chooseCategory_MenCloth.click();
+            Utils.waitForPopupPresence();
+            if (!categoryPage.collapsedCategoryList.isEmpty()) {
+                Utils.waitForElementToBeClickableAndClick(categoryPage.expandCategoryList);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_apparel);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.categoryMenClothing);
+
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_electronics);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_gameConsoles);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_consoles);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.categoryConsolesMicrosoft);
+            } else {
+                categoryPage.categoryMenClothing.click();
+                categoryPage.categoryConsolesMicrosoft.click();
+            }
             saveCategoriesAtPopup.click();
             adminPanel.saveButtonOnTopRight.click();
         }

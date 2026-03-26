@@ -1,9 +1,6 @@
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import taras.workPages.AdminPanel;
-import taras.workPages.MotivationBlock;
-import taras.workPages.ProductPage;
-import taras.workPages.Storefront;
+import taras.workPages.*;
 
 import java.io.IOException;
 

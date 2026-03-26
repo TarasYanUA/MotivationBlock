@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import taras.constants.AbstractPage;
 import taras.constants.DriverProvider;
+
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -22,12 +23,6 @@ public class ProductPage extends AbstractPage {
 
     @FindBy(css = ".object-categories-add__picker")
     public WebElement pickerOfCategories;
-
-    @FindBy(id = "input_cat_224")
-    public WebElement categoryMenClothing;
-
-    @FindBy(id = "input_cat_259")
-    public WebElement categoryPlayStation;
 
     @FindBy(css = ".ui-dialog-content .btn.cm-dialog-closer.btn-primary")
     public WebElement savePopup;
@@ -63,45 +58,27 @@ public class ProductPage extends AbstractPage {
 
     public void addCategoriesToProduct() {
         AdminPanel adminPanel = new AdminPanel();
+        CategoryPage categoryPage = new CategoryPage();
 
         if (DriverProvider.getDriver().findElements(By.cssSelector(".object-picker__simple--categories .select2-selection__choice")).size() < 2) {
             pickerOfCategories.click();
-            (new WebDriverWait((driver), Duration.ofSeconds(4)))
-                    .until(ExpectedConditions.presenceOfElementLocated(By.className("ui-dialog-title")));
-            if (!DriverProvider.getDriver().findElements(By.cssSelector
-                    ("span[id*='off_comp'][class='hand cm-combination-cat cm-uncheck hidden']")).isEmpty()) {
-                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
-                        ("//span[text()='Магазин: CS-Cart']/..//span[contains(@class, 'icon-caret-right')]")));
-                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
-                        ("//tr[contains(@id, 'cat_223')]/..//span[contains(@class, 'icon-caret-right')]")));
-                waitForElementToBeClickableAndClick(categoryMenClothing);
+            Utils.waitForPopupPresence();
+            if (!categoryPage.collapsedCategoryList.isEmpty()) {
+                Utils.waitForElementToBeClickableAndClick(categoryPage.expandCategoryList);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_apparel);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.categoryMenClothing);
 
-                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
-                        ("//tr[contains(@id, 'cat_166')]/..//span[contains(@class, 'icon-caret-right')]")));
-                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
-                        ("//tr[contains(@id, 'cat_264')]/..//span[contains(@class, 'icon-caret-right')]")));
-                waitForElementToBeClickableAndClick(DriverProvider.getDriver().findElement(By.xpath
-                        ("//tr[contains(@id, 'cat_245')]/..//span[contains(@class, 'icon-caret-right')]")));
-                waitForElementToBeClickableAndClick(categoryPlayStation);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_multimedia);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.popup_category_videoGames);
+                Utils.waitForElementToBeClickableAndClick(categoryPage.categoryPlayStation);
             } else {
-                categoryMenClothing.click();
-                categoryPlayStation.click();
+                categoryPage.categoryMenClothing.click();
+                categoryPage.categoryPlayStation.click();
             }
             savePopup.click();
             (new WebDriverWait((driver), Duration.ofSeconds(4)))
                     .until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-dialog-title")));
             adminPanel.saveButtonOnTopRight.click();
-        }
-    }
-
-    public void waitForElementToBeClickableAndClick(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }
